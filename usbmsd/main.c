@@ -98,10 +98,10 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 // *****************************************************************************
 
 FSFILE * myFile;
+FSFILE * myFile2;
 BYTE myData[512];
 size_t numBytes;
 volatile BOOL deviceAttached;
-
 //******************************************************************************
 //******************************************************************************
 // Main
@@ -129,8 +129,8 @@ int main (void)
         // Initialize USB layers
         USBInitialize( 0 );
 
-		// Initialize the SPI Channel 2 to be a master, reverse
-		// clock, have 32 bits, enabled frame mode, and
+        // Initialize the SPI Channel 2 to be a master, reverse
+        // clock, have 32 bits, enabled frame mode, and
         SpiChnOpen(SPI_CHANNEL, 
                    SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
@@ -149,15 +149,17 @@ int main (void)
                     //Opening a file in mode "w" will create the file if it doesn't
                     //  exist.  If the file does exist it will delete the old file
                     //  and create a new one that is blank.
-                    myFile = FSfopen("test.txt","a");
+                    myFile = FSfopen("testread.txt","r");
+                    myFile2 = FSfopen("test.txt", "a");
 
-                    //Write some data to the new file.
-                    FSfwrite("This is a modified test.",1,24,myFile);
-                    
+                    //Read the data form testread.txt (myFile) and put into array myData
+                    FSfread(myData, 1, 16, myFile);
+                    FSfwrite(myData, 1, 16, myFile2);
 
                     //Always make sure to close the file so that the data gets
                     //  written to the drive.
                     FSfclose(myFile);
+                    FSfclose(myFile2);
 
                     //Just sit here until the device is removed.
                     while(deviceAttached == TRUE)
