@@ -98,15 +98,32 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 // *****************************************************************************
 
 FSFILE * myFile;
+FSFILE * myFile2;
 BYTE myData[512];
 size_t numBytes;
 volatile BOOL deviceAttached;
-
 //******************************************************************************
 //******************************************************************************
 // Main
 //******************************************************************************
 //******************************************************************************
+typedef struct riff_header
+{
+    char chunk_id[4];
+    unsigned int chunk_size;
+    char format[4];
+    char subchunk1_id[4];
+    unsigned int subchunk1_size;
+    unsigned short int audio_format;
+    unsigned short int num_channels;
+    unsigned int sample_rate;
+    unsigned int byte_rate;
+    unsigned short int block_align;
+    unsigned short int bits_per_sample;
+    char subchunk2_id[4];
+    unsigned int subchunk2_size;
+
+} header;
 
 short whendoublechannel(myFile, myFile2){
 		FSfread(myData, 1, 4, myFile);
@@ -134,8 +151,8 @@ int main (void)
         // Initialize USB layers
         USBInitialize( 0 );
 
-		// Initialize the SPI Channel 2 to be a master, reverse
-		// clock, have 32 bits, enabled frame mode, and
+        // Initialize the SPI Channel 2 to be a master, reverse
+        // clock, have 32 bits, enabled frame mode, and
         SpiChnOpen(SPI_CHANNEL, 
                    SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
@@ -195,13 +212,15 @@ int main (void)
 					//FSfread (myData, 1, 50, myFile);
 					//FSfwrite(myData, 1, 50, myFile2);
 
-                    //Write some data to the new file.
-                    FSfwrite("This is a modified test.",1,24,myFile);
-                    
+                    //should come up with a way to store the things in myData to somewhere else.
+                    //before reusing myData....
+                    //FSfread(myData, 1, chunk_size-44, myFile2);
+                    //FSfwrite(myData, 1, 4, myFile2);
 
                     //Always make sure to close the file so that the data gets
                     //  written to the drive.
                     FSfclose(myFile);
+                    FSfclose(myFile2);
 
                     //Just sit here until the device is removed.
                     while(deviceAttached == TRUE)
