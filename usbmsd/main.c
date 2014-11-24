@@ -167,16 +167,33 @@ int main (void)
                     //  exist.  If the file does exist it will delete the old file
                     //  and create a new one that is blank.
                     myFile = FSfopen("440.wav","r");
-                    myFile2 = FSfopen("test.txt", "w");
+                    myFile2 = FSfopen("test.txt", "a");
 
                     //Read the data form testread.txt (myFile) and put into array myData
                     FSfread(myData, 1, 44, myFile);
 
                     header *rheader_ptr = &myData;
                     header my_header = *rheader_ptr;
-
+					
+					FSfwrite(myData, 1, 4, myFile2);
                     itoa(myData, my_header.chunk_size, 10);
                     FSfwrite(myData, 1, strlen(myData), myFile2);
+					itoa(myData, my_header.num_channels, 10);
+					FSfwrite(myData, 1, strlen(myData), myFile2);
+
+					if(my_header.num_channels ==1)
+						{ sprintf(myData, "This wave file is a mono type");
+						}
+					else if (my_header.num_channels ==2)
+						{ sprintf(myData, "This wave file is a stereo type");
+						}
+					else
+						{ sprintf(myData, "Cannot identify the wave file type");
+						}
+
+					FSfwrite(myData, 1, strlen(myData), myFile2);
+					itoa(myData,my_header.bits_per_sample, 10);
+					FSfwrite(myData, 1, strlen(myData), myFile2);
 
                     //should come up with a way to store the things in myData to somewhere else.
                     //before reusing myData....
