@@ -125,12 +125,17 @@ typedef struct riff_header
 
 } header;
 
+short whendoublechannel(myFile, myFile2){
+		FSfread(myData, 1, 4, myFile);
+		short* samples = myData;
+		return samples[0];
+	}
 
 int main (void)
 {
         BYTE i;
         int  value;
-    
+    	int j = 0;
         value = SYSTEMConfigWaitStatesAndPB( GetSystemClock() );
     
         // Enable the cache for the best performance
@@ -167,7 +172,7 @@ int main (void)
                     //  exist.  If the file does exist it will delete the old file
                     //  and create a new one that is blank.
                     myFile = FSfopen("440.wav","r");
-                    myFile2 = FSfopen("test.txt", "a");
+                    myFile2 = FSfopen("test.txt", "w");
 
                     //Read the data form testread.txt (myFile) and put into array myData
                     FSfread(myData, 1, 44, myFile);
@@ -180,20 +185,32 @@ int main (void)
                     FSfwrite(myData, 1, strlen(myData), myFile2);
 					itoa(myData, my_header.num_channels, 10);
 					FSfwrite(myData, 1, strlen(myData), myFile2);
+					itoa(myData,my_header.bits_per_sample, 10);
+					FSfwrite(myData, 1, strlen(myData), myFile2);
 
 					if(my_header.num_channels ==1)
 						{ sprintf(myData, "This wave file is a mono type");
+						//FSfread(myData, 1, 2, myFile);
+						//FSfwrite(myData, 1, 2, myFile2); 
 						}
 					else if (my_header.num_channels ==2)
-						{ sprintf(myData, "This wave file is a stereo type");
+						{	while (j<10){
+							short sample = whendoublechannel(myFile, myFile2);
+							myData[0] = sample;
+							FSfwrite(myData, 1, 2, myFile2);
+							j++;
 						}
-					else
-						{ sprintf(myData, "Cannot identify the wave file type");
 						}
+					else { sprintf(myData, "Cannot identify the wave file type");
+						 }
+					
+					//strlen(my_header.chunk_size)-44
+					//sprintf(myData, "\nTest: %d \n",my_header.num_channels);
 
-					FSfwrite(myData, 1, strlen(myData), myFile2);
-					itoa(myData,my_header.bits_per_sample, 10);
-					FSfwrite(myData, 1, strlen(myData), myFile2);
+					//FSfwrite(myData, 1, strlen(myData), myFile2);
+				
+					//FSfread (myData, 1, 50, myFile);
+					//FSfwrite(myData, 1, 50, myFile2);
 
                     //should come up with a way to store the things in myData to somewhere else.
                     //before reusing myData....
