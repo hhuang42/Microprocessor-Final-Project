@@ -48,7 +48,7 @@ Company:         Microchip Technology, Inc.
 Software License Agreement
 
 The software supplied herewith by Microchip Technology Incorporated
-(the ìCompanyî) for its PICmicroÆ Microcontroller is intended and
+(the ìCompanyÅE for its PICmicroÆ Microcontroller is intended and
 supplied to you, the Companyís customer, for use solely and
 exclusively on Microchip PICmicro Microcontroller products. The
 software is owned by the Company and/or its supplier, and is
@@ -58,7 +58,7 @@ user to criminal sanctions under applicable laws, as well as to
 civil liability for the breach of the terms and conditions of this
 license.
 
-THIS SOFTWARE IS PROVIDED IN AN ìAS ISî CONDITION. NO WARRANTIES,
+THIS SOFTWARE IS PROVIDED IN AN ìAS ISÅECONDITION. NO WARRANTIES,
 WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED
 TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. THE COMPANY SHALL NOT,

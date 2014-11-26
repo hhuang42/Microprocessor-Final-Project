@@ -33,7 +33,7 @@ Description:
 Software License Agreement
 
 The software supplied herewith by Microchip Technology Incorporated
-(the “Company”) for its PICmicro® Microcontroller is intended and
+(the “CompanyE for its PICmicro® Microcontroller is intended and
 supplied to you, the Company’s customer, for use solely and
 exclusively on Microchip PICmicro Microcontroller products. The
 software is owned by the Company and/or its supplier, and is
@@ -43,7 +43,7 @@ user to criminal sanctions under applicable laws, as well as to
 civil liability for the breach of the terms and conditions of this
 license.
 
-THIS SOFTWARE IS PROVIDED IN AN “AS IS” CONDITION. NO WARRANTIES,
+THIS SOFTWARE IS PROVIDED IN AN “AS ISECONDITION. NO WARRANTIES,
 WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED
 TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. THE COMPANY SHALL NOT,
@@ -89,6 +89,19 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 // Divide source clock by 2
 #define SRC_CLK_DIV                     (2)
 
+#define CLOCK_RATE (40000000)
+
+#define SOUND_RATE (44100)
+
+#define SAMPLE_LENGTH (169)
+
+#define MIN_SAMPLE_VALUE (-32768)
+
+#define MAX_SAMPLE_VALUE (32767)
+
+#define PWM_PERIOD (CLOCK_RATE/SOUND_RATE)
+
+#define BUFFER_SIZE (512)
 
 
 // *****************************************************************************
@@ -99,9 +112,17 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 
 FSFILE * myFile;
 FSFILE * myFile2;
-BYTE myData[512];
+BYTE myData[BUFFER_SIZE];
+volatile BYTE* myDataPtr = myData;
 size_t numBytes;
 volatile BOOL deviceAttached;
+
+BYTE buffer[BUFFER_SIZE];
+volatile BYTE* bufferPtr = buffer;
+volatile BOOL bufferFilled;
+size_t bufferOffset;
+BOOL readSample;
+size_t remainingBytes;
 //******************************************************************************
 //******************************************************************************
 // Main
@@ -125,17 +146,63 @@ typedef struct riff_header
 
 } header;
 
-short whendoublechannel(myFile, myFile2){
-		FSfread(myData, 1, 4, myFile);
-		short* samples = myData;
-		return samples[0];
-	}
+short whendoublechannel(void){
+        short* samples = myDataPtr;
+        short sample = samples[bufferOffset];
+        bufferOffset = (bufferOffset + 1) % (BUFFER_SIZE/2);
+        if (bufferOffset == 0){
+            if (bufferFilled) {
+                BYTE* temp = bufferPtr;
+                bufferPtr = myDataPtr;
+                myDataPtr = temp;
+                bufferFilled = FALSE;
+            } else {
+                return 0;
+            }
+        }
+        return sample;
+    }
+void pwm_setup(void){
+    bufferOffset = 0;
+    readSample = FALSE;
+    bufferFilled = FALSE;
+	
+        // set up the timer 2 interrupt with a prioirty of 2 and zero sub-priority
+    INTSetVectorPriority(_TIMER_2_VECTOR, INT_PRIORITY_LEVEL_2);
+    INTSetVectorSubPriority(_TIMER_2_VECTOR, INT_SUB_PRIORITY_LEVEL_0);
+    INTClearFlag(INT_T2);
+    INTEnable(INT_T2, INT_ENABLED);
+
+    // configure for multi-vectored mode
+    INTConfigureSystem(INT_SYSTEM_CONFIG_MULT_VECTOR);
+
+    // enable interrupts
+    INTEnableInterrupts();
+
+    /* Open Timer2 with Period register value */
+    OpenTimer2(T2_ON, CLOCK_RATE/SOUND_RATE);
+
+    /* Enable OC | 32 bit Mode  | Timer2 is selected | Continuous O/P   | OC Pin High , S Compare value, Compare value*/
+    
+    OC2CON = 0x0000;
+    OC2R = CLOCK_RATE/SOUND_RATE;
+    OC2RS = CLOCK_RATE/SOUND_RATE;
+    OC2CON = 0x0006;
+    PR2 = CLOCK_RATE/SOUND_RATE;
+
+    IFS0CLR = 0x00000100;
+    IEC0SET = 0x00000100;
+    IPC2SET = 0x0000001C;
+
+    T2CONSET = 0x8000;
+    OC2CONSET = 0x8000;
+}
 
 int main (void)
 {
         BYTE i;
         int  value;
-    	int j = 0;
+        int j = 0;
         value = SYSTEMConfigWaitStatesAndPB( GetSystemClock() );
     
         // Enable the cache for the best performance
@@ -171,7 +238,7 @@ int main (void)
                     //Opening a file in mode "w" will create the file if it doesn't
                     //  exist.  If the file does exist it will delete the old file
                     //  and create a new one that is blank.
-                    myFile = FSfopen("440.wav","r");
+                    myFile = FSfopen("BadApple.wav","r");
                     myFile2 = FSfopen("test.txt", "w");
 
                     //Read the data form testread.txt (myFile) and put into array myData
@@ -179,46 +246,23 @@ int main (void)
 
                     header *rheader_ptr = &myData;
                     header my_header = *rheader_ptr;
-					
-					FSfwrite(myData, 1, 4, myFile2);
-                    itoa(myData, my_header.chunk_size, 10);
-                    FSfwrite(myData, 1, strlen(myData), myFile2);
-					itoa(myData, my_header.num_channels, 10);
-					FSfwrite(myData, 1, strlen(myData), myFile2);
-					itoa(myData,my_header.bits_per_sample, 10);
-					FSfwrite(myData, 1, strlen(myData), myFile2);
+                    
+                    pwm_setup();
+                    remainingBytes = my_header.subchunk2_size;
+                    FSfread(myData, 1, BUFFER_SIZE, myFile);
+                    remainingBytes -= BUFFER_SIZE;
+                    while (remainingBytes > 0){
+                        //USBTasks();
+                        if (!bufferFilled){
+                            size_t read_size = BUFFER_SIZE < remainingBytes ? 
+                                               BUFFER_SIZE : remainingBytes;
+                            FSfread(bufferPtr, 1, read_size, myFile);
+                            bufferFilled = TRUE;
+                            readSample = TRUE;
+                            remainingBytes -= read_size;
+                        } 
+                    }
 
-					if(my_header.num_channels ==1)
-						{ sprintf(myData, "This wave file is a mono type");
-						//FSfread(myData, 1, 2, myFile);
-						//FSfwrite(myData, 1, 2, myFile2); 
-						}
-					else if (my_header.num_channels ==2)
-						{	while (j<10){
-							short sample = whendoublechannel(myFile, myFile2);
-							myData[0] = sample;
-							FSfwrite(myData, 1, 2, myFile2);
-							j++;
-						}
-						}
-					else { sprintf(myData, "Cannot identify the wave file type");
-						 }
-					
-					//strlen(my_header.chunk_size)-44
-					//sprintf(myData, "\nTest: %d \n",my_header.num_channels);
-
-					//FSfwrite(myData, 1, strlen(myData), myFile2);
-				
-					//FSfread (myData, 1, 50, myFile);
-					//FSfwrite(myData, 1, 50, myFile2);
-
-                    //should come up with a way to store the things in myData to somewhere else.
-                    //before reusing myData....
-                    //FSfread(myData, 1, chunk_size-44, myFile2);
-                    //FSfwrite(myData, 1, 4, myFile2);
-
-                    //Always make sure to close the file so that the data gets
-                    //  written to the drive.
                     FSfclose(myFile);
                     FSfclose(myFile2);
 
@@ -230,6 +274,19 @@ int main (void)
                 }
             }
         }
+}
+
+void __ISR(_TIMER_2_VECTOR, ipl7) T2_IntHandler(void)
+{
+    IFS0CLR = 0x0100;
+    if (readSample){
+        int sample = whendoublechannel();
+        int duty_cycle = (sample-(MIN_SAMPLE_VALUE)) * 
+                          PWM_PERIOD/(MAX_SAMPLE_VALUE-MIN_SAMPLE_VALUE);
+        SetDCOC2PWM(duty_cycle);
+    } else {
+        SetDCOC2PWM(0);
+    }
 }
 
 //******************************************************************************
@@ -252,7 +309,7 @@ BOOL USB_ApplicationEventHandler( BYTE address, USB_EVENT event, void *data, DWO
             }
             else
             {
-				return FALSE;
+                return FALSE;
               //  UART2PrintString( "\r\n***** USB Error - device requires too much current *****\r\n" );
             }
             break;
