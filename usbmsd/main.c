@@ -121,7 +121,7 @@ BYTE buffer[BUFFER_SIZE];
 volatile BYTE* bufferPtr = buffer;
 volatile BOOL bufferFilled;
 size_t bufferOffset;
-BOOL readSample;
+BOOL sampleAvailable;
 size_t remainingBytes;
 //******************************************************************************
 //******************************************************************************
@@ -146,7 +146,7 @@ typedef struct riff_header
 
 } header;
 
-short whendoublechannel(void){
+short next_sample(void){
         short* samples = myDataPtr;
         short sample = samples[bufferOffset];
         bufferOffset = (bufferOffset + 1) % (BUFFER_SIZE/2);
@@ -164,7 +164,7 @@ short whendoublechannel(void){
     }
 void pwm_setup(void){
     bufferOffset = 0;
-    readSample = FALSE;
+    sampleAvailable = FALSE;
     bufferFilled = FALSE;
 	
         // set up the timer 2 interrupt with a prioirty of 2 and zero sub-priority
@@ -238,7 +238,7 @@ int main (void)
                     //Opening a file in mode "w" will create the file if it doesn't
                     //  exist.  If the file does exist it will delete the old file
                     //  and create a new one that is blank.
-                    myFile = FSfopen("BadApple.wav","r");
+                    myFile = FSfopen("Smoke.wav","r");
                     myFile2 = FSfopen("test.txt", "w");
 
                     //Read the data form testread.txt (myFile) and put into array myData
@@ -258,7 +258,7 @@ int main (void)
                                                BUFFER_SIZE : remainingBytes;
                             FSfread(bufferPtr, 1, read_size, myFile);
                             bufferFilled = TRUE;
-                            readSample = TRUE;
+                            sampleAvailable = TRUE;
                             remainingBytes -= read_size;
                         } 
                     }
@@ -279,8 +279,8 @@ int main (void)
 void __ISR(_TIMER_2_VECTOR, ipl7) T2_IntHandler(void)
 {
     IFS0CLR = 0x0100;
-    if (readSample){
-        int sample = whendoublechannel();
+    if (sampleAvailable){
+        int sample = next_sample();
         int duty_cycle = (sample-(MIN_SAMPLE_VALUE)) * 
                           PWM_PERIOD/(MAX_SAMPLE_VALUE-MIN_SAMPLE_VALUE);
         SetDCOC2PWM(duty_cycle);

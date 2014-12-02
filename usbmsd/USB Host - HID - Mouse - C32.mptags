@@ -45,7 +45,7 @@ BSTALL	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Includ
 BSec	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	1024;"	l	line:1024
 BSec	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	1395;"	l	line:1395
 BSec	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	880;"	l	line:880
-BUFFER_SIZE::(2048)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	104;"	d	line:104	file:
+BUFFER_SIZE::(512)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	104;"	d	line:104	file:
 BYTE	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	341;"	t	line:341
 BYTE	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	260;"	m	line:260	struct:_USB_MSD_CBW::<anonymous>::<anonymous>	file:
 BYTE_BITS	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	367;"	t	line:367
@@ -647,7 +647,7 @@ SetClockVars	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\
 SetConfigurationOptions::{U1CNFG1=0;U1EIE=0x9F;U1IE=0x9	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	393;"	d	line:393
 StrSz	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5566;"	l	line:5566
 SubClass	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	4553;"	l	line:4553
-T2_IntHandler	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	291;"	f	line:291	signature:(void)
+T2_IntHandler	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	279;"	f	line:279	signature:(void)
 TIMER_PERIOD::20000	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	16;"	d	line:16
 TIMER_PERIOD::37500	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	47;"	d	line:47
 TIMER_PRESCALER::TIMER_PRESCALER_8	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	15;"	d	line:15
@@ -876,7 +876,7 @@ USBTransactionCompleteIFReg::U1IR	C:\Users\Henry\Documents\E 155\Microprocessor-
 USBUnmaskInterrupts::	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	369;"	d	line:369
 USBUnmaskInterrupts::{IEC1bits.USBIE=1;}	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	366;"	d	line:366
 USB_ALLOW_SETUP::0x00	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	388;"	d	line:388
-USB_ApplicationEventHandler	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	310;"	f	line:310	signature:( BYTE address, USB_EVENT event, void *data, DWORD size )
+USB_ApplicationEventHandler	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	298;"	f	line:298	signature:( BYTE address, USB_EVENT event, void *data, DWORD size )
 USB_BUSY::0x02	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_common.h	98;"	d	line:98
 USB_CANNOT_ENUMERATE::0x07	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_common.h	103;"	d	line:103
 USB_CFG_DSC_REM_WAKE::(0x20|USB_CFG_DSC_REQUIRED)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	157;"	d	line:157
@@ -1362,7 +1362,7 @@ attemptsCSW	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\U
 attrib	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	410;"	l	line:410
 attributes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	256;"	m	line:256
 attributes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	310;"	m	line:310
-audio_format	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	137;"	m	line:137	struct:riff_header	file:
+audio_format	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	138;"	m	line:138	struct:riff_header	file:
 b	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2494;"	l	line:2494
 b0	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	101;"	m	line:101
 b0	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	123;"	m	line:123	struct:<anonymous>::__PACKED
@@ -1723,9 +1723,9 @@ bits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\
 bits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	396;"	m	line:396
 bits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	455;"	m	line:455
 bits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	543;"	m	line:543
-bits_per_sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	142;"	m	line:142	struct:riff_header	file:
+bits_per_sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	143;"	m	line:143	struct:riff_header	file:
 blockData	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	215;"	m	line:215	struct:_USB_MSD_DEVICE_INFO	file:
-block_align	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	141;"	m	line:141	struct:riff_header	file:
+block_align	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	142;"	m	line:142	struct:riff_header	file:
 bmAttributes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	150;"	m	line:150	struct:_USB_CONFIGURATION_DESCRIPTOR
 bmAttributes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	193;"	m	line:193	struct:_USB_ENDPOINT_DESCRIPTOR
 bmAttributes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	257;"	m	line:257	struct:_USB_OTG_DESCRIPTOR
@@ -1739,6 +1739,7 @@ buffer	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Includ
 buffer	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	120;"	v	line:120
 bufferEnd	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6833;"	l	line:6833
 bufferFilled	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	122;"	v	line:122
+bufferOffset	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	123;"	v	line:123
 bufferOverflow	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6835;"	l	line:6835
 bufferPtr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	121;"	v	line:121
 buffers	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_host.h	233;"	m	line:233	struct:_ISOCHRONOUS_DATA
@@ -1753,7 +1754,7 @@ byteCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB
 byteCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd_scsi.c	544;"	l	line:544
 byteCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd_scsi.c	655;"	l	line:655
 byteCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd_scsi.c	794;"	l	line:794
-byte_rate	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	140;"	m	line:140	struct:riff_header	file:
+byte_rate	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	141;"	m	line:141	struct:riff_header	file:
 bytesTransferred	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	239;"	m	line:239	struct:_USB_MSD_DEVICE_INFO	file:
 c	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	293;"	m	line:293
 c	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2115;"	l	line:2115
@@ -1775,8 +1776,8 @@ chdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\M
 chdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	279;"	p	line:279	file:	signature:(BYTE mode, char * ramptr, char * romptr)
 chdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6410;"	f	line:6410	signature:(BYTE mode, char * ramptr, const rom char * romptr)
 chk	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	255;"	m	line:255
-chunk_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	132;"	m	line:132	struct:riff_header	file:
-chunk_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	133;"	m	line:133	struct:riff_header	file:
+chunk_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	133;"	m	line:133	struct:riff_header	file:
+chunk_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	134;"	m	line:134	struct:riff_header	file:
 clientDriver	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_host.h	180;"	m	line:180	struct:_HOST_TRANSFER_DATA
 clientDriverID	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	217;"	m	line:217	struct:_USB_MSD_DEVICE_INFO	file:
 clus	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	3689;"	l	line:3689
@@ -1850,7 +1851,6 @@ data	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_
 dataBufferPointer	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	1404;"	l	line:1404
 dataCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_host.h	175;"	m	line:175	struct:_HOST_TRANSFER_DATA
 dataLength	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_host.h	200;"	m	line:200	struct:_ISOCHRONOUS_DATA_BUFFER
-dataOffset	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	123;"	v	line:123
 date	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	252;"	m	line:252
 day	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	3382;"	l	line:3382
 defaultArray	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6784;"	v	line:6784
@@ -1904,7 +1904,7 @@ dsk	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File 
 dsk	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5641;"	l	line:5641
 dsk	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	595;"	l	line:595
 dts	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_common.h	177;"	m	line:177
-duty_cycle	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	296;"	l	line:296
+duty_cycle	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	284;"	l	line:284
 dword	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	255;"	m	line:255
 dword	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	469;"	m	line:469
 endpointDATA	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	236;"	m	line:236	struct:_USB_MSD_DEVICE_INFO	file:
@@ -1990,7 +1990,7 @@ fo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File S
 fo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8419;"	l	line:8419
 fo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8550;"	l	line:8550
 force_dts	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_common.h	178;"	m	line:178
-format	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	134;"	m	line:134	struct:riff_header	file:
+format	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	135;"	m	line:135	struct:riff_header	file:
 free_clusters	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	288;"	m	line:288
 gBufferOwner	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	111;"	v	line:111
 gBufferZeroed	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	116;"	v	line:116
@@ -2017,7 +2017,7 @@ handle	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD Fi
 handle	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7985;"	l	line:7985
 handle2	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7986;"	l	line:7986
 have_precision	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8803;"	l	line:8803
-header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	146;"	t	line:146	file:
+header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	147;"	t	line:147	file:
 hiByte	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	4763;"	l	line:4763
 hiWord	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	4797;"	l	line:4797
 high	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	204;"	m	line:204	struct:<anonymous>::__PACKED
@@ -2046,7 +2046,7 @@ i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_hos
 i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	456;"	l	line:456
 i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	507;"	l	line:507
 i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	547;"	l	line:547
-i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	201;"	l	line:201
+i	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	203;"	l	line:203
 iConfiguration	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	149;"	m	line:149	struct:_USB_CONFIGURATION_DESCRIPTOR
 iInterface	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	177;"	m	line:177	struct:_USB_INTERFACE_DESCRIPTOR
 iManufacturer	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	128;"	m	line:128	struct:_USB_DEVICE_DESCRIPTOR
@@ -2086,7 +2086,7 @@ j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File Sy
 j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8552;"	l	line:8552
 j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	1089;"	l	line:1089
 j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	457;"	l	line:457
-j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	203;"	l	line:203
+j	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	205;"	l	line:205
 k	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	3789;"	l	line:3789
 l	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	4989;"	l	line:4989
 l	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5183;"	l	line:5183
@@ -2171,7 +2171,7 @@ mLED_9::LATAbits.LATA6	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Proje
 mLED_9_Off::mLED_9=0;	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	205;"	d	line:205
 mLED_9_On::mLED_9=1;	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	196;"	d	line:196
 mLED_9_Toggle::mLED_9=!mLED_9;	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	214;"	d	line:214
-main	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	198;"	f	line:198	signature:(void)
+main	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	201;"	f	line:201	signature:(void)
 masterBootRecord	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	1393;"	l	line:1393
 maxLUN	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	232;"	m	line:232	struct:_USB_MSD_DEVICE_INFO	file:
 maxcls	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSDefs.h	282;"	m	line:282
@@ -2193,7 +2193,7 @@ myData	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c
 myDataPtr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	116;"	v	line:116
 myFile	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	113;"	v	line:113
 myFile2	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	114;"	v	line:114
-my_header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	246;"	l	line:246
+my_header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	248;"	l	line:248
 n	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8752;"	l	line:8752
 n	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8817;"	l	line:8817
 name	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	253;"	m	line:253
@@ -2204,11 +2204,12 @@ newInterfaceInfo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usb
 newSettingInfo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	4565;"	l	line:4565
 new_request	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	279;"	m	line:279
 nextClusterIsLast	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	114;"	v	line:114
+next_sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	149;"	f	line:149	signature:(void)
 numBytes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	117;"	v	line:117
 numCommandTries	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	161;"	v	line:161	file:
 numEnumerationTries	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	162;"	v	line:162	file:
 numTimerInterrupts	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	163;"	v	line:163	file:
-num_channels	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	138;"	m	line:138	struct:riff_header	file:
+num_channels	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	139;"	m	line:139	struct:riff_header	file:
 numofclus	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2217;"	l	line:2217
 numsector	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5640;"	l	line:5640
 offset2	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2046;"	l	line:2046
@@ -2268,7 +2269,7 @@ properties_status	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\us
 ptr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	4567;"	l	line:4567
 ptr0	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2699;"	l	line:2699
 ptr1	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2699;"	l	line:2699
-pwm_setup	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	164;"	f	line:164	signature:(void)
+pwm_setup	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	165;"	f	line:165	signature:(void)
 q	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5966;"	l	line:5966
 q	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6138;"	l	line:6138
 q	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	9158;"	l	line:9158
@@ -2278,9 +2279,10 @@ radix	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD Fil
 ramstring	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8816;"	l	line:8816
 read	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	190;"	m	line:190
 readCount	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5274;"	l	line:5274
-readSample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	124;"	v	line:124
+read_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	257;"	l	line:257
 recache	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	124;"	v	line:124
 recipient	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	358;"	m	line:358
+remainingBytes	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	125;"	v	line:125
 requestInfo	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	362;"	m	line:362
 res	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	434;"	m	line:434	struct:__BDT::<anonymous>
 res	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	4764;"	l	line:4764
@@ -2294,8 +2296,8 @@ result	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD Fi
 results	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	289;"	m	line:289
 returnPointer	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6832;"	l	line:6832
 returnState	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	220;"	m	line:220	struct:_USB_MSD_DEVICE_INFO	file:
-rheader_ptr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	245;"	l	line:245
-riff_header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	130;"	s	line:130	file:
+rheader_ptr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	247;"	l	line:247
+riff_header	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	131;"	s	line:131	file:
 rmdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	271;"	p	line:271	file:	signature:(BYTE mode, char * ramptr, const rom char * romptr, unsigned char rmsubdirs)
 rmdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	277;"	p	line:277	file:	signature:(BYTE mode, char * ramptr, char * romptr, unsigned char rmsubdirs)
 rmdirhelper	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7977;"	f	line:7977	signature:(BYTE mode, char * ramptr, const rom char * romptr, unsigned char rmsubdirs)
@@ -2304,10 +2306,11 @@ romstring	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD
 root	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSDefs.h	279;"	m	line:279
 s_digits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	209;"	v	line:209	file:
 s_digits	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	211;"	v	line:211	file:
-sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	150;"	l	line:150
-sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	295;"	l	line:295
-sample_rate	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	139;"	m	line:139	struct:riff_header	file:
-samples	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	149;"	l	line:149
+sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	151;"	l	line:151
+sample	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	283;"	l	line:283
+sampleAvailable	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	124;"	v	line:124
+sample_rate	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	140;"	m	line:140	struct:riff_header	file:
+samples	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	150;"	l	line:150
 searchattr	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	316;"	m	line:316
 searchname	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	315;"	m	line:315
 sec	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\MDD File System\FSIO.h	246;"	m	line:246
@@ -2357,10 +2360,10 @@ strlenpgm::(a)strlen(a)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Proj
 strncpypgm2ram::(a,b,c)strncpy(a,b,c)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\Compiler.h	115;"	d	line:115
 strstrrampgm::(a,b)strstr(a,b)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\Compiler.h	116;"	d	line:116
 subDirDepth	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7987;"	l	line:7987
-subchunk1_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	135;"	m	line:135	struct:riff_header	file:
-subchunk1_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	136;"	m	line:136	struct:riff_header	file:
-subchunk2_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	143;"	m	line:143	struct:riff_header	file:
-subchunk2_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	144;"	m	line:144	struct:riff_header	file:
+subchunk1_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	136;"	m	line:136	struct:riff_header	file:
+subchunk1_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	137;"	m	line:137	struct:riff_header	file:
+subchunk2_id	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	144;"	m	line:144	struct:riff_header	file:
+subchunk2_size	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	145;"	m	line:145	struct:riff_header	file:
 sw3::PORTDbits.RD6	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	147;"	d	line:147
 sw3::mPORTDReadBit(IOPORT_BIT_6)	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	221;"	d	line:221
 sw6::PORTDbits.RD7	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\HardwareProfile.h	148;"	d	line:148
@@ -2372,7 +2375,7 @@ temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File
 temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	5640;"	l	line:5640
 temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	1256;"	l	line:1256
 temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	4896;"	l	line:4896
-temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	154;"	l	line:154
+temp	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	155;"	l	line:155
 tempArray	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	6423;"	l	line:6423
 tempArray	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7279;"	l	line:7279
 tempArray	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	7872;"	v	line:7872
@@ -2438,7 +2441,7 @@ val	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD H
 val	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\MSD Host Driver\usb_host_msd.c	263;"	m	line:263	union:_USB_MSD_CBW::<anonymous>	file:
 value	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2973;"	l	line:2973
 value	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	3142;"	l	line:3142
-value	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	202;"	l	line:202
+value	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	204;"	l	line:204
 w	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_hal_pic32.h	437;"	m	line:437	union:__BDT
 wIndex	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	327;"	m	line:327
 wLangID	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	370;"	m	line:370
@@ -2450,7 +2453,6 @@ wTotalLength	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\
 wTotalLength	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\USB\usb_host.c	4556;"	l	line:4556
 wValue	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\USB\usb_ch9.h	326;"	m	line:326
 weekhour	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	2698;"	l	line:2698
-whendoublechannel	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\main.c	148;"	f	line:148	signature:(void)
 width	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\MDD File System\FSIO.c	8801;"	l	line:8801
 word	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	193;"	m	line:193
 word	C:\Users\Henry\Documents\E 155\Microprocessor-Final-Project\usbmsd\Include\GenericTypeDefs.h	262;"	m	line:262
