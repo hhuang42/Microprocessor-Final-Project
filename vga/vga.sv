@@ -91,9 +91,14 @@ endmodule
 
 module videoGen(input  logic [9:0] x, y,
            		 output logic [7:0] r_int, g_int, b_int);
-	
+
  logic [23:0] intermediate_color [31:0];
-  
+ logic [50:0] circlerom [50:0];
+ 
+ initial
+		$readmemb("25-radius-circle.txt", circlerom);
+ assign intermediate_color[0] = 24'h808080;
+ 
 
   // given y position, choose a character to display
   // then look up the pixel value from the character ROM
@@ -102,16 +107,16 @@ module videoGen(input  logic [9:0] x, y,
 
  //assign ch = y[8:3]+8'd48;
   //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);  
- assign intermediate_color[0] = 24'hBAA0E0;
+
  genvar index;
  generate
- for (index=1; index < 16; index=index+1)
+ for (index=1; index < 32; index=index+1)
    begin: gen_code_label
-		circles my_circle(x, y, 20*index, 10*index, intermediate_color[index-1], 
-								24'hA0A0AA + 10*index, intermediate_color[index]); 
+		circle circle1(x, y, 300+10*index, 200+10*index, circlerom, intermediate_color[index-1], 
+					  24'hFFD000+8*index, intermediate_color[index]); 
    end
  endgenerate
- assign {r_int, g_int, b_int} = intermediate_color[15];
+ assign {r_int, g_int, b_int} = intermediate_color[31];
 // circles circle1(x, y, 300, 200, 24'hF0D0D0, 24'h00D0FF,intermediate_color[0]); 
 // circles circle2(x, y, 310, 215, intermediate_color[0], 24'hFFD0FF,intermediate_color[1]); 
 // circles circle3(x, y, 320, 225, intermediate_color[1], 24'hFFD0FF,intermediate_color[2]); 
@@ -126,19 +131,29 @@ module videoGen(input  logic [9:0] x, y,
   //assign {r_int, g_int, b_int}=((x-300)*(x-300)+(y-200)*(y-200) <= 625 )? {16'h8888, {{8{pixel}}}} : {{{8{pixel}}}, 16'h8888};
 endmodule
 
-module circles(input logic [9:0] x, y,
-					input logic [9:0] xcenter, ycenter,
-					input logic [23:0] background,
-					input logic [23:0] circle_color,
-					output logic [23:0] output_color);
-					
-	initial
-		$readmemb("circle.txt", circle);
-	assign output_color = ((x-xcenter)*(x-xcenter)+(y-ycenter)*(y-ycenter) <= 625 )? 
-											 circle_color : 
-											 background;
 
-endmodule 
+module circle(input logic [9:0] x_pixel, y_pixel, x_cent, y_cent,
+				  input logic [50:0] circlerom [50:0],
+				  input logic [23:0] background, circle_color,
+				  output logic [23:0] output_color);
+logic [50:0] line;
+assign line = circlerom[25 + x_pixel - x_cent];
+always_comb
+	begin 
+	if ((y_pixel >= y_cent - 25) && (y_pixel <= y_cent + 25) && 
+		 (x_pixel >= x_cent - 25) && (x_pixel <= x_cent + 25))
+		
+		begin
+			if (line[25 + y_pixel - y_cent])
+				output_color = circle_color;
+			else
+				output_color = background;
+		end
+	else
+		output_color = background;
+end
+endmodule
+
 /*module chargenrom(input  logic [7:0] ch,
                   input  logic [2:0] xoff, yoff,
 						output logic       pixel);

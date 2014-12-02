@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C5E144) Path("H:/E155/lab7/lab7base/lab7/vga/") File("vga_DS.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C5E144) Path("H:/dshim/My Documents/GitHub/Microprocessor-Final-Project/vga/") File("vga_DS.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
