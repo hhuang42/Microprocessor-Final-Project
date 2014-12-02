@@ -1,0 +1,89 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'sck'
+Slack : 0.069
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 35.802
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.502
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'sck'
+Slack : 0.527
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sck'
+Slack : -3.000
+TNS   : -23.818
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : 12.429
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.575
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'sck'
+Slack : 0.164
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 36.108
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'sck'
+Slack : 0.492
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sck'
+Slack : -3.000
+TNS   : -23.818
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : 12.417
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.571
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'sck'
+Slack : 0.599
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 38.072
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.202
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'sck'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sck'
+Slack : -3.000
+TNS   : -18.708
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : 12.097
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vgapll|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.649
+TNS   : 0.000
+
+------------------------------------------------------------
