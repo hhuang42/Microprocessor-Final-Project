@@ -97,7 +97,6 @@ set_location_assignment PIN_38 -to led[1]
 set_location_assignment PIN_43 -to led[0]
 set_location_assignment PIN_99 -to sck
 set_location_assignment PIN_75 -to sdi
-set_global_assignment -name TEXT_FILE "25-radius-circle.txt"
 set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
 set_global_assignment -name QIP_FILE pll.qip
 set_global_assignment -name QIP_FILE sfl.qip

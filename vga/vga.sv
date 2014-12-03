@@ -25,7 +25,7 @@ module vga_DS(input  logic       clk,
                         r_int, g_int, b_int, r, g, b, x, y);
 	
   // user-defined module to determine pixel color
-  videoGen videoGen(x, y, r_int, g_int, b_int);
+  videoGen videoGen(x, y, ~vsync, r_int, g_int, b_int);
   spi_slave_receive_only spireceive(sck, sdi, xpos, ypos);
   assign led[6:0] = ypos[6:0];
   assign led[7] = sdi;
@@ -90,13 +90,13 @@ module vgaController #(parameter HMAX   = 10'd800,
 endmodule
 
 module videoGen(input  logic [9:0] x, y,
+					 input  logic game_clk,
            		 output logic [7:0] r_int, g_int, b_int);
 
- logic [23:0] intermediate_color [31:0];
+ logic [23:0] intermediate_color [32:0];
  logic [50:0] circlerom [50:0];
+ logic [7:0] counter = 0;
  
- initial
-		$readmemb("25-radius-circle.txt", circlerom);
  assign intermediate_color[0] = 24'h808080;
  
 
@@ -107,48 +107,112 @@ module videoGen(input  logic [9:0] x, y,
 
  //assign ch = y[8:3]+8'd48;
   //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);  
+  always_ff@(posedge game_clk) begin
+	counter <= counter - 1;
+  end
+ 
+ 
 
  genvar index;
  generate
- for (index=1; index < 32; index=index+1)
+ for (index=0; index < 8; index=index+1)
    begin: gen_code_label
-		circle circle1(x, y, 300+10*index, 200+10*index, circlerom, intermediate_color[index-1], 
-					  24'hFFD000+8*index, intermediate_color[index]); 
+		octagonv2 test(x, y, 40+100*index+counter[7:4], 50+200*index+counter[7:5],counter[5:0], intermediate_color[index], 
+					  24'hFFD000+(24'h634221*index)+counter, intermediate_color[index+1]); 
    end
  endgenerate
- assign {r_int, g_int, b_int} = intermediate_color[31];
-// circles circle1(x, y, 300, 200, 24'hF0D0D0, 24'h00D0FF,intermediate_color[0]); 
-// circles circle2(x, y, 310, 215, intermediate_color[0], 24'hFFD0FF,intermediate_color[1]); 
-// circles circle3(x, y, 320, 225, intermediate_color[1], 24'hFFD0FF,intermediate_color[2]); 
-// circles circle4(x, y, 330, 235, intermediate_color[2], 24'hFFD0FF,intermediate_color[3]); 
-// circles circle5(x, y, 340, 245, intermediate_color[3], 24'hFFD0FF,intermediate_color[4]); 
-// circles circle6(x, y, 350, 255, intermediate_color[4], 24'hFFD0FF,intermediate_color[5]); 
-// circles circle7(x, y, 360, 265, intermediate_color[5], 24'hFFD0FF,intermediate_color[6]); 
-// circles circle8(x, y, 370, 275, intermediate_color[6], 24'hFFD0FF,intermediate_color[7]); 
-// circles circle9(x, y, 380, 285, intermediate_color[7], 24'hFFD0FF,intermediate_color[8]); 
-// circles circlea(x, y, 390, 295, intermediate_color[8], 24'hFFD0FF,intermediate_color[9]); 
-// circles circleb(x, y, 400, 305, intermediate_color[9], 24'hFFD0FF,{r_int, g_int, b_int}); 
-  //assign {r_int, g_int, b_int}=((x-300)*(x-300)+(y-200)*(y-200) <= 625 )? {16'h8888, {{8{pixel}}}} : {{{8{pixel}}}, 16'h8888};
+ assign {r_int, g_int, b_int} = intermediate_color[8];
 endmodule
 
 
-module circle(input logic [9:0] x_pixel, y_pixel, x_cent, y_cent,
-				  input logic [50:0] circlerom [50:0],
-				  input logic [23:0] background, circle_color,
+
+module octagon(input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
+					input logic [9:0] ring_align_radius_offset, 
+				  input logic [23:0] background, shape_color,
 				  output logic [23:0] output_color);
-logic [50:0] line;
-assign line = circlerom[25 + x_pixel - x_cent];
+logic [10:0] x_pixel, y_pixel, x_cent, y_cent;
+logic [10:0] sum_pixel, diff_pixel, sum_cent, diff_cent;
+logic in_octagon, in_outline, in_outer_ring, in_inner_ring;
+logic [9:0] ring_align_radius;
+logic [9:0] ring_diag_radius;
+assign ring_align_radius = ring_align_radius_offset + 25;
+
+assign ring_diag_radius = ring_align_radius + ring_align_radius[9:2]
+                        + ring_align_radius[9:3] + ring_align_radius[9:5]+1;
+
+assign x_pixel = x_pixel_orig + 100;
+assign y_pixel = y_pixel_orig + 100;
+assign x_cent = x_cent_orig + 100;
+assign y_cent = y_cent_orig + 100;
+assign sum_pixel = x_pixel + y_pixel;
+assign diff_pixel = x_pixel - y_pixel + 1000;
+assign sum_cent = x_cent + y_cent;
+assign diff_cent = x_cent - y_cent + 1000;
+assign in_octagon = (x_pixel < x_cent + 25) && (x_pixel > x_cent - 25) &&
+						  (y_pixel < y_cent + 25) && (y_pixel > y_cent - 25) &&
+						  (sum_pixel < sum_cent + 35) && (sum_pixel > sum_cent - 35) &&
+			  			  (diff_pixel < diff_cent + 35) && (diff_pixel > diff_cent - 35);
+assign in_outline = (x_pixel < x_cent + 30) && (x_pixel > x_cent - 30) &&
+						  (y_pixel < y_cent + 30) && (y_pixel > y_cent - 30) &&
+						  (sum_pixel < sum_cent + 42) && (sum_pixel > sum_cent - 42) &&
+			  			  (diff_pixel < diff_cent + 42) && (diff_pixel > diff_cent - 42);
+
+assign in_inner_ring =    (x_pixel < x_cent + ring_align_radius) && (x_pixel > x_cent - ring_align_radius) &&
+								  (y_pixel < y_cent + ring_align_radius) && (y_pixel > y_cent - ring_align_radius) &&
+								  (sum_pixel < sum_cent + ring_diag_radius) && (sum_pixel > sum_cent - ring_diag_radius) &&
+								  (diff_pixel < diff_cent + ring_diag_radius) && (diff_pixel > diff_cent - ring_diag_radius);
+								  
+assign in_outer_ring =    (x_pixel < x_cent + ring_align_radius + 5) && (x_pixel > x_cent - ring_align_radius - 5) &&
+								  (y_pixel < y_cent + ring_align_radius + 5) && (y_pixel > y_cent - ring_align_radius - 5) &&
+								  (sum_pixel < sum_cent + ring_diag_radius + 7) && (sum_pixel > sum_cent - ring_diag_radius - 7) &&
+								  (diff_pixel < diff_cent + ring_diag_radius + 7) && (diff_pixel > diff_cent - ring_diag_radius - 7);
+						  
+							
 always_comb
 	begin 
-	if ((y_pixel >= y_cent - 25) && (y_pixel <= y_cent + 25) && 
-		 (x_pixel >= x_cent - 25) && (x_pixel <= x_cent + 25))
-		
-		begin
-			if (line[25 + y_pixel - y_cent])
-				output_color = circle_color;
-			else
-				output_color = background;
-		end
+	if (in_octagon || (in_outer_ring && ~(in_inner_ring)))
+		output_color = shape_color;
+	else if (in_outline)
+		output_color = 24'hFFFFFF;
+	else
+		output_color = background;
+end
+endmodule
+
+module octagonv2(input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
+					input logic [9:0] ring_align_radius_offset, 
+				  input logic [23:0] background, shape_color,
+				  output logic [23:0] output_color);
+logic [9:0] x_pixel, y_pixel, x_cent, y_cent;
+logic [10:0] sum_pixel, diff_pixel, sum_cent, diff_cent;
+logic [9:0] ring_align_radius;
+logic [9:0] min_NS, min_EW, min_NESW, min_NWSE, max_card, max_diag, max_diag_norm, max;
+assign ring_align_radius = ring_align_radius_offset + 25;
+
+assign x_pixel = x_pixel_orig;
+assign y_pixel = y_pixel_orig;
+assign x_cent = x_cent_orig;
+assign y_cent = y_cent_orig;
+assign sum_pixel = x_pixel + y_pixel;
+assign diff_pixel = x_pixel + y_cent;
+assign sum_cent = x_cent + y_cent;
+assign diff_cent = x_cent + y_pixel;
+assign min_NS = y_pixel > y_cent ? y_pixel - y_cent : y_cent - y_pixel;
+assign min_EW = x_pixel > x_cent ? x_pixel - x_cent : x_cent - x_pixel;
+assign min_NWSE = diff_pixel > diff_cent ? diff_pixel - diff_cent : diff_cent - diff_pixel;
+assign min_NESW = sum_pixel > sum_cent ? sum_pixel - sum_cent : sum_cent - sum_pixel;
+assign max_card = min_NS > min_EW ? min_NS : min_EW;
+assign max_diag = min_NESW > min_NWSE ? min_NESW : min_NWSE;
+assign max_diag_norm = max_diag - max_diag[9:2] - max_diag[9:5];
+assign max = max_card > max_diag_norm ? max_card : max_diag_norm;
+						  
+							
+always_comb
+	begin 
+	if (max < 25 || (max > ring_align_radius && max < ring_align_radius + 5))
+		output_color = shape_color;
+	else if (max < 30)
+		output_color = 24'hFFFFFF;
 	else
 		output_color = background;
 end
@@ -175,7 +239,13 @@ endmodule
 endmodule
 */
 
+module store_data(input logic[31:0] octagondata,
+						output logic [31:0] datalist[7:0]);
+endmodule
 
+module to_synch_time(input logic [31:0] timerdata,
+							output logic [9:0] mousexpos, mouseypos);
+endmodule
 
 
 // If the slave only need to received data from the master
