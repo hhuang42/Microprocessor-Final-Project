@@ -1,0 +1,641 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.13)  4 NOV 2014 13:12
+entering extended mode
+**writeup.tex
+("C:\Users\Henry\Documents\E 155\Microprocessor-Labs\Lab 7\writeup.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks14
+\verbatim@line=\toks15
+\verbatim@in@stream=\read1
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen103
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen104
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count87
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count88
+\leftroot@=\count89
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count90
+\DOTSCASE@=\count91
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count92
+\c@MaxMatrixCols=\count93
+\dotsspace@=\muskip10
+\c@parentequation=\count94
+\dspbrk@lvl=\count95
+\tag@help=\toks17
+\row@=\count96
+\column@=\count97
+\maxfields@=\count98
+\andhelp@=\toks18
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks19
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count99
+\Gm@cntv=\count100
+\c@Gm@tempcnt=\count101
+\Gm@bindingoffset=\dimen112
+\Gm@wd@mp=\dimen113
+\Gm@odd@mp=\dimen114
+\Gm@even@mp=\dimen115
+\Gm@layoutwidth=\dimen116
+\Gm@layoutheight=\dimen117
+\Gm@layouthoffset=\dimen118
+\Gm@layoutvoffset=\dimen119
+\Gm@dimlist=\toks22
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip46
+\f@ncyO@elh=\skip47
+\f@ncyO@erh=\skip48
+\f@ncyO@olh=\skip49
+\f@ncyO@orh=\skip50
+\f@ncyO@elf=\skip51
+\f@ncyO@erf=\skip52
+\f@ncyO@olf=\skip53
+\f@ncyO@orf=\skip54
+)
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.sty
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip55
+\subfigcapskip=\skip56
+\subfigcaptopadj=\dimen120
+\subfigbottomskip=\skip57
+\subfigcapmargin=\dimen121
+\subfiglabelskip=\skip58
+\c@subfigure=\count102
+\c@lofdepth=\count103
+\c@subtable=\count104
+\c@lotdepth=\count105
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.cfg)
+\subfig@top=\skip59
+\subfig@bottom=\skip60
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count106
+))
+\Gin@req@height=\dimen122
+\Gin@req@width=\dimen123
+)
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\cite\cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 373.
+Package: cite 2010/09/10  v 5.3
+)
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\siunits\SIunits.sty
+Package: SIunits 2007/12/02 v1.36 Support for the International System of units
+ (MH)
+
+
+\@qskwidth=\skip61
+\symgreek=\mathgroup6
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\latex\siunits\SIunits.cfg)
+Option `squaren' provided!
+) ("C:\Users\Henry\Documents\E 155\Microprocessor-Labs\Lab 7\writeup.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 24.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 24.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(90.3375pt, 433.62001pt, 90.3375pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=433.62001pt
+* \textheight=650.43001pt
+* \oddsidemargin=18.0675pt
+* \evensidemargin=18.0675pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(C:\Users\Henry\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count107
+\scratchdimen=\dimen124
+\scratchbox=\box28
+\nofMPsegments=\count108
+\nofMParguments=\count109
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count110
+\MPscratchDim=\dimen125
+\MPnumerator=\count111
+\makeMPintoPDFobject=\count112
+\everyMPtoPDFconversion=\toks24
+)
+Option `squaren' provided! 
+ Command \squaren defined by SIunits package!
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+
+ []
+
+[1{C:/Users/Henry/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+]
+Missing character: There is no ‚ in font cmtt10!
+Missing character: There is no Ä in font cmtt10!
+Missing character: There is no ú in font cmtt10!
+Missing character: There is no ‚ in font cmtt10!
+Missing character: There is no Ä in font cmtt10!
+Missing character: There is no ù in font cmtt10!
+Missing character: There is no ¬ in font cmtt10!
+Missing character: There is no Æ in font cmtt10!
+Missing character: There is no ‚ in font cmtt10!
+Missing character: There is no Ä in font cmtt10!
+Missing character: There is no ô in font cmtt10!
+ [2]
+Missing character: There is no ‚ in font cmtt10!
+Missing character: There is no Ä in font cmtt10!
+Missing character: There is no ú in font cmtt10!
+Missing character: There is no ‚ in font cmtt10!
+Missing character: There is no Ä in font cmtt10!
+Missing character: There is no ù in font cmtt10!
+
+[3]
+Overfull \hbox (38.87587pt too wide) in paragraph at lines 193--193
+[]\OT1/cmtt/m/n/10 #define MAX_ALLOWED_CURRENT             (500)         // Max
+imum power we can supply in mA[] 
+ []
+
+
+Overfull \hbox (96.62537pt too wide) in paragraph at lines 194--194
+[]\OT1/cmtt/m/n/10 #define MINIMUM_POLL_INTERVAL           (0x0A)        // Min
+imum Polling rate for HID reports is 10ms[] 
+ []
+
+[4]
+Overfull \hbox (180.62463pt too wide) in paragraph at lines 268--268
+[]                             \OT1/cmtt/m/n/10 if(USBHostHID_ApiDeviceDetect()
+) /* True if report descriptor is parsed with no error */[] 
+ []
+
+[5]
+Overfull \hbox (38.87587pt too wide) in paragraph at lines 288--288
+[]                            \OT1/cmtt/m/n/10 if(USBHostHID_ApiGetReport(Appl_
+raw_report_buffer.Report_ID,0,[] 
+ []
+
+
+Overfull \hbox (227.87422pt too wide) in paragraph at lines 289--289
+[]                                                        \OT1/cmtt/m/n/10 Appl
+_raw_report_buffer.ReportSize, Appl_raw_report_buffer.ReportData))[] 
+ []
+
+
+Overfull \hbox (54.62573pt too wide) in paragraph at lines 300--300
+[]                           \OT1/cmtt/m/n/10 if(USBHostHID_ApiTransferIsComple
+te(&ErrorDriver,&NumOfBytesRcvd))[] 
+ []
+
+
+Overfull \hbox (112.37523pt too wide) in paragraph at lines 302--302
+[]                                \OT1/cmtt/m/n/10 if(ErrorDriver ||(NumOfBytes
+Rcvd != Appl_raw_report_buffer.ReportSize ))[] 
+ []
+
+
+Overfull \hbox (75.62555pt too wide) in paragraph at lines 336--336
+[]    \OT1/cmtt/m/n/10 USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportDa
+ta, Appl_raw_report_buffer.ReportSize[] 
+ []
+
+[6]
+Overfull \hbox (2.12619pt too wide) in paragraph at lines 337--337
+[]                          \OT1/cmtt/m/n/10 ,Appl_Button_report_buffer, &Appl_
+Mouse_Buttons_Details);[] 
+ []
+
+
+Overfull \hbox (75.62555pt too wide) in paragraph at lines 338--338
+[]    \OT1/cmtt/m/n/10 USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportDa
+ta, Appl_raw_report_buffer.ReportSize[] 
+ []
+
+
+Overfull \hbox (17.87605pt too wide) in paragraph at lines 342--342
+[]    \OT1/cmtt/m/n/10 xMvmt = (signed char) Appl_XY_report_buffer[0]; // Get X
+-axis movement from report[] 
+ []
+
+
+Overfull \hbox (159.62482pt too wide) in paragraph at lines 344--344
+[]\OT1/cmtt/m/n/10 PORTD = Appl_Button_report_buffer[0] | (Appl_Button_report_b
+uffer[1] << 1) | (Appl_Button_report_buffer[2] << 2);
+ []
+
+
+Overfull \hbox (17.87605pt too wide) in paragraph at lines 345--345
+[]    \OT1/cmtt/m/n/10 yMvmt = (signed char) Appl_XY_report_buffer[1]; // Get Y
+-axis movement from report[] 
+ []
+
+
+Overfull \hbox (33.62592pt too wide) in paragraph at lines 355--355
+[]\OT1/cmtt/m/n/10 BOOL USB_ApplicationEventHandler( BYTE address, USB_EVENT ev
+ent, void *data, DWORD size )[] 
+ []
+
+
+Overfull \hbox (7.37614pt too wide) in paragraph at lines 360--360
+[]            \OT1/cmtt/m/n/10 // The data pointer points to a byte that repres
+ents the amount of power[] 
+ []
+
+
+Overfull \hbox (7.37614pt too wide) in paragraph at lines 361--361
+[]            \OT1/cmtt/m/n/10 // requested in mA, divided by two.  If the devi
+ce wants too much power,[] 
+ []
+
+
+Overfull \hbox (33.62592pt too wide) in paragraph at lines 363--363
+[]            \OT1/cmtt/m/n/10 if (((USB_VBUS_POWER_EVENT_DATA*)data)->current 
+<= (MAX_ALLOWED_CURRENT / 2))[] 
+ []
+
+
+Overfull \hbox (117.62518pt too wide) in paragraph at lines 369--369
+[]              \OT1/cmtt/m/n/10 //  UART2PrintString( "\r\n***** USB Error - d
+evice requires too much current *****\r\n" );[] 
+ []
+
+
+Overfull \hbox (12.6261pt too wide) in paragraph at lines 375--375
+[]            \OT1/cmtt/m/n/10 // The PIC24F with the Explorer 16 cannot turn o
+ff Vbus through software.[] 
+ []
+
+
+Overfull \hbox (44.12582pt too wide) in paragraph at lines 380--380
+[]        \OT1/cmtt/m/n/10 //    UART2PrintString( "\r\n***** USB Error - hubs 
+are not supported *****\r\n" );[] 
+ []
+
+
+Overfull \hbox (49.37578pt too wide) in paragraph at lines 385--385
+[]        \OT1/cmtt/m/n/10 //    UART2PrintString( "\r\n***** USB Error - devic
+e is not supported *****\r\n" );[] 
+ []
+
+[7]
+Overfull \hbox (44.12582pt too wide) in paragraph at lines 390--390
+[]        \OT1/cmtt/m/n/10 //   UART2PrintString( "\r\n***** USB Error - cannot
+ enumerate device *****\r\n" );[] 
+ []
+
+
+Overfull \hbox (107.12527pt too wide) in paragraph at lines 395--395
+[]        \OT1/cmtt/m/n/10 //    UART2PrintString( "\r\n***** USB Error - clien
+t driver initialization error *****\r\n" );[] 
+ []
+
+
+Overfull \hbox (23.126pt too wide) in paragraph at lines 400--400
+[]        \OT1/cmtt/m/n/10 //    UART2PrintString( "\r\n***** USB Error - out o
+f heap memory *****\r\n" );[] 
+ []
+
+[8] [9]
+Overfull \hbox (28.37596pt too wide) in paragraph at lines 503--503
+[]  \OT1/cmtt/m/n/10 pDeviceRptinfo = USBHostHID_GetCurrentReportInfo(); // Get
+ current Report Info pointer[] 
+ []
+
+
+Overfull \hbox (54.62573pt too wide) in paragraph at lines 504--504
+[]  \OT1/cmtt/m/n/10 pitemListPtrs = USBHostHID_GetItemListPointers();   // Get
+ pointer to list of item pointers[] 
+ []
+
+
+Overfull \hbox (101.87532pt too wide) in paragraph at lines 508--508
+[]   \OT1/cmtt/m/n/10 /* Once report Item is located , extract information from
+ data structures provided by the parser */[] 
+ []
+
+
+Overfull \hbox (185.87459pt too wide) in paragraph at lines 513--513
+[]       \OT1/cmtt/m/n/10 if((reportItem->reportType==hidReportInput) && (repor
+tItem->dataModes == (HIDData_Variable|HIDData_Relative))&&[] 
+ []
+
+
+Overfull \hbox (117.62518pt too wide) in paragraph at lines 522--522
+[]            \OT1/cmtt/m/n/10 Appl_XY_Axis_Details.reportLength = (pitemListPt
+rs->reportList[reportIndex].inputBits + 7)/8;[] 
+ []
+
+
+Overfull \hbox (17.87605pt too wide) in paragraph at lines 527--527
+[]            \OT1/cmtt/m/n/10 Appl_XY_Axis_Details.interfaceNum= USBHostHID_Ap
+iGetCurrentInterfaceNum();[] 
+ []
+
+
+Overfull \hbox (117.62518pt too wide) in paragraph at lines 529--529
+[]        \OT1/cmtt/m/n/10 else if((reportItem->reportType==hidReportInput) && 
+(reportItem->dataModes == HIDData_Variable)&&[] 
+ []
+
+
+Overfull \hbox (149.12491pt too wide) in paragraph at lines 538--538
+[]            \OT1/cmtt/m/n/10 Appl_Mouse_Buttons_Details.reportLength = (pitem
+ListPtrs->reportList[reportIndex].inputBits + 7)/8;[] 
+ []
+
+
+Overfull \hbox (12.6261pt too wide) in paragraph at lines 539--539
+[]            \OT1/cmtt/m/n/10 Appl_Mouse_Buttons_Details.reportID = (BYTE)repo
+rtItem->globals.reportID;[] 
+ []
+
+
+Overfull \hbox (28.37596pt too wide) in paragraph at lines 541--541
+[]            \OT1/cmtt/m/n/10 Appl_Mouse_Buttons_Details.bitLength = (BYTE)rep
+ortItem->globals.reportsize;[] 
+ []
+
+
+Overfull \hbox (2.12619pt too wide) in paragraph at lines 542--542
+[]            \OT1/cmtt/m/n/10 Appl_Mouse_Buttons_Details.count=(BYTE)reportIte
+m->globals.reportCount;[] 
+ []
+
+
+Overfull \hbox (49.37578pt too wide) in paragraph at lines 543--543
+[]            \OT1/cmtt/m/n/10 Appl_Mouse_Buttons_Details.interfaceNum= USBHost
+HID_ApiGetCurrentInterfaceNum();[] 
+ []
+
+
+Overfull \hbox (96.62537pt too wide) in paragraph at lines 550--550
+[]        \OT1/cmtt/m/n/10 Appl_raw_report_buffer.ReportSize = (pitemListPtrs->
+reportList[reportIndex].inputBits + 7)/8;[] 
+ []
+
+
+Overfull \hbox (65.12564pt too wide) in paragraph at lines 551--551
+[]\OT1/cmtt/m/n/10 //        Appl_raw_report_buffer.ReportData = (BYTE*)malloc(
+Appl_raw_report_buffer.ReportSize);[] 
+ []
+
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 806--807
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 808--810
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 811--813
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 817--818
+
+ []
+
+[15] ("C:\Users\Henry\Documents\E 155\Microprocessor-Labs\Lab 7\writeup.aux") )
+ 
+Here is how much of TeX's memory you used:
+ 3371 strings out of 493921
+ 44202 string characters out of 3144876
+ 113004 words of memory out of 3000000
+ 6646 multiletter control sequences out of 15000+200000
+ 5326 words of font info for 20 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 27i,10n,43p,249b,341s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on writeup.pdf (15 pages, 91690 bytes).
+PDF statistics:
+ 67 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

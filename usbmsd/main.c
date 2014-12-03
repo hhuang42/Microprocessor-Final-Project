@@ -111,7 +111,6 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 // *****************************************************************************
 
 FSFILE * myFile;
-FSFILE * myFile2;
 BYTE myData[BUFFER_SIZE];
 volatile BYTE* myDataPtr = myData;
 size_t numBytes;
@@ -166,6 +165,8 @@ void pwm_setup(void){
     bufferOffset = 0;
     sampleAvailable = FALSE;
     bufferFilled = FALSE;
+    myDataPtr = myData;
+    bufferPtr = buffer;
 	
         // set up the timer 2 interrupt with a prioirty of 2 and zero sub-priority
     INTSetVectorPriority(_TIMER_2_VECTOR, INT_PRIORITY_LEVEL_2);
@@ -196,6 +197,36 @@ void pwm_setup(void){
 
     T2CONSET = 0x8000;
     OC2CONSET = 0x8000;
+}
+
+void play_file(char* file_name){
+
+    myFile = FSfopen(file_name,"r");
+
+    //Read the data form testread.txt (myFile) and put into array myData
+    FSfread(myData, 1, 44, myFile);
+
+    header *rheader_ptr = &myData;
+    header my_header = *rheader_ptr;
+    
+    pwm_setup();
+    remainingBytes = my_header.subchunk2_size;
+    FSfread(myData, 1, BUFFER_SIZE, myFile);
+    remainingBytes -= BUFFER_SIZE;
+    while (remainingBytes > 0){
+        USBTasks();
+        if (!bufferFilled){
+            size_t read_size = BUFFER_SIZE < remainingBytes ? 
+                               BUFFER_SIZE : remainingBytes;
+            FSfread(bufferPtr, 1, read_size, myFile);
+            bufferFilled = TRUE;
+            sampleAvailable = TRUE;
+            remainingBytes -= read_size;
+        } 
+    }
+    sampleAvailable = FALSE;
+
+    FSfclose(myFile);
 }
 
 int main (void)
@@ -235,36 +266,19 @@ int main (void)
                 //See if the device is attached and in the right format
                 if(FSInit())
                 {
-                    //Opening a file in mode "w" will create the file if it doesn't
-                    //  exist.  If the file does exist it will delete the old file
-                    //  and create a new one that is blank.
-                    myFile = FSfopen("Smoke.wav","r");
-                    myFile2 = FSfopen("test.txt", "w");
-
-                    //Read the data form testread.txt (myFile) and put into array myData
-                    FSfread(myData, 1, 44, myFile);
-
-                    header *rheader_ptr = &myData;
-                    header my_header = *rheader_ptr;
-                    
-                    pwm_setup();
-                    remainingBytes = my_header.subchunk2_size;
-                    FSfread(myData, 1, BUFFER_SIZE, myFile);
-                    remainingBytes -= BUFFER_SIZE;
-                    while (remainingBytes > 0){
-                        //USBTasks();
-                        if (!bufferFilled){
-                            size_t read_size = BUFFER_SIZE < remainingBytes ? 
-                                               BUFFER_SIZE : remainingBytes;
-                            FSfread(bufferPtr, 1, read_size, myFile);
-                            bufferFilled = TRUE;
-                            sampleAvailable = TRUE;
-                            remainingBytes -= read_size;
-                        } 
+                    SearchRec music_search;
+                    while(FindFirst("Smoke.*", ATTR_MASK, &music_search) == 0){
+                        play_file(music_search.filename);
+                        // while(1){
+                        //     play_file(music_search.filename);
+                        //     if(FindNext(&music_search) != 0){
+                        //         FindFirst("*", ATTR_MASK, &music_search);
+                        //     }
+                        // }
                     }
 
-                    FSfclose(myFile);
-                    FSfclose(myFile2);
+                    
+                    
 
                     //Just sit here until the device is removed.
                     while(deviceAttached == TRUE)
