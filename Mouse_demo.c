@@ -1,14 +1,13 @@
-/*	Mouse_demo.c
-	Class-compliant USB mouse driver for PIC32
-	A trimmed-down version of the "USB Host - HID Mouse" demo program
-	from the Microchip Application Libraries, retreived June 2010 from
-	the Microchip website.
-	
+/*    Mouse_demo.c
+    Class-compliant USB mouse driver for PIC32
+    A trimmed-down version of the "USB Host - HID Mouse" demo program
+    from the Microchip Application Libraries, retreived June 2010 from
+    the Microchip website.
+    
 */
 /*  Matthew Watkins
-	Fall 2010
-  	Simplified 25 October 2011 David_Harris & Karl_Wang@hmc.edu
-    Modified 31 October 2014 Henry_Huang@hmc.edu
+    Fall 2010
+      Simplified 25 October 2011 David_Harris & Karl_Wang@hmc.edu
 */
 
 /******************************************************************************
@@ -119,6 +118,19 @@ BOOL USB_HID_DataCollectionHandler(void);
 
 #define MAX_ERROR_COUNTER               (10)
 
+// Use SPI Channel 2
+#define SPI_CHANNEL                     (2)
+
+// Divide source clock by 2
+#define SRC_CLK_DIV                     (2)
+
+#define SCALING                         (4)
+
+#define MIN_X                           (0)
+#define MAX_X                           (640)
+#define MIN_Y                           (0)
+#define MAX_Y                           (480)
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -146,7 +158,11 @@ BOOL LED_Key_Pressed = FALSE;
 BYTE currCharPos;
 BYTE FirstKeyPressed ;
 
-short mouseMvt = 0;
+// x position of mouse with SCALING:1 value to pixel ratio 
+int x_position = 0;
+
+// y position of mouse with SCALING:1 value to pixel ratio 
+int y_position = 0;
 
 //******************************************************************************
 //******************************************************************************
@@ -157,7 +173,7 @@ short mouseMvt = 0;
 
 int main (void)
 {
-    	BYTE i;
+        BYTE i;
         int  value;
     
         value = SYSTEMConfigWaitStatesAndPB( GetSystemClock() );
@@ -168,12 +184,18 @@ int main (void)
         INTEnableSystemMultiVectoredInt();
             
         TRISF = 0xFFFF;
-  		TRISE = 0xFFFF;
-  		TRISB = 0xFFFF;
-  		TRISG = 0xFFFF;
+        TRISE = 0xFFFF;
+        TRISB = 0xFFFF;
+        TRISG = 0xFFFF;
         
         // Initialize USB layers
         USBInitialize( 0 );
+
+		// Initialize the SPI Channel 2 to be a master, reverse
+		// clock, have 32 bits, enabled frame mode, and
+        SpiChnOpen(SPI_CHANNEL, 
+                   SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
+                   SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
         while(1)
         {
             USBTasks();
@@ -249,19 +271,39 @@ int main (void)
 
 void App_ProcessInputReport(void)
 {
-    BYTE  data;
-	short xMvmt, yMvmt;
+	// data to be sent
+    unsigned int data = 0;
+
    /* process input report received from device */
     USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportData, Appl_raw_report_buffer.ReportSize
                           ,Appl_Button_report_buffer, &Appl_Mouse_Buttons_Details);
     USBHostHID_ApiImportData(Appl_raw_report_buffer.ReportData, Appl_raw_report_buffer.ReportSize
                           ,Appl_XY_report_buffer, &Appl_XY_Axis_Details);
 
-    
-    xMvmt = (signed char) Appl_XY_report_buffer[0];	// Get X-axis movement from report
-    TRISD = 0;
-	PORTD = Appl_Button_report_buffer[0] | (Appl_Button_report_buffer[1] << 1) | (Appl_Button_report_buffer[2] << 2);	// Write to LEDs to show mouse is working
-    yMvmt = (signed char) Appl_XY_report_buffer[1];	// Get Y-axis movement from report
+	// calculate new positions
+    int new_x_position = x_position + (signed char)Appl_XY_report_buffer[0];
+    int new_y_position = y_position + (signed char)Appl_XY_report_buffer[1];
+
+	// adjust positions based on whether new positions are valid
+    x_position = new_x_position >= MAX_X * SCALING ? MAX_X * SCALING - 1 :
+                 new_x_position <= MIN_X * SCALING ? MIN_X * SCALING :
+                 new_x_position;
+    y_position = new_y_position >= MAX_Y * SCALING ? MAX_Y * SCALING - 1 :
+                 new_y_position <= MIN_Y * SCALING ? MIN_Y * SCALING :
+                 new_y_position;
+
+	// store the mouse as well as the pixel-unit positions.
+    data = Appl_Button_report_buffer[2];
+    data = Appl_Button_report_buffer[1] | (data << 1);
+    data = Appl_Button_report_buffer[0] | (data << 1);
+    data = x_position / SCALING | (data << 10);
+    data = y_position / SCALING | (data << 10);
+
+	// send data over
+    SpiChnPutC(SPI_CHANNEL, data);   
+
+	// clear out the receiving side
+    SpiChnGetC(SPI_CHANNEL);
     
 }
 
@@ -325,13 +367,13 @@ BOOL USB_ApplicationEventHandler( BYTE address, USB_EVENT event, void *data, DWO
             return TRUE;
             break;
 
-		case EVENT_HID_RPT_DESC_PARSED:
-			 #ifdef APPL_COLLECT_PARSED_DATA
-			     return(APPL_COLLECT_PARSED_DATA());
-		     #else
-				 return TRUE;
-			 #endif
-			break;
+        case EVENT_HID_RPT_DESC_PARSED:
+             #ifdef APPL_COLLECT_PARSED_DATA
+                 return(APPL_COLLECT_PARSED_DATA());
+             #else
+                 return TRUE;
+             #endif
+            break;
 
         default:
             break;
@@ -474,4 +516,3 @@ BOOL USB_HID_DataCollectionHandler(void)
 
     return(status);
 }
-
