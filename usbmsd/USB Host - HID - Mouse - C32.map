@@ -160,19 +160,19 @@ section                    address  length [bytes]      (dec)  Description
 .text.CheKseg0CacheOn   0x9d0196e8           0x18          24   
 .rodata                 0x9d019700           0x14          20  Read-only const 
 .text                   0x9d019714           0x10          16  App's exec code 
-.rodata                 0x9d019724            0xc          12  Read-only const 
-.text._general_exceptio 0x9d019730            0xc          12   
-.text._bootstrap_except 0x9d01973c            0xc          12   
-.text.isascii           0x9d019748            0x8           8   
-.text.toascii           0x9d019750            0x8           8   
-.text._tolower          0x9d019758            0x8           8   
-.text._toupper          0x9d019760            0x8           8   
-.text.getpagesize       0x9d019768            0x8           8   
-.text._on_reset         0x9d019770            0x8           8   
-.text._on_bootstrap     0x9d019778            0x8           8   
-.text.INTEnableInterrup 0x9d019780            0x8           8   
-.text.INTDisableInterru 0x9d019788            0x8           8   
-      Total kseg0_program_mem used  :     0x19788      104328  19.9% of 0x80000
+.rodata                 0x9d019724           0x10          16  Read-only const 
+.text._general_exceptio 0x9d019734            0xc          12   
+.text._bootstrap_except 0x9d019740            0xc          12   
+.text.isascii           0x9d01974c            0x8           8   
+.text.toascii           0x9d019754            0x8           8   
+.text._tolower          0x9d01975c            0x8           8   
+.text._toupper          0x9d019764            0x8           8   
+.text.getpagesize       0x9d01976c            0x8           8   
+.text._on_reset         0x9d019774            0x8           8   
+.text._on_bootstrap     0x9d01977c            0x8           8   
+.text.INTEnableInterrup 0x9d019784            0x8           8   
+.text.INTDisableInterru 0x9d01978c            0x8           8   
+      Total kseg0_program_mem used  :     0x1978c      104332  19.9% of 0x80000
 
 kseg0 Boot-Memory Usage
 section                    address  length [bytes]      (dec)  Description
@@ -194,7 +194,7 @@ section                    address  length [bytes]      (dec)  Description
 .bev_excpt              0xbfc00380           0x10          16  BEV-Exception 
          Total kseg1_boot_mem used  :       0x204         516  44.2% of 0x490
         --------------------------------------------------------------------------
-         Total Program Memory used  :     0x199ac      104876  19.7% of 0x81e00
+         Total Program Memory used  :     0x199b0      104880  19.7% of 0x81e00
         --------------------------------------------------------------------------
 
 
@@ -2063,68 +2063,68 @@ LOAD data_init
  .text          0x9d019714       0x10 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib/crt0.o
                 0x9d01971c                __crt0_exit
 
-.rodata         0x9d019724        0xc
- .rodata        0x9d019724        0xc Objects\C32\main.o
+.rodata         0x9d019724       0x10
+ .rodata        0x9d019724       0x10 Objects\C32\main.o
 
 .text._general_exception_handler
-                0x9d019730        0xc
+                0x9d019734        0xc
  .text._general_exception_handler
-                0x9d019730        0xc c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-general-exception-handler.o)
-                0x9d019730                _general_exception_handler
+                0x9d019734        0xc c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-general-exception-handler.o)
+                0x9d019734                _general_exception_handler
 
 .text._bootstrap_exception_handler
-                0x9d01973c        0xc
+                0x9d019740        0xc
  .text._bootstrap_exception_handler
-                0x9d01973c        0xc c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-bootstrap-exception-handler.o)
-                0x9d01973c                _bootstrap_exception_handler
+                0x9d019740        0xc c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-bootstrap-exception-handler.o)
+                0x9d019740                _bootstrap_exception_handler
 
-.text.isascii   0x9d019748        0x8
- .text.isascii  0x9d019748        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
-                0x9d019748                isascii
+.text.isascii   0x9d01974c        0x8
+ .text.isascii  0x9d01974c        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
+                0x9d01974c                isascii
 
-.text.toascii   0x9d019750        0x8
- .text.toascii  0x9d019750        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
-                0x9d019750                toascii
+.text.toascii   0x9d019754        0x8
+ .text.toascii  0x9d019754        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
+                0x9d019754                toascii
 
-.text._tolower  0x9d019758        0x8
+.text._tolower  0x9d01975c        0x8
  .text._tolower
-                0x9d019758        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
-                0x9d019758                _tolower
+                0x9d01975c        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
+                0x9d01975c                _tolower
 
-.text._toupper  0x9d019760        0x8
+.text._toupper  0x9d019764        0x8
  .text._toupper
-                0x9d019760        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
-                0x9d019760                _toupper
+                0x9d019764        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(ctypef.o)
+                0x9d019764                _toupper
 
 .text.getpagesize
-                0x9d019768        0x8
+                0x9d01976c        0x8
  .text.getpagesize
-                0x9d019768        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(sbrk.o)
-                0x9d019768                getpagesize
+                0x9d01976c        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(sbrk.o)
+                0x9d01976c                getpagesize
 
 .text._on_reset
-                0x9d019770        0x8
+                0x9d019774        0x8
  .text._on_reset
-                0x9d019770        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-on-reset.o)
-                0x9d019770                _on_reset
+                0x9d019774        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-on-reset.o)
+                0x9d019774                _on_reset
 
 .text._on_bootstrap
-                0x9d019778        0x8
+                0x9d01977c        0x8
  .text._on_bootstrap
-                0x9d019778        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-on-bootstrap.o)
-                0x9d019778                _on_bootstrap
+                0x9d01977c        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libc.a(default-on-bootstrap.o)
+                0x9d01977c                _on_bootstrap
 
 .text.INTEnableInterrupts
-                0x9d019780        0x8
+                0x9d019784        0x8
  .text.INTEnableInterrupts
-                0x9d019780        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libmchp_peripheral_32MX675F512H.a(int_enable_interrupts_lib.o)
-                0x9d019780                INTEnableInterrupts
+                0x9d019784        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libmchp_peripheral_32MX675F512H.a(int_enable_interrupts_lib.o)
+                0x9d019784                INTEnableInterrupts
 
 .text.INTDisableInterrupts
-                0x9d019788        0x8
+                0x9d01978c        0x8
  .text.INTDisableInterrupts
-                0x9d019788        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libmchp_peripheral_32MX675F512H.a(int_disable_interrupts_lib.o)
-                0x9d019788                INTDisableInterrupts
+                0x9d01978c        0x8 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib\libmchp_peripheral_32MX675F512H.a(int_disable_interrupts_lib.o)
+                0x9d01978c                INTDisableInterrupts
 
 .text%z108      0x00000000        0x0
  .text          0x00000000        0x0 c:/program files (x86)/microchip/mplab c32 suite/bin/../lib/gcc/pic32mx/4.5.1/../../../../pic32mx/lib/./proc/32MX675F512H\processor.o

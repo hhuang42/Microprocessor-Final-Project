@@ -252,7 +252,7 @@ int main (void)
         // Initialize the SPI Channel 2 to be a master, reverse
         // clock, have 32 bits, enabled frame mode, and
         SpiChnOpen(SPI_CHANNEL, 
-                   SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
+                   SPI_OPEN_SLVEN|SPI_OPEN_CKE_REV|
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
         while(1)
         {
