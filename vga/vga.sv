@@ -46,7 +46,94 @@ endmodule
 	end
 endmodule
 */
-				
+
+module datatypeoctagon(input logic [31:0] datafromSPI,
+                       input logic [7:0] current_time,
+                       output logic [31:0] datatoringbuffer,
+                       output logic buffer_receive);
+                       
+  always_comb begin
+    datatoringbuffer[31:30] = datafromSPI[29:28];
+    datatoringbuffer[29:20] = datafromSPI[27:18];
+    datatoringbuffer[19:10] = datafromSPI[17:8];
+    datatoringbuffer[9:2] = current_time + 60;
+      if (datafromSPI[31:30] == 2'b11)
+        buffer_receive = 1;
+      else
+        buffer_receive =0;
+    end
+endmodule
+
+module datatypetimer(input logic pxl_clk,
+                     input logic [31:0] datafromSPI,
+                     output logic [7:0] currenttime,
+                     output logic [9:0] mouse_xpos, mouse_ypos);
+  logic valid;
+    assign valid = (datafromSPI[31:30] == 2'b01);
+      
+  always_ff@ (posedge pxl_clk) begin
+    currenttime <= valid?datafromSPI[29:22]:currenttime;
+    mouse_xpos <= valid?datafromSPI[21:12]:mouse_xpos;
+    mouse_ypos <= valid?datafromSPI[11:2]:mouse_ypos;
+  end
+endmodule
+
+module datatypescore(input logic pxl_clk,
+                     input logic [31:0] datafromSPI,
+                     output logic [7:0] lifebar,
+                     output logic [21:0] score);
+  logic valid;
+    assign valid = (datafromSPI[31:30] == 2'b00);
+  
+  always_ff@ (posedge pxl_clk) begin
+    lifebar <= valid?datafromSPI[29:22]:lifebar;
+    score <= valid?datafromSPI[21:0]:score;
+  end
+ endmodule
+ 
+module ringbuffer(input logic pxl_clk,
+                  input logic receiving,
+                  input logic [31:0] ocdatareceived,
+                  output logic [31:0] update[7:0],
+                  output logic [2:0] startpointer = 0);
+  logic [31:0] ring_buffer[7:0];
+  logic [2:0] endpointer = 0;
+  
+  //initialize pointers i->endpointer
+  //assign startpointer=0;
+	
+  always_ff@(posedge pxl_clk) begin
+    if (receiving == 1 && ocdatareceived[0] == 1) begin
+      ring_buffer[endpointer] <= ocdatareceived;
+      endpointer <= endpointer + 1;
+    end
+    else if (receiving == 1 && ocdatareceived[0] == 0) begin
+      ring_buffer[startpointer] <= ocdatareceived;
+      startpointer <= startpointer + 1;
+    end
+    update = ring_buffer;
+  end
+endmodule
+
+module separator(input logic pxl_clk,
+                 input logic [7:0] current_time,
+                 input logic [2:0] startpointer,
+                 input logic [31:0] octagon_data,
+                 output logic os,
+                 output logic [9:0] x_cent, y_cent,
+                 output logic [7:0] ring_size);
+logic [7:0] target_time;
+
+always_comb begin
+  os = octagon_data[31];
+  x_cent = octagon_data[30:21];
+  y_cent = octagon_data[20:11];
+  target_time = octagon_data[10:3];
+  ring_size = (target_time - current_time) >> 2;
+end
+endmodule  
+ 
+ 
 module vgaController #(parameter HMAX   = 10'd800,
                                  VMAX   = 10'd525, 
 											HSTART = 10'd152,
@@ -95,10 +182,21 @@ module videoGen(input  logic [9:0] x, y,
            		  output logic [7:0] r_int, g_int, b_int);
 
  logic [23:0] intermediate_color [32:0];
+ logic octagon_state [7:0];
+ logic [9:0] x_center[7:0], y_center[7:0];
+ logic [7:0] ring_size[7:0];
  logic [50:0] circlerom [50:0];
- logic [21:0] counter = 0;
+ logic [24:0] counter = 0, pxl_counter = 0 ;
+ logic [31:0] buffer[7:0];
+ logic [2:0] startpointer;
+ 
+ logic receiving;
+ logic [31:0] ocdatareceived;
  
  assign intermediate_color[0] = 24'h808080;
+ 
+ assign receiving = (pxl_counter == 0);
+ assign ocdatareceived = {1'b1, 10'd200 + counter[8:0], 10'd300 + counter[8:0], counter,3'b000};
  
 
   // given y position, choose a character to display
@@ -107,19 +205,35 @@ module videoGen(input  logic [9:0] x, y,
  
 
  //assign ch = y[8:3]+8'd48;
-  //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);  
+  //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);
+  always_ff@(posedge pxl_clk) begin
+	pxl_counter <= pxl_counter + 1;
+  end
+  
+  
+  
   always_ff@(posedge game_clk) begin
-	counter <= counter - 1;
+	counter <= counter + 1;
   end
  
- 
-
+ringbuffer ring(pxl_clk, receiving, ocdatareceived, buffer, startpointer);
+//module separator(input logic pxl_clk,
+//                 input logic [7:0] current_time,
+//                 input logic [2:0] startpointer,
+//                 input logic [31:0] octagon_data,
+//                 output logic os,
+//                 output logic [9:0] x_cent, y_cent,
+//                 output logic [7:0] ring_size);
  genvar index;
  generate
  for (index=0; index < 8; index=index+1)
    begin: gen_code_label
-		octagonv2 test(x, y, 100+{index,7'b0}+counter[7:4], 100+{index,4'b0}+counter[7:5],counter[5:0], intermediate_color[index], 
-					  24'hFFD000+counter, intermediate_color[index+1]); 
+    separator sep(pxl_clk, counter[7:0], startpointer, buffer[startpointer + 7 - index], 
+                  octagon_state[index], x_center[index], y_center[index], ring_size[index]
+    );
+		octagonv2 test(octagon_state[index], x, y, x_center[index], y_center[index], ring_size[index], index,
+            intermediate_color[index], 24'hFFD000+counter, intermediate_color[index+1]); 
+            
    end
  endgenerate
  draw_health hp(x,y, counter, intermediate_color[8], intermediate_color[9]);
@@ -129,67 +243,17 @@ endmodule
 
 
 
-module octagon(input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
+module octagonv2( input logic active,
+          input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
 					input logic [9:0] ring_align_radius_offset, 
-				  input logic [23:0] background, shape_color,
-				  output logic [23:0] output_color);
-logic [10:0] x_pixel, y_pixel, x_cent, y_cent;
-logic [10:0] sum_pixel, diff_pixel, sum_cent, diff_cent;
-logic in_octagon, in_outline, in_outer_ring, in_inner_ring;
-logic [9:0] ring_align_radius;
-logic [9:0] ring_diag_radius;
-assign ring_align_radius = ring_align_radius_offset + 25;
-
-assign ring_diag_radius = ring_align_radius + ring_align_radius[9:2]
-                        + ring_align_radius[9:3] + ring_align_radius[9:5]+1;
-
-assign x_pixel = x_pixel_orig + 100;
-assign y_pixel = y_pixel_orig + 100;
-assign x_cent = x_cent_orig + 100;
-assign y_cent = y_cent_orig + 100;
-assign sum_pixel = x_pixel + y_pixel;
-assign diff_pixel = x_pixel - y_pixel + 1000;
-assign sum_cent = x_cent + y_cent;
-assign diff_cent = x_cent - y_cent + 1000;
-assign in_octagon = (x_pixel < x_cent + 25) && (x_pixel > x_cent - 25) &&
-						  (y_pixel < y_cent + 25) && (y_pixel > y_cent - 25) &&
-						  (sum_pixel < sum_cent + 35) && (sum_pixel > sum_cent - 35) &&
-			  			  (diff_pixel < diff_cent + 35) && (diff_pixel > diff_cent - 35);
-assign in_outline = (x_pixel < x_cent + 30) && (x_pixel > x_cent - 30) &&
-						  (y_pixel < y_cent + 30) && (y_pixel > y_cent - 30) &&
-						  (sum_pixel < sum_cent + 42) && (sum_pixel > sum_cent - 42) &&
-			  			  (diff_pixel < diff_cent + 42) && (diff_pixel > diff_cent - 42);
-
-assign in_inner_ring =    (x_pixel < x_cent + ring_align_radius) && (x_pixel > x_cent - ring_align_radius) &&
-								  (y_pixel < y_cent + ring_align_radius) && (y_pixel > y_cent - ring_align_radius) &&
-								  (sum_pixel < sum_cent + ring_diag_radius) && (sum_pixel > sum_cent - ring_diag_radius) &&
-								  (diff_pixel < diff_cent + ring_diag_radius) && (diff_pixel > diff_cent - ring_diag_radius);
-								  
-assign in_outer_ring =    (x_pixel < x_cent + ring_align_radius + 5) && (x_pixel > x_cent - ring_align_radius - 5) &&
-								  (y_pixel < y_cent + ring_align_radius + 5) && (y_pixel > y_cent - ring_align_radius - 5) &&
-								  (sum_pixel < sum_cent + ring_diag_radius + 7) && (sum_pixel > sum_cent - ring_diag_radius - 7) &&
-								  (diff_pixel < diff_cent + ring_diag_radius + 7) && (diff_pixel > diff_cent - ring_diag_radius - 7);
-						  
-							
-always_comb
-	begin 
-	if (in_octagon || (in_outer_ring && ~(in_inner_ring)))
-		output_color = shape_color;
-	else if (in_outline)
-		output_color = 24'hFFFFFF;
-	else
-		output_color = background;
-end
-endmodule
-
-module octagonv2(input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
-					input logic [9:0] ring_align_radius_offset, 
+          input logic [2:0] target_order,
 				  input logic [23:0] background, shape_color,
 				  output logic [23:0] output_color);
 logic [9:0] x_pixel, y_pixel, x_cent, y_cent;
 logic [10:0] sum_pixel, diff_pixel, sum_cent, diff_cent;
 logic [9:0] ring_align_radius;
 logic [9:0] min_NS, min_EW, min_NESW, min_NWSE, max_card, max_diag, max_diag_norm, max;
+logic in_number_region, pixel;
 assign ring_align_radius = ring_align_radius_offset + 25;
 
 assign x_pixel = x_pixel_orig;
@@ -210,9 +274,15 @@ assign max_diag_norm = max_diag - max_diag[9:2] - max_diag[9:5];
 assign max = max_card > max_diag_norm ? max_card : max_diag_norm;
 						  
 							
+chargenrom order(target_order + 8'd48, x_pixel - x_cent, y_pixel - y_cent, pixel);
+assign in_number_region = (x_pixel - x_cent < 8) && (y_pixel - y_cent < 8);
 always_comb
 	begin 
-	if (max < 25 || (max > ring_align_radius && max < ring_align_radius + 5))
+  if (!active)
+    output_color = background;
+//  else if (in_number_region && pixel)
+//    output_color = 24'hFFFFFF;
+	else if (max < 25 || (max > ring_align_radius && max < ring_align_radius + 5))
 		output_color = shape_color;
 	else if (max < 30)
 		output_color = 24'hFFFFFF;
@@ -221,26 +291,6 @@ always_comb
 end
 endmodule
 
-/*module chargenrom(input  logic [7:0] ch,
-                  input  logic [2:0] xoff, yoff,
-						output logic       pixel);
-						
-  logic [5:0] charrom[2047:0]; // character generator ROM
-  logic [7:0] line;            // a line read from the ROM
-  logic [7:0] mouseline;
- 
- // initialize ROM with characters from text file 
-  initial 
-	 $readmemb("charrom.txt", charrom);
-	 
-  // index into ROM to find line of character
-  assign line = {charrom[yoff+{ch, 3'b000}]};
-   
-  //reverse order of bits
-  assign pixel = line[3'd7-xoff];
-  
-endmodule
-*/
 
 module store_data(input logic[31:0] octagondata,
 						output logic [31:0] datalist[7:0]);
@@ -279,7 +329,7 @@ module draw_score #(parameter DIGIT_WIDTH_BIT = 8,
                     input logic [21:0] score,
                     input logic [23:0] background,
                     output logic [23:0] output_color);
-  logic in_score_area;
+  logic in_score_area, pixel;
   logic [7:0] ch;
   logic [9:0] delta_y, delta_x;
   logic [3:0] decimal_digits [6:0];
