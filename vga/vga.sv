@@ -25,7 +25,7 @@ module vga_DS(input  logic       clk,
                         r_int, g_int, b_int, r, g, b, x, y);
 	
   // user-defined module to determine pixel color
-  videoGen videoGen(x, y, ~vsync, r_int, g_int, b_int);
+  videoGen videoGen(x, y, ~vsync, vgaclk, r_int, g_int, b_int);
   spi_slave_receive_only spireceive(sck, sdi, xpos, ypos);
   assign led[6:0] = ypos[6:0];
   assign led[7] = sdi;
@@ -90,12 +90,13 @@ module vgaController #(parameter HMAX   = 10'd800,
 endmodule
 
 module videoGen(input  logic [9:0] x, y,
-					 input  logic game_clk,
-           		 output logic [7:0] r_int, g_int, b_int);
+                input  logic game_clk,
+                input  logic pxl_clk,
+           		  output logic [7:0] r_int, g_int, b_int);
 
  logic [23:0] intermediate_color [32:0];
  logic [50:0] circlerom [50:0];
- logic [7:0] counter = 0;
+ logic [21:0] counter = 0;
  
  assign intermediate_color[0] = 24'h808080;
  
@@ -117,11 +118,13 @@ module videoGen(input  logic [9:0] x, y,
  generate
  for (index=0; index < 8; index=index+1)
    begin: gen_code_label
-		octagonv2 test(x, y, 40+100*index+counter[7:4], 50+200*index+counter[7:5],counter[5:0], intermediate_color[index], 
-					  24'hFFD000+(24'h634221*index)+counter, intermediate_color[index+1]); 
+		octagonv2 test(x, y, 100+{index,7'b0}+counter[7:4], 100+{index,4'b0}+counter[7:5],counter[5:0], intermediate_color[index], 
+					  24'hFFD000+counter, intermediate_color[index+1]); 
    end
  endgenerate
- assign {r_int, g_int, b_int} = intermediate_color[8];
+ draw_health hp(x,y, counter, intermediate_color[8], intermediate_color[9]);
+ draw_score score(x,y, pxl_clk, counter, intermediate_color[9], {r_int, g_int, b_int});
+ 
 endmodule
 
 
@@ -247,6 +250,98 @@ module to_synch_time(input logic [31:0] timerdata,
 							output logic [9:0] mousexpos, mouseypos);
 endmodule
 
+module draw_health #(parameter WIDTH_SCALING = 0,
+                               HEIGHT = 10,
+                               BASE_Y = 20,
+                               BASE_X = 50
+                               )
+                   (input logic [9:0] x, y,
+                    input logic [7:0] health,
+                    input logic [23:0] background,
+                    output logic [23:0] output_color);
+  logic in_full_bar;
+  logic health_area;
+  assign in_full_bar = (x >= BASE_X && x < BASE_X + 255 &&
+                        y >= BASE_Y && y < BASE_Y + HEIGHT);
+  assign health_area = (x < BASE_X + (health >> WIDTH_SCALING));
+  assign output_color = in_full_bar? health_area? 24'hFFFFFF : 24'h000000 : 
+                                     background;
+endmodule
+
+module draw_score #(parameter DIGIT_WIDTH_BIT = 8,
+                              DECIMAL_DIGIT_COUNT = 7,
+                              HEIGHT = 8,
+                              BASE_Y = 20,
+                              BASE_X = 550
+                              )
+                   (input logic [9:0] x, y,
+                    input logic pxl_clk,
+                    input logic [21:0] score,
+                    input logic [23:0] background,
+                    output logic [23:0] output_color);
+  logic in_score_area;
+  logic [7:0] ch;
+  logic [9:0] delta_y, delta_x;
+  logic [3:0] decimal_digits [6:0];
+  genvar index;
+  assign delta_y = (y-BASE_Y);
+  assign delta_x = (x-BASE_X);
+  to_decimal decimal_score(pxl_clk, score, decimal_digits);
+  assign ch = decimal_digits[6-delta_x[8:3]]+8'd48;
+  chargenrom chargenromb(ch, delta_x[2:0], delta_y[2:0], pixel);  
+  assign in_score_area = (x >= BASE_X && 
+                          x <= BASE_X + DIGIT_WIDTH_BIT*DECIMAL_DIGIT_COUNT &&
+                          y >= BASE_Y && y < BASE_Y + HEIGHT);
+  assign output_color = (pixel && in_score_area)? 24'hFFFFFF : background;
+endmodule
+
+module to_decimal #(parameter BINARY_DIGIT_COUNT = 22,
+                              DECIMAL_DIGIT_COUNT = 7,
+                              DIGIT_COUNTER_WIDTH = 3)
+                   (input logic clk,
+                    input logic [21:0] value,
+                    output logic [3:0] decimal_digits [6:0]
+                    );
+  logic [21:0] old_value;
+  logic [21:0] leftover_value;
+  logic [2:0] digit_counter;
+  logic [3:0] temporary_buffer [6:0];
+  always_ff @(posedge clk) begin
+    if (old_value != value) begin
+      leftover_value <= value;
+      old_value <= value;
+      digit_counter <= 0;
+    end else if (leftover_value > 0) begin 
+      leftover_value <= leftover_value / 10;
+      temporary_buffer[digit_counter] <= leftover_value % 10;
+      digit_counter = digit_counter + 1;
+    end else begin
+      decimal_digits = temporary_buffer;
+    end
+    
+  end
+endmodule
+
+
+module chargenrom(input  logic [7:0] ch,
+                  input  logic [2:0] xoff, yoff,
+						output logic       pixel);
+						
+  logic [5:0] charrom[2047:0]; // character generator ROM
+  logic [7:0] line;            // a line read from the ROM
+  logic [7:0] mouseline;
+ 
+ // initialize ROM with characters from text file 
+  initial 
+	 $readmemb("charrom.txt", charrom);
+	 
+  // index into ROM to find line of character
+  assign line = {charrom[yoff+{ch, 3'b000}]};
+   
+  //reverse order of bits
+  assign pixel = line[3'd7-xoff];
+  
+endmodule
 
 // If the slave only need to received data from the master
 // Slave reduces to a simple shift register given by following HDL: 
@@ -260,5 +355,7 @@ module spi_slave_receive_only(input logic sck, //from master
 	{xpos, ypos} <= q;
 	end
 endmodule
+
+
 
 
