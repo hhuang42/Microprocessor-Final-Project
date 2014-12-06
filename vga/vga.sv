@@ -60,7 +60,7 @@ module datatypeoctagon(input logic [31:0] datafromSPI,
       if (datafromSPI[31:30] == 2'b11)
         buffer_receive = 1;
       else
-        buffer_receive =0;
+        buffer_receive = 0;
     end
 endmodule
 
@@ -250,9 +250,8 @@ module octagonv2( input logic active,
 				  input logic [23:0] background, shape_color,
 				  output logic [23:0] output_color);
 logic [9:0] x_pixel, y_pixel, x_cent, y_cent;
-logic [10:0] sum_pixel, diff_pixel, sum_cent, diff_cent;
 logic [9:0] ring_align_radius;
-logic [9:0] min_NS, min_EW, min_NESW, min_NWSE, max_card, max_diag, max_diag_norm, max;
+logic [9:0] min_NS, min_EW, max_card, max_diag, max_diag_norm, max;
 logic in_number_region, pixel;
 assign ring_align_radius = ring_align_radius_offset + 25;
 
@@ -260,16 +259,10 @@ assign x_pixel = x_pixel_orig;
 assign y_pixel = y_pixel_orig;
 assign x_cent = x_cent_orig;
 assign y_cent = y_cent_orig;
-assign sum_pixel = x_pixel + y_pixel;
-assign diff_pixel = x_pixel + y_cent;
-assign sum_cent = x_cent + y_cent;
-assign diff_cent = x_cent + y_pixel;
 assign min_NS = y_pixel > y_cent ? y_pixel - y_cent : y_cent - y_pixel;
 assign min_EW = x_pixel > x_cent ? x_pixel - x_cent : x_cent - x_pixel;
-assign min_NWSE = diff_pixel > diff_cent ? diff_pixel - diff_cent : diff_cent - diff_pixel;
-assign min_NESW = sum_pixel > sum_cent ? sum_pixel - sum_cent : sum_cent - sum_pixel;
 assign max_card = min_NS > min_EW ? min_NS : min_EW;
-assign max_diag = min_NESW > min_NWSE ? min_NESW : min_NWSE;
+assign max_diag = min_NS+min_EW;
 assign max_diag_norm = max_diag - max_diag[9:2] - max_diag[9:5];
 assign max = max_card > max_diag_norm ? max_card : max_diag_norm;
 						  
