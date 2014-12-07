@@ -124,12 +124,26 @@ BOOL USB_HID_DataCollectionHandler(void);
 // Divide source clock by 2
 #define SRC_CLK_DIV                     (2)
 
-#define SCALING                         (4)
+#define SCALING                         (2)
+
+#define CLOCK_RATE                      (40000000)
+
+#define POSITION_MASK                   (0x3FF)
+#define TIME_MASK                       (0xFF)
+#define LIFE_MASK                       (0xFF)
+#define RESULT_MASK                     (0x3)
+#define SCORE_MASK                      (0x3FFFFF)
 
 #define MIN_X                           (0)
 #define MAX_X                           (640)
 #define MIN_Y                           (0)
 #define MAX_Y                           (480)
+
+#define TARGET_LIFE                     (60)
+
+#define MIN_HEALTH                      (0)
+#define MAX_HEALTH                      (255)
+
 
 
 // *****************************************************************************
@@ -158,53 +172,187 @@ BOOL LED_Key_Pressed = FALSE;
 BYTE currCharPos;
 BYTE FirstKeyPressed ;
 
+volatile BOOL send_timer;
+
 // x position of mouse with SCALING:1 value to pixel ratio 
 int x_position = 0;
 
 // y position of mouse with SCALING:1 value to pixel ratio 
 int y_position = 0;
 
+
+volatile int life;
+volatile int timer;
+volatile int score;
+volatile int total_target_count;
+volatile int next_target;
+volatile int next_target_to_appear;
+
+
+
+typedef struct target_info
+{
+    unsigned short x_position;
+    unsigned short y_position;
+    unsigned int   play_time;
+} target;
+
+target targets[512];
+
 //******************************************************************************
 //******************************************************************************
 // Main
 //******************************************************************************
 //******************************************************************************
+unsigned short mouse_x_position(){
+    return x_position / SCALING;
+}
 
+unsigned short mouse_y_position(){
+    return y_position / SCALING;
+}
 
-int main (void)
+void addNewOctagon(unsigned short x, unsigned short y)
 {
-        BYTE i;
-        int  value;
-    
-        value = SYSTEMConfigWaitStatesAndPB( GetSystemClock() );
-    
-        // Enable the cache for the best performance
-        CheKseg0CacheOn();
-    
-        INTEnableSystemMultiVectoredInt();
-            
-        TRISF = 0xFFFF;
-        TRISE = 0xFFFF;
-        TRISB = 0xFFFF;
-        TRISG = 0xFFFF;
-        
-        // Initialize USB layers
-        USBInitialize( 0 );
+	int data;
+	data = 0b111;
+	data = (x & POSITION_MASK) | (data<<10);
+	data = (y & POSITION_MASK) | (data<<10);
+	data = (data<<9);
 
-		// Initialize the SPI Channel 2 to be a master, reverse
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void deleteOldestOctagon(unsigned short x, unsigned short y, char result)
+{
+	int data;
+	data = 0b110;
+	data = (x & POSITION_MASK) | (data<<10);
+	data = (y & POSITION_MASK) | (data<<10);
+	data = (result & RESULT_MASK) | (data<<2);
+	data = (data<<7);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void sendTimeandMouse(unsigned char time, unsigned short x_position, unsigned short y_position)
+{
+	int data;
+	data = 0b01;
+	data = (time & TIME_MASK) | (data<<8);
+	data = (x_position & POSITION_MASK)  | (data<<10);
+	data = (y_position & POSITION_MASK)  | (data<<10);
+	data = (data<<2);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void sendLifeAndScore( unsigned char life, unsigned int score)
+{
+	unsigned int data;
+	data = 0b00;
+	data = (life & LIFE_MASK) | (data<<8);
+	data = (score & SCORE_MASK) | (data<<22);
+	
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+	
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+
+}
+
+void loadTargets(void){
+    size_t i;
+    for(i=0; i<200; ++i){
+        targets[i].x_position = i*434 % MAX_X;
+        targets[i].y_position = i*350 % MAX_Y;
+        targets[i].play_time = i*10 + 300;
+    }
+    total_target_count = 200;
+    
+}
+
+void startGame(void){
+        loadTargets();
+	// Initialize the SPI Channel 2 to be a master, reverse
 		// clock, have 32 bits, enabled frame mode, and
         SpiChnOpen(SPI_CHANNEL, 
                    SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
-        while(1)
-        {
+        INTSetVectorPriority(_TIMER_2_VECTOR, INT_PRIORITY_LEVEL_2);
+        INTSetVectorSubPriority(_TIMER_2_VECTOR, INT_SUB_PRIORITY_LEVEL_0);
+        INTClearFlag(INT_T2);
+        INTEnable(INT_T2, INT_ENABLED);
 
-			sendLifeAndScore(100, 200);
-			
-            USBTasks();
-            App_Detect_Device();
-            
-            switch(App_State_Mouse)
+        // configure for multi-vectored mode
+        INTConfigureSystem(INT_SYSTEM_CONFIG_MULT_VECTOR);
+
+        // enable interrupts
+        INTEnableInterrupts();
+
+        /* Open Timer2 with Period register value */
+        OpenTimer2(T2_ON | T2_PS_1_256, CLOCK_RATE/256/60);
+        
+        IFS0CLR = 0x00000100;
+        IEC0SET = 0x00000100;
+        IPC2SET = 0x0000001C;
+
+        T2CONSET = 0x8000;
+        
+        
+        life = 128;
+        score = 0;
+        timer = 0;
+        
+}
+
+void gameLoop(void){
+    if (send_timer) {
+        sendTimeandMouse(timer, mouse_x_position() , mouse_y_position());
+        send_timer = FALSE;
+   	} else{
+        sendLifeAndScore(life, score);
+        send_timer = TRUE;
+    }
+    if(next_target_to_appear < total_target_count && 
+       targets[next_target_to_appear].play_time == timer + TARGET_LIFE){
+        
+        addNewOctagon(targets[next_target_to_appear].x_position, 
+                      targets[next_target_to_appear].y_position);
+                            
+        next_target_to_appear++;
+    }
+    
+    if(next_target < total_target_count && targets[next_target].play_time == timer){
+        
+        deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, 0);
+        next_target++;
+    }
+    
+    life--;
+    score++;
+    timer++;
+}
+
+void mouse_actions (void){
+	switch(App_State_Mouse)
             {
                 case DEVICE_NOT_CONNECTED:
                              USBTasks();
@@ -268,9 +416,46 @@ int main (void)
                     break;
 
             }
+}
+
+int main (void)
+{
+        BYTE i;
+        int  value;
+    
+        value = SYSTEMConfigWaitStatesAndPB( GetSystemClock() );
+    
+        // Enable the cache for the best performance
+        CheKseg0CacheOn();
+    
+        INTEnableSystemMultiVectoredInt();
+            
+        TRISF = 0xFFFF;
+        TRISE = 0xFFFF;
+        TRISB = 0xFFFF;
+        TRISG = 0xFFFF;
+        
+        // Initialize USB layers
+        USBInitialize( 0 );
+
+		
+		startGame();
+        while(1)
+        {
+            USBTasks();
+            App_Detect_Device();
+            mouse_actions();
+            
         }
 }
 
+void __ISR(_TIMER_2_VECTOR, ipl7) T2_IntHandler(void)
+{
+    IFS0CLR = 0x0100;
+    gameLoop();
+    
+    
+}
 
 void App_ProcessInputReport(void)
 {
@@ -294,70 +479,12 @@ void App_ProcessInputReport(void)
     y_position = new_y_position >= MAX_Y * SCALING ? MAX_Y * SCALING - 1 :
                  new_y_position <= MIN_Y * SCALING ? MIN_Y * SCALING :
                  new_y_position;
-
-
-}
-
-void addNewOctagon(int x, int y)
-{
-	int data;
-	data = 0b111;
-	data = x | (data<<10);
-	data = y | (data<<10);
-	data = (data<<9);
-
-	// send data over
-	SpiChnPutC(SPI_CHANNEL, data);
-
-	// clear out the receiving side
-	SpiChnGetC(SPI_CHANNEL);
-}
-
-void deleteOldestOctagon(int x, int y, int result)
-{
-	int data;
-	data = 0b110;
-	data = x | (data<<10);
-	data = y | (data<<10);
-	data = result | (data<<2);
-	data = (data<<7);
-
-	// send data over
-	SpiChnPutC(SPI_CHANNEL, data);
-
-	// clear out the receiving side
-	SpiChnGetC(SPI_CHANNEL);
-}
-
-void sendTimeandMouse(int time, int x_position, int y_position)
-{
-	int data;
-	data = 0b01;
-	data = time | (data<<8);
-	data = x_position / SCALING | (data<<10);
-	data = y_position / SCALING | (data<<10);
-	data = (data<<2);
-
-	// send data over
-	SpiChnPutC(SPI_CHANNEL, data);
-
-	// clear out the receiving side
-	SpiChnGetC(SPI_CHANNEL);
-}
-
-void sendLifeAndScore(int life, int score)
-{
-	int data;
-	data = 0b00;
-	data = life | (data<<8);
-	data = score | (data<<22);
 	
-	// send data over
-	SpiChnPutC(SPI_CHANNEL, data);
-	
-	// clear out the receiving side
-	SpiChnGetC(SPI_CHANNEL);
+
+
 }
+
+
 
 //******************************************************************************
 //******************************************************************************

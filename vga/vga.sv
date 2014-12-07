@@ -3,15 +3,17 @@
 // VGA driver with character generator
 
 module vga_DS(input  logic       clk,
-			  input logic sck, sdi,
+			  input logic sck, sdi, fsync,
 			  output logic       vgaclk,						// 25 MHz VGA clock
 			  output logic       hsync, vsync, sync_b,	// to monitor & DAC
 			  output logic [7:0] r, g, b, // to video DAC
 			  output logic [7:0] led);					
  
   logic [9:0] x, y;
-  logic [15:0] xpos, ypos;
+  logic [31:0] final_input;
+  logic new_from_SPI;
   logic [7:0] r_int, g_int, b_int;
+  logic [2:0] startpointer, endpointer;
 	
   // Use a PLL to create the 25.175 MHz VGA pixel clock 
   // 25.175 Mhz clk period = 39.772 ns
@@ -24,11 +26,12 @@ module vga_DS(input  logic       clk,
   vgaController vgaCont(vgaclk, hsync, vsync, sync_b,  
                         r_int, g_int, b_int, r, g, b, x, y);
 	
+  spi_frm_slave spireceive(sck, clk, sdi, fsync, final_input, new_from_SPI);
+	
   // user-defined module to determine pixel color
-  videoGen videoGen(x, y, ~vsync, vgaclk, r_int, g_int, b_int);
-  spi_slave_receive_only spireceive(sck, sdi, xpos, ypos);
-  assign led[6:0] = ypos[6:0];
-  assign led[7] = sdi;
+  videoGen videoGen(x, y, ~vsync, clk, final_input, new_from_SPI, r_int, g_int, b_int,
+						  startpointer, endpointer);
+  assign led = {startpointer, endpointer, 2'b11};
   
 endmodule
 
@@ -47,17 +50,41 @@ endmodule
 endmodule
 */
 
+module datatyperesult (input logic pxl_clk,
+							  input logic [31:0] datafromSPI,
+							  output logic [9:0] result_x, result_y,
+							  output logic [1:0] result_value);
+  logic valid;
+    assign valid = (datafromSPI[31:29] == 3'b110);
+  
+	 always_ff@(posedge pxl_clk) begin
+		 result_x <= valid?datafromSPI[28:19]:result_x;
+		 result_y <= valid?datafromSPI[18:9]:result_y;
+		 result_value <= valid?datafromSPI[8:7]:result_value;
+	 end
+endmodule
+
 module datatypeoctagon(input logic [31:0] datafromSPI,
                        input logic [7:0] current_time,
+							  input logic new_from_SPI,
                        output logic [31:0] datatoringbuffer,
                        output logic buffer_receive);
                        
   always_comb begin
-    datatoringbuffer[31:30] = datafromSPI[29:28];
-    datatoringbuffer[29:20] = datafromSPI[27:18];
-    datatoringbuffer[19:10] = datafromSPI[17:8];
-    datatoringbuffer[9:2] = current_time + 60;
-      if (datafromSPI[31:30] == 2'b11)
+  //octagon state moved to datatoringbuffer
+    datatoringbuffer[31] = datafromSPI[29];
+	 
+	//xcenter of octagon moved to datatoringbuffer
+    datatoringbuffer[30:21] = datafromSPI[28:19];
+	 
+	 //ycenter of octagon moved to datatoringbuffer
+    datatoringbuffer[20:11] = datafromSPI[18:9];
+	 
+	 //target time defined here
+    datatoringbuffer[10:3] = current_time + 60;
+	 //point value if we're 
+	 //checking if the data from the SPI is octagon data or not
+      if (datafromSPI[31:30] == 2'b11 && new_from_SPI)
         buffer_receive = 1;
       else
         buffer_receive = 0;
@@ -94,30 +121,27 @@ module datatypescore(input logic pxl_clk,
 module ringbuffer(input logic pxl_clk,
                   input logic receiving,
                   input logic [31:0] ocdatareceived,
-                  output logic [31:0] update[7:0],
-                  output logic [2:0] startpointer = 0);
-  logic [31:0] ring_buffer[7:0];
-  logic [2:0] endpointer = 0;
+                  output logic [31:0] ring_buffer[7:0],
+                  output logic [2:0] startpointer = 0,
+						output logic [2:0] endpointer = 0);
   
   //initialize pointers i->endpointer
   //assign startpointer=0;
 	
   always_ff@(posedge pxl_clk) begin
-    if (receiving == 1 && ocdatareceived[0] == 1) begin
+    if ((receiving == 1) && (ocdatareceived[31] == 1)) begin
       ring_buffer[endpointer] <= ocdatareceived;
       endpointer <= endpointer + 1;
     end
-    else if (receiving == 1 && ocdatareceived[0] == 0) begin
+    else if ((receiving == 1) && (ocdatareceived[31] == 0)) begin
       ring_buffer[startpointer] <= ocdatareceived;
       startpointer <= startpointer + 1;
     end
-    update = ring_buffer;
   end
 endmodule
 
 module separator(input logic pxl_clk,
                  input logic [7:0] current_time,
-                 input logic [2:0] startpointer,
                  input logic [31:0] octagon_data,
                  output logic os,
                  output logic [9:0] x_cent, y_cent,
@@ -129,7 +153,7 @@ always_comb begin
   x_cent = octagon_data[30:21];
   y_cent = octagon_data[20:11];
   target_time = octagon_data[10:3];
-  ring_size = (target_time - current_time) >> 2;
+  ring_size = (target_time - current_time);
 end
 endmodule  
  
@@ -179,25 +203,36 @@ endmodule
 module videoGen(input  logic [9:0] x, y,
                 input  logic game_clk,
                 input  logic pxl_clk,
-           		  output logic [7:0] r_int, g_int, b_int);
+					 input logic [31:0] final_input,
+					 input logic new_from_SPI,
+           		 output logic [7:0] r_int, g_int, b_int,
+					 output logic [2:0] startpointer, endpointer);
 
  logic [23:0] intermediate_color [32:0];
  logic octagon_state [7:0];
  logic [9:0] x_center[7:0], y_center[7:0];
  logic [7:0] ring_size[7:0];
- logic [50:0] circlerom [50:0];
- logic [24:0] counter = 0, pxl_counter = 0 ;
  logic [31:0] buffer[7:0];
- logic [2:0] startpointer;
+ logic [21:0] score;
+ logic [7:0] current_time;
+ logic [7:0] lifebar;
+ logic [9:0] result_x, result_y;
+ logic [9:0] mouse_x, mouse_y;
+ logic [1:0] result_value;
+ logic [31:0] data_for_ring_buffer;
+ logic ring_buffer_enable;
  
- logic receiving;
- logic [31:0] ocdatareceived;
  
  assign intermediate_color[0] = 24'h808080;
  
- assign receiving = (pxl_counter == 0);
- assign ocdatareceived = {1'b1, 10'd200 + counter[8:0], 10'd300 + counter[8:0], counter,3'b000};
- 
+ datatyperesult (game_clk, final_input, result_x, result_y, result_value);
+ datatypeoctagon(final_input, current_time, new_from_SPI,
+                       data_for_ring_buffer,
+                       ring_buffer_enable);
+ datatypetimer(game_clk, final_input,
+                     current_time,
+                     mouse_x, mouse_y);
+ datatypescore(game_clk, final_input, lifebar, score);
 
   // given y position, choose a character to display
   // then look up the pixel value from the character ROM
@@ -206,17 +241,9 @@ module videoGen(input  logic [9:0] x, y,
 
  //assign ch = y[8:3]+8'd48;
   //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);
-  always_ff@(posedge pxl_clk) begin
-	pxl_counter <= pxl_counter + 1;
-  end
-  
-  
-  
-  always_ff@(posedge game_clk) begin
-	counter <= counter + 1;
-  end
  
-ringbuffer ring(pxl_clk, receiving, ocdatareceived, buffer, startpointer);
+ ringbuffer ring(pxl_clk, ring_buffer_enable, data_for_ring_buffer, 
+                 buffer, startpointer, endpointer);
 //module separator(input logic pxl_clk,
 //                 input logic [7:0] current_time,
 //                 input logic [2:0] startpointer,
@@ -228,16 +255,18 @@ ringbuffer ring(pxl_clk, receiving, ocdatareceived, buffer, startpointer);
  generate
  for (index=0; index < 8; index=index+1)
    begin: gen_code_label
-    separator sep(pxl_clk, counter[7:0], startpointer, buffer[startpointer + 7 - index], 
+    separator sep(pxl_clk, current_time, buffer[startpointer + 7 - index], 
                   octagon_state[index], x_center[index], y_center[index], ring_size[index]
     );
 		octagonv2 test(octagon_state[index], x, y, x_center[index], y_center[index], ring_size[index], index,
-            intermediate_color[index], 24'hFFD000+counter, intermediate_color[index+1]); 
+            intermediate_color[index], 24'h8080FF, intermediate_color[index+1]); 
             
    end
  endgenerate
- draw_health hp(x,y, counter, intermediate_color[8], intermediate_color[9]);
- draw_score score(x,y, pxl_clk, counter, intermediate_color[9], {r_int, g_int, b_int});
+ draw_result result(x,y, result_x, result_y, result_value, intermediate_color[8], intermediate_color[9]);
+ draw_health hp(x,y, lifebar, intermediate_color[9], intermediate_color[10]);
+ draw_score sc(x,y, pxl_clk, score, intermediate_color[10], intermediate_color[11]);
+ draw_mouse mo(x,y,mouse_x, mouse_y, intermediate_color[11], {r_int, g_int, b_int});
  
 endmodule
 
@@ -284,13 +313,32 @@ always_comb
 end
 endmodule
 
-
-module store_data(input logic[31:0] octagondata,
-						output logic [31:0] datalist[7:0]);
-endmodule
-
-module to_synch_time(input logic [31:0] timerdata,
-							output logic [9:0] mousexpos, mouseypos);
+module draw_result #(parameter DIGIT_WIDTH_BIT = 8,
+										 DECIMAL_DIGIT_COUNT = 3,
+										 HEIGHT = 8,
+										 BASE_Y = 20,
+										 BASE_X = 550
+										 )
+						 (input logic [9:0] x, y,
+						  input logic [9:0] center_x, center_y,
+                    input logic [1:0] value,
+                    input logic [23:0] background,
+                    output logic [23:0] output_color);
+  logic in_score_area, pixel;
+  logic [7:0] ch;
+  logic [9:0] delta_y, delta_x;
+  logic [3:0] decimal_digits [2:0];
+  assign delta_y = (y-center_y);
+  assign delta_x = (x-center_x);
+  assign decimal_digits[0] = 3'b0;
+  assign decimal_digits[1] = 3'b0;
+  assign decimal_digits[2] = value;
+  assign ch = decimal_digits[2-delta_x[8:3]]+8'd48;
+  chargenrom chargenromb(ch, delta_x[2:0], delta_y[2:0], pixel);  
+  assign in_score_area = (x >= center_x && 
+                          x <= center_x + DIGIT_WIDTH_BIT*DECIMAL_DIGIT_COUNT &&
+                          y >= center_y && y < center_y + HEIGHT);
+  assign output_color = (pixel && in_score_area)? 24'hFFFFFF : background;
 endmodule
 
 module draw_health #(parameter WIDTH_SCALING = 0,
@@ -325,8 +373,7 @@ module draw_score #(parameter DIGIT_WIDTH_BIT = 8,
   logic in_score_area, pixel;
   logic [7:0] ch;
   logic [9:0] delta_y, delta_x;
-  logic [3:0] decimal_digits [6:0];
-  genvar index;
+  logic [3:0] decimal_digits [6:0] = '{0,0,0,0,0,0,0};
   assign delta_y = (y-BASE_Y);
   assign delta_x = (x-BASE_X);
   to_decimal decimal_score(pxl_clk, score, decimal_digits);
@@ -345,8 +392,8 @@ module to_decimal #(parameter BINARY_DIGIT_COUNT = 22,
                     input logic [21:0] value,
                     output logic [3:0] decimal_digits [6:0]
                     );
-  logic [21:0] old_value;
-  logic [21:0] leftover_value;
+  logic [21:0] old_value = 0;
+  logic [21:0] leftover_value = 0;
   logic [2:0] digit_counter;
   logic [3:0] temporary_buffer [6:0];
   always_ff @(posedge clk) begin
@@ -354,7 +401,7 @@ module to_decimal #(parameter BINARY_DIGIT_COUNT = 22,
       leftover_value <= value;
       old_value <= value;
       digit_counter <= 0;
-    end else if (leftover_value > 0) begin 
+    end else if (digit_counter < DECIMAL_DIGIT_COUNT) begin 
       leftover_value <= leftover_value / 10;
       temporary_buffer[digit_counter] <= leftover_value % 10;
       digit_counter = digit_counter + 1;
@@ -363,6 +410,20 @@ module to_decimal #(parameter BINARY_DIGIT_COUNT = 22,
     end
     
   end
+endmodule
+
+module draw_mouse #(parameter RADIUS = 6,
+									   THICKNESS = 1)
+                   (input logic [9:0] x, y,
+                    input logic [9:0] mouse_x, mouse_y,
+                    input logic [23:0] background,
+                    output logic [23:0] output_color);
+  logic in_mouse;
+  assign in_mouse = (x + RADIUS >= mouse_x && x <= mouse_x + RADIUS &&
+                     y + THICKNESS >= mouse_y && y <= mouse_y + THICKNESS) || 
+						  (x + THICKNESS >= mouse_x && x <= mouse_x + THICKNESS &&
+                     y + RADIUS >= mouse_y && y <= mouse_y + RADIUS);
+  assign output_color = in_mouse? 24'hFF4040 : background;
 endmodule
 
 
@@ -399,6 +460,35 @@ module spi_slave_receive_only(input logic sck, //from master
 	end
 endmodule
 
+// reads input from a frame enabled SPI to word_input
+// and signals the end of the transmission with finished
+module spi_frm_slave #(parameter WIDTH_POWER = 5, WIDTH = 2**WIDTH_POWER)
+                      (input  logic               spi_clk,
+							  input  logic               pxl_clk,
+                       input  logic               serial_input,
+                       input  logic               fsync,
+                       output logic [(WIDTH-1):0] final_input = 0,
+							  output logic               new_from_SPI = 0
+                       );
+  logic [(WIDTH-1):0] word_input = '0;
+  logic [(WIDTH_POWER-1):0] counter = 0;
+  logic finished = 1, old_finished = 1;
+  always_ff @ (posedge spi_clk) begin
+    word_input <= finished ? word_input : 
+                            {word_input[(WIDTH-2):0], serial_input};
+    counter <= finished ? 1 : counter + 1;
+    finished <= ~fsync ? '0 : finished ? '1 : counter == 0;
+  end
+  
+  always_ff @ (posedge pxl_clk) begin
+    old_finished <= finished;
+	 new_from_SPI <= finished && !old_finished;
+	 final_input  <= finished ? word_input : final_input;
+  end
+    
+  
+  
+endmodule
 
 
 
