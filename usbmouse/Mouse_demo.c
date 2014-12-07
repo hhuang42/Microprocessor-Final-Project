@@ -198,6 +198,9 @@ int main (void)
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
         while(1)
         {
+
+			sendLifeAndScore(100, 200);
+			
             USBTasks();
             App_Detect_Device();
             
@@ -292,19 +295,68 @@ void App_ProcessInputReport(void)
                  new_y_position <= MIN_Y * SCALING ? MIN_Y * SCALING :
                  new_y_position;
 
-	// store the mouse as well as the pixel-unit positions.
-    data = Appl_Button_report_buffer[2];
-    data = Appl_Button_report_buffer[1] | (data << 1);
-    data = Appl_Button_report_buffer[0] | (data << 1);
-    data = x_position / SCALING | (data << 10);
-    data = y_position / SCALING | (data << 10);
+
+}
+
+void addNewOctagon(int x, int y)
+{
+	int data;
+	data = 0b111;
+	data = x | (data<<10);
+	data = y | (data<<10);
+	data = (data<<9);
 
 	// send data over
-    SpiChnPutC(SPI_CHANNEL, data);   
+	SpiChnPutC(SPI_CHANNEL, data);
 
 	// clear out the receiving side
-    SpiChnGetC(SPI_CHANNEL);
-    
+	SpiChnGetC(SPI_CHANNEL);
+}
+
+void deleteOldestOctagon(int x, int y, int result)
+{
+	int data;
+	data = 0b110;
+	data = x | (data<<10);
+	data = y | (data<<10);
+	data = result | (data<<2);
+	data = (data<<7);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+}
+
+void sendTimeandMouse(int time, int x_position, int y_position)
+{
+	int data;
+	data = 0b01;
+	data = time | (data<<8);
+	data = x_position / SCALING | (data<<10);
+	data = y_position / SCALING | (data<<10);
+	data = (data<<2);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+}
+
+void sendLifeAndScore(int life, int score)
+{
+	int data;
+	data = 0b00;
+	data = life | (data<<8);
+	data = score | (data<<22);
+	
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+	
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
 }
 
 //******************************************************************************
