@@ -111,10 +111,13 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 // *****************************************************************************
 
 FSFILE * myFile;
+FSFILE * myFile2;
 BYTE myData[BUFFER_SIZE];
 volatile BYTE* myDataPtr = myData;
 size_t numBytes;
 volatile BOOL deviceAttached;
+BYTE myData2[BUFFER_SIZE];
+volatile BYTE* myData2Ptr = myData2;
 
 BYTE buffer[BUFFER_SIZE];
 volatile BYTE* bufferPtr = buffer;
@@ -197,6 +200,75 @@ void pwm_setup(void){
 
     T2CONSET = 0x8000;
     OC2CONSET = 0x8000;
+}
+
+
+void read_octagondata(char* file_name)
+{   
+    int octagondata;
+    myFile2 = FSfopen(file_name, "r");
+    //Read the data from octagondata.txt (myFile) and put into array myData2
+
+    FSfread(myData2, 1, myFile2.size, myFile2);
+
+    char * pch;
+
+    pch = strtok(myData2, " ");
+    octagondata = atoi(pch);
+    pch = strtok(NULL, " ");
+    octagondata = atoi(pch) | (octagondata<<9)
+    octagondata = (octagondata << 15)
+    
+    // send the first set of data over (beat + # of octagons)
+    SpiChnPutC(SPI_CHANNEL, octagondata);
+    
+    // clear out the receiving side
+    SpiChnGetC(SPI_CHANNEL);
+
+        while (pch !=NULL)
+    {       
+
+        // before sending the data over, change the data from ascii to binary
+            octagondata = atoi(pch);
+            pch = strtok(NULL, " ");
+            octagondata = atoi(pch) | (octagondata<<10);
+            pch = strtok(NULL, " ");
+            octagondata = atoi(pch) | (octagondata<<11);
+            pch = strtok(NULL, " ");
+            octagondata = atoi(pch) | (octagondata<<1);
+        // send data over
+            SpiChnPutC(SPI_CHANNEL, octagondata);
+
+        // clear out the receiving side
+            SpiChnGetC(SPI_CHANNEL);
+            pch = strtok(NULL, " ");
+    }
+
+    FSfclose(myFile2);
+    //not sure about this function....
+   
+
+    //send through the SPI to PIC2
+
+    /* strtok example */
+    /*#include <stdio.h>
+    #include <string.h>
+
+    int main ()
+    {
+    char str[] ="- This, a sample string.";
+    char * pch;
+    printf ("Splitting string \"%s\" into tokens:\n",str);
+    pch = strtok (str," ,.-");
+    while (pch != NULL)
+    {
+        printf ("%s\n",pch);
+        pch = strtok (NULL, " ,.-");
+     }
+    return 0;
+    }*/
+
+
 }
 
 void play_file(char* file_name){
