@@ -2,7 +2,7 @@
 <LOG_ROOT>
 	<PROJECT NAME="vga_DS">
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|pll:vgapll|altpll:altpll_component" CBX_FILE_NAME="pll_altpll.v"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_score:sc|to_decimal:decimal_score|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_mhm.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_score:sc|to_decimal:decimal_score|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_p9m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_game_over:go|to_decimal:decimal_score|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_mhm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_game_over:go|to_decimal:decimal_score|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_p9m.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

@@ -55,6 +55,7 @@ CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 #include "GenericTypeDefs.h"
 #include "HardwareProfile.h"
 #include "usb_config.h"
@@ -133,6 +134,7 @@ BOOL USB_HID_DataCollectionHandler(void);
 #define LIFE_MASK                       (0xFF)
 #define RESULT_MASK                     (0x3)
 #define SCORE_MASK                      (0x3FFFFF)
+#define ALIVE_MASK                      (0x1)
 
 #define MIN_X                           (0)
 #define MAX_X                           (640)
@@ -140,6 +142,7 @@ BOOL USB_HID_DataCollectionHandler(void);
 #define MAX_Y                           (480)
 
 #define TARGET_LIFE                     (60)
+#define TARGET_RADIUS                   (30)
 
 #define MIN_HEALTH                      (0)
 #define MAX_HEALTH                      (255)
@@ -187,6 +190,10 @@ volatile int score;
 volatile int total_target_count;
 volatile int next_target;
 volatile int next_target_to_appear;
+volatile BOOL last_button_pressed_state;
+volatile BOOL is_game_active;
+volatile BOOL is_game_over;
+volatile BOOL is_roll_active;
 
 
 
@@ -195,7 +202,11 @@ typedef struct target_info
     unsigned short x_position;
     unsigned short y_position;
     unsigned int   play_time;
+    BOOL           is_rolling;
 } target;
+volatile target* start_roll_target;
+volatile target* end_roll_target;
+volatile int roll_score_type;
 
 target targets[512];
 
@@ -204,12 +215,21 @@ target targets[512];
 // Main
 //******************************************************************************
 //******************************************************************************
-unsigned short mouse_x_position(){
+unsigned short mouse_x_position(void){
     return x_position / SCALING;
 }
 
-unsigned short mouse_y_position(){
+unsigned short mouse_y_position(void){
     return y_position / SCALING;
+}
+
+
+unsigned short set_mouse_x_position(int x){
+    return x_position = x * SCALING;
+}
+
+unsigned short set_mouse_y_position(int y){
+    return y_position = y * SCALING;
 }
 
 void addNewOctagon(unsigned short x, unsigned short y)
@@ -228,7 +248,36 @@ void addNewOctagon(unsigned short x, unsigned short y)
 	while(SpiChnIsBusy(SPI_CHANNEL)){};
 }
 
-void deleteOldestOctagon(unsigned short x, unsigned short y, char result)
+void rollOctagon(unsigned short x, unsigned short y)
+{
+	int data;
+	data = 0b1011;
+	data = (x & POSITION_MASK) | (data<<10);
+	data = (y & POSITION_MASK) | (data<<10);
+	data = (data<<9);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void stopRollOctagon()
+{
+	int data;
+	data = 0xA0000000;
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void deleteOldestOctagon(unsigned short x, unsigned short y, unsigned char result)
 {
 	int data;
 	data = 0b110;
@@ -278,14 +327,43 @@ void sendLifeAndScore( unsigned char life, unsigned int score)
 
 }
 
+void sendRestart()
+{
+	unsigned int data;
+	data = 0x80000000;
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void sendGameOver()
+{
+	unsigned int data;
+	data = 0x80000001;
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
 void loadTargets(void){
     size_t i;
+    total_target_count = 0;
     for(i=0; i<200; ++i){
-        targets[i].x_position = i*434 % MAX_X;
-        targets[i].y_position = i*350 % MAX_Y;
-        targets[i].play_time = i*10 + 300;
+        targets[i].x_position = ((i/8)*430-i*70+200) % MAX_X;
+        targets[i].y_position = ((i/8)*350-i*90+300) % MAX_Y;
+        targets[i].play_time = i*40 + 300;
+        targets[i].is_rolling = FALSE;
+        ++total_target_count;
     }
-    total_target_count = 200;
+    
     
 }
 
@@ -320,17 +398,60 @@ void startGame(void){
         life = 128;
         score = 0;
         timer = 0;
+        set_mouse_x_position(MAX_X/2);
+        set_mouse_y_position(MAX_Y/2);
+        last_button_pressed_state = FALSE;
+        sendRestart();
+        is_game_over = FALSE;
+        is_game_active = TRUE;
         
 }
 
-void gameLoop(void){
-    if (send_timer) {
-        sendTimeandMouse(timer, mouse_x_position() , mouse_y_position());
-        send_timer = FALSE;
-   	} else{
-        sendLifeAndScore(life, score);
-        send_timer = TRUE;
+BOOL is_mouse_in_target(target next_target){
+    return pow((TARGET_RADIUS),2) >= pow((mouse_x_position()-next_target.x_position), 2) + 
+                                     pow((mouse_y_position()-next_target.y_position), 2);
+}
+
+void gameOverLoop(void){
+    if(timer < 255)
+    {
+        ++timer;
     }
+}
+
+void gameLoop(void){
+
+    BOOL button_pressed_state = (BOOL) Appl_Button_report_buffer[0];
+    int score_type = 0;
+    BOOL delete_octagon = FALSE;
+    if (is_roll_active && timer >= start_roll_target->play_time) {
+        int delta_t = timer - start_roll_target->play_time;
+        int total_delta_t = end_roll_target->play_time - start_roll_target->play_time;
+        int total_delta_x = end_roll_target->x_position - start_roll_target->x_position;
+        int total_delta_y = end_roll_target->y_position - start_roll_target->y_position;
+        int roll_x = delta_t*total_delta_x/total_delta_t + start_roll_target->x_position;
+        int roll_y = delta_t*total_delta_y/total_delta_t + start_roll_target->y_position;
+        rollOctagon(roll_x, roll_y);
+    } else if (next_target < total_target_count) {
+        BOOL mouse_clicked = button_pressed_state && !last_button_pressed_state;
+        if (mouse_clicked && is_mouse_in_target(targets[next_target])){
+            
+            if (targets[next_target].play_time - timer <= 8){
+                score_type = 3;
+            } else if (targets[next_target].play_time - timer <= 16){
+                score_type = 2;
+            } else if (targets[next_target].play_time - timer <= 24){
+                score_type = 1;
+            } else {
+                score_type = 0;
+            }
+
+            delete_octagon = TRUE;
+        }
+    }
+    
+    
+        
     if(next_target_to_appear < total_target_count && 
        targets[next_target_to_appear].play_time == timer + TARGET_LIFE){
         
@@ -340,15 +461,47 @@ void gameLoop(void){
         next_target_to_appear++;
     }
     
-    if(next_target < total_target_count && targets[next_target].play_time == timer){
-        
-        deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, 0);
+    if((next_target < total_target_count && targets[next_target].play_time == timer) || delete_octagon){
+    
+        if (is_roll_active) {
+            deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, roll_score_type);
+            stopRollOctagon();
+            is_roll_active = FALSE;
+        } else if (targets[next_target].is_rolling){
+            is_roll_active = TRUE;
+            start_roll_target = &targets[next_target];
+            end_roll_target = &targets[next_target+1];
+            roll_score_type = score_type;
+        } 
+        deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, score_type);
+        life += score_type*3;
+        score += score_type*100;
+        if(score_type == 0){
+            life -= 10;
+        }
         next_target++;
+        
     }
     
-    life--;
-    score++;
+    last_button_pressed_state = button_pressed_state;
+
     timer++;
+    if(timer%12 == 0){
+        life--;
+        score++;
+    }
+    life = life < 0   ? 0   :
+           life > 255 ? 255 :
+           life;
+           
+    
+    
+    if(life == 0 || next_target == total_target_count){
+        is_game_active = FALSE;
+        is_game_over = TRUE;
+        sendGameOver();
+        timer = 0;
+    }
 }
 
 void mouse_actions (void){
@@ -452,8 +605,14 @@ int main (void)
 void __ISR(_TIMER_2_VECTOR, ipl7) T2_IntHandler(void)
 {
     IFS0CLR = 0x0100;
-    gameLoop();
-    
+    sendLifeAndScore(life, score);
+    sendTimeandMouse(timer, mouse_x_position() , mouse_y_position());
+    if (is_game_active){
+        gameLoop();
+    }
+    if (is_game_over){
+        gameOverLoop();
+    }
     
 }
 
