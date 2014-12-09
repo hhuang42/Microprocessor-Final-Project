@@ -34,20 +34,24 @@ module vga_DS(input  logic       clk,
   
 endmodule
 
-/*module writeled(input logic clk,
-					 input logic [15:0] xpos,
-					 output logic [7:0] led);
-	always_comb begin
-		led[0] = 0;
-		led[1] = xpos[1];
-		led[2] = xpos[2];
-		led[3] = xpos[3];
-		led[4] = xpos[4];
-		led[5] = xpos[5];
-		led[6] = xpos[6];
-	end
+
+module datatypepath (input logic pxl_clk,
+							  input logic [31:0] datafromSPI,
+							  input logic        restart,
+							  output logic [9:0] start_x, start_y, end_x, end_y,
+							  output logic       show_path = 0);
+  logic start_valid, end_valid;
+  assign start_valid = (datafromSPI[31:29] == 3'b111) && !show_path;
+  assign end_valid = (datafromSPI[31:28] == 4'b1001);
+	 always_ff@(posedge pxl_clk) begin
+     start_x <= start_valid?datafromSPI[28:19]:start_x;
+     start_y <= start_valid?datafromSPI[18:9]:start_y;
+     
+		 show_path <= restart?0:end_valid?datafromSPI[27]:show_path;
+		 end_x <= end_valid?datafromSPI[26:17]:end_x;
+		 end_y <= end_valid?datafromSPI[16:7]:end_y;
+	 end
 endmodule
-*/
 
 module datatyperoll (input logic pxl_clk,
 							  input logic [31:0] datafromSPI,
@@ -255,18 +259,21 @@ module videoGen(input  logic [9:0] x, y,
  logic [9:0] result_x, result_y;
  logic [9:0] mouse_x, mouse_y;
  logic [9:0] roll_x, roll_y;
+ logic [9:0] path_start_x, path_end_x, path_start_y, path_end_y;
  logic [1:0] result_value;
  logic [31:0] data_for_ring_buffer;
- logic ring_buffer_enable, roll_enable;
+ logic [3:0] decimal_digits [6:0];
+ logic ring_buffer_enable, roll_enable, path_enable;
  logic show_result;
  logic restart, game_over;
  
  
- assign intermediate_color[0] = 24'h808080;
- 
+ //assign intermediate_color[0] = x*y+24'h808080;
  datatypeextra(pxl_clk, final_input, restart, game_over);
  
  datatyperoll(pxl_clk, final_input, restart, roll_x, roll_y, roll_enable);
+ datatypepath(pxl_clk, final_input, restart, 
+              path_start_x, path_start_y, path_end_x, path_end_y, path_enable);
  
  datatypeoctagon(final_input, current_time, new_from_SPI,
                        data_for_ring_buffer,
@@ -284,6 +291,8 @@ module videoGen(input  logic [9:0] x, y,
 
  //assign ch = y[8:3]+8'd48;
   //chargenrom chargenromb(ch, x[2:0], y[2:0], pixel);
+  
+ to_decimal digits(pxl_clk, score, decimal_digits);
  
  ringbuffer ring(pxl_clk, restart, ring_buffer_enable, data_for_ring_buffer, 
                  buffer, startpointer, endpointer);
@@ -294,6 +303,9 @@ module videoGen(input  logic [9:0] x, y,
 //                 output logic os,
 //                 output logic [9:0] x_cent, y_cent,
 //                 output logic [7:0] ring_size);
+ draw_path path(x, y,path_enable, path_start_x, path_start_y,
+                            path_end_x, path_end_y, x*y+24'h808080, intermediate_color[0]);
+ path_end_octagonv2(path_enable, x, y,  path_end_x, path_end_y, intermediate_color[0], intermediate_color[1]);
  genvar index;
  generate
  for (index=0; index < 8; index=index+1)
@@ -302,16 +314,16 @@ module videoGen(input  logic [9:0] x, y,
                   octagon_state[index], x_center[index], y_center[index], ring_size[index]
     );
 		octagonv2 test(octagon_state[index], x, y, x_center[index], y_center[index], ring_size[index], startpointer + 7 - index,
-            intermediate_color[index], 24'h8080FF, intermediate_color[index+1]); 
+            intermediate_color[index+1], 24'h8080FF, intermediate_color[index+1+1]); 
             
    end
  endgenerate
- roll_octagonv2 roll(roll_enable,x,y,roll_x,roll_y,intermediate_color[8], intermediate_color[9]);
- draw_result result(x,y, result_x, result_y, show_result, result_value, intermediate_color[9], intermediate_color[10]);
- draw_health hp(x,y, lifebar, intermediate_color[10], intermediate_color[11]);
- draw_score sc(x,y, pxl_clk, score, intermediate_color[11], intermediate_color[12]);
- draw_game_over go(x, y, pxl_clk, game_over, score, current_time, intermediate_color[12], intermediate_color[13]);
- draw_mouse mo(x,y,mouse_x, mouse_y, intermediate_color[13], {r_int, g_int, b_int});
+ roll_octagonv2 roll(roll_enable,x,y,roll_x,roll_y,intermediate_color[9], intermediate_color[10]);
+ draw_result result(x,y, result_x, result_y, show_result, result_value, intermediate_color[10], intermediate_color[11]);
+ draw_health hp(x,y, lifebar, intermediate_color[11], intermediate_color[12]);
+ draw_score sc(x,y, decimal_digits, intermediate_color[12], intermediate_color[13]);
+ draw_game_over go(x, y, game_over, decimal_digits, current_time, intermediate_color[13], intermediate_color[14]);
+ draw_mouse mo(x,y,mouse_x, mouse_y, intermediate_color[14], {r_int, g_int, b_int});
  
  assign led = current_time;
 endmodule
@@ -383,8 +395,40 @@ always_comb
 	begin 
   if (!active)
     output_color = background;
+	else if (max < 25)
+		output_color = max[2]?24'hFFFF00:24'hFF8000;
+  else if (max > 50 && max <=55)
+    output_color = 24'hFF8000;
+	else
+		output_color = background;
+end
+endmodule
+
+module path_end_octagonv2( input logic active,
+							  input logic [9:0] x_pixel_orig, y_pixel_orig, x_cent_orig, y_cent_orig,
+							  input logic [23:0] background, 
+				           output logic [23:0] output_color);
+logic [9:0] x_pixel, y_pixel, x_cent, y_cent;
+logic [9:0] min_NS, min_EW, max_card, max_diag, max_diag_norm, max;
+
+assign x_pixel = x_pixel_orig;
+assign y_pixel = y_pixel_orig;
+assign x_cent = x_cent_orig;
+assign y_cent = y_cent_orig;
+assign min_NS = y_pixel > y_cent ? y_pixel - y_cent : y_cent - y_pixel;
+assign min_EW = x_pixel > x_cent ? x_pixel - x_cent : x_cent - x_pixel;
+assign max_card = min_NS > min_EW ? min_NS : min_EW;
+assign max_diag = min_NS+min_EW;
+assign max_diag_norm = max_diag - max_diag[9:2] - max_diag[9:5];
+assign max = max_card > max_diag_norm ? max_card : max_diag_norm;
+						  
+							
+always_comb
+	begin 
+  if (!active)
+    output_color = background;
 	else if (max < 30)
-		output_color = max[2]?24'hFF00FF:24'h0000FF;
+		output_color = 24'hFF00FF;
 	else
 		output_color = background;
 end
@@ -447,17 +491,14 @@ module draw_score #(parameter DIGIT_WIDTH_BIT = 8,
                               BASE_X = 550
                               )
                    (input logic [9:0] x, y,
-                    input logic pxl_clk,
-                    input logic [21:0] score,
+                    input logic [3:0] decimal_digits [6:0],
                     input logic [23:0] background,
                     output logic [23:0] output_color);
   logic in_score_area, pixel;
   logic [7:0] ch;
   logic [9:0] delta_y, delta_x;
-  logic [3:0] decimal_digits [6:0] = '{0,0,0,0,0,0,0};
   assign delta_y = (y-BASE_Y);
   assign delta_x = (x-BASE_X);
-  to_decimal decimal_score(pxl_clk, score, decimal_digits);
   assign ch = decimal_digits[6-delta_x[8:3]]+8'd48;
   chargenrom chargenromb(ch, delta_x[2:0], delta_y[2:0], pixel);  
   assign in_score_area = (x >= BASE_X && 
@@ -473,21 +514,19 @@ module draw_game_over #(parameter DIGIT_WIDTH_BIT = 16,
                               BASE_X = 250
                               )
 							 (input logic [9:0] x, y,
-							  input logic clk,
 							  input logic show_game_over,
-							  input logic [21:0] score,
+							  input logic [3:0] decimal_digits [6:0],
 							  input logic [7:0] game_over_timer,
 							  input logic [23:0] background,
 							  output logic [23:0] output_color);
   logic cover_black;
   logic [9:0] delta_x, delta_y;
   logic [7:0] ch;
-  logic [3:0] decimal_digits [6:0];
+  
   logic pixel, in_score_area;
   assign cover_black = (y[9:1] < game_over_timer);
   assign delta_y = (y-BASE_Y + 510 - {game_over_timer,1'b0});
   assign delta_x = (x-BASE_X);
-  to_decimal decimal_score(clk, score, decimal_digits);
   assign ch = decimal_digits[6-delta_x[8:4]]+8'd48;
   chargenrom chargenromb(ch, delta_x[3:1], delta_y[3:1], pixel);
   assign in_score_area = (x >= BASE_X && 
@@ -539,6 +578,40 @@ module draw_mouse #(parameter RADIUS = 6,
                      y + RADIUS >= mouse_y && y <= mouse_y + RADIUS);
   assign output_color = in_mouse? 24'hFF4040 : background;
 endmodule
+
+module draw_path #(parameter MAX_THICKNESS = 25)
+                   (input logic [9:0] x, y,
+                    input logic path_enable,
+                    input logic [9:0] start_x, start_y,
+                    input logic [9:0] end_x, end_y,
+                    input logic [23:0] background,
+                    output logic [23:0] output_color);
+  logic signed [10:0] delta_x_total, delta_y_total;
+  logic signed [10:0] delta_x, delta_y;
+  logic signed [10:0] delta_long_total, delta_short_total, delta_long, delta_short;
+  logic signed [21:0] fixed_compare, high_compare, low_compare;
+  logic in_path;
+  logic x_orient;
+  
+  assign delta_x_total = $signed(end_x - start_x);
+  assign delta_y_total = $signed(end_y - start_y);
+  assign delta_x = $signed(x - start_x);
+  assign delta_y = $signed(y - start_y);
+  assign x_orient = (delta_x_total > 0 ? delta_x_total: -delta_x_total) > 
+                    (delta_y_total > 0 ? delta_y_total: -delta_y_total);
+  assign {delta_long,delta_short, delta_long_total,delta_short_total} =
+          x_orient ? {delta_x, delta_y, delta_x_total, delta_y_total}:
+                     {delta_y, delta_x, delta_y_total, delta_x_total};
+  assign fixed_compare = delta_short_total*delta_long;
+  assign low_compare = (delta_short-MAX_THICKNESS)*delta_long_total;
+  assign high_compare = (delta_short+MAX_THICKNESS)*delta_long_total;
+  assign in_path = (((delta_long > 0) ==
+                     (delta_long_total > delta_long)) &&
+                     ((high_compare > fixed_compare) ==
+                      (low_compare  < fixed_compare)));
+  assign output_color = (in_path && path_enable)? 24'h8080FF : background;
+endmodule
+
 
 
 module chargenrom(input  logic [7:0] ch,

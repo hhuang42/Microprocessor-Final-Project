@@ -1,6 +1,6 @@
 Flow report for vga_DS
-Mon Dec 08 02:50:20 2014
-Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
+Mon Dec 08 17:08:43 2014
+Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
 ---------------------
@@ -19,7 +19,7 @@ Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2011 Altera Corporation
+Copyright (C) 1991-2012 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -35,26 +35,26 @@ applicable agreement for further details.
 
 
 
-+--------------------------------------------------------------------------------+
-; Flow Summary                                                                   ;
-+------------------------------------+-------------------------------------------+
-; Flow Status                        ; Successful - Mon Dec 08 02:50:20 2014     ;
-; Quartus II Version                 ; 11.0 Build 157 04/27/2011 SJ Full Version ;
-; Revision Name                      ; vga_DS                                    ;
-; Top-level Entity Name              ; vga_DS                                    ;
-; Family                             ; Cyclone III                               ;
-; Device                             ; EP3C5E144C8                               ;
-; Timing Models                      ; Final                                     ;
-; Total logic elements               ; 4,327 / 5,136 ( 84 % )                    ;
-;     Total combinational functions  ; 4,220 / 5,136 ( 82 % )                    ;
-;     Dedicated logic registers      ; 538 / 5,136 ( 10 % )                      ;
-; Total registers                    ; 538                                       ;
-; Total pins                         ; 40 / 95 ( 42 % )                          ;
-; Total virtual pins                 ; 0                                         ;
-; Total memory bits                  ; 0 / 423,936 ( 0 % )                       ;
-; Embedded Multiplier 9-bit elements ; 0 / 46 ( 0 % )                            ;
-; Total PLLs                         ; 1 / 2 ( 50 % )                            ;
-+------------------------------------+-------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++------------------------------------+------------------------------------------+
+; Flow Status                        ; Successful - Mon Dec 08 17:08:43 2014    ;
+; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
+; Revision Name                      ; vga_DS                                   ;
+; Top-level Entity Name              ; vga_DS                                   ;
+; Family                             ; Cyclone III                              ;
+; Device                             ; EP3C5E144C8                              ;
+; Timing Models                      ; Final                                    ;
+; Total logic elements               ; 4,863 / 5,136 ( 95 % )                   ;
+;     Total combinational functions  ; 4,775 / 5,136 ( 93 % )                   ;
+;     Dedicated logic registers      ; 579 / 5,136 ( 11 % )                     ;
+; Total registers                    ; 579                                      ;
+; Total pins                         ; 40 / 95 ( 42 % )                         ;
+; Total virtual pins                 ; 0                                        ;
+; Total memory bits                  ; 0 / 423,936 ( 0 % )                      ;
+; Embedded Multiplier 9-bit elements ; 8 / 46 ( 17 % )                          ;
+; Total PLLs                         ; 1 / 2 ( 50 % )                           ;
++------------------------------------+------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +62,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/08/2014 02:48:02 ;
+; Start date & time ; 12/08/2014 17:07:11 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; vga_DS              ;
 +-------------------+---------------------+
@@ -73,7 +73,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 53556258611.141803568200608     ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 53556258650.141808723019260     ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl               ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog) ; <None>        ; --          ; --             ;
 ; IP_TOOL_NAME                        ; ALTPLL                          ; --            ; --          ; --             ;
@@ -101,12 +101,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:56     ; 1.0                     ; 323 MB              ; 00:00:55                           ;
-; Fitter                    ; 00:00:28     ; 1.9                     ; 451 MB              ; 00:00:31                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 274 MB              ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:25     ; 2.0                     ; 333 MB              ; 00:00:26                           ;
-; EDA Netlist Writer        ; 00:00:20     ; 1.0                     ; 268 MB              ; 00:00:17                           ;
-; Total                     ; 00:02:12     ; --                      ; --                  ; 00:02:12                           ;
+; Analysis & Synthesis      ; 00:00:36     ; 1.0                     ; 374 MB              ; 00:00:35                           ;
+; Fitter                    ; 00:00:33     ; 3.0                     ; 527 MB              ; 00:00:44                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 337 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:08     ; 2.4                     ; 389 MB              ; 00:00:09                           ;
+; EDA Netlist Writer        ; 00:00:09     ; 1.0                     ; 332 MB              ; 00:00:08                           ;
+; Total                     ; 00:01:28     ; --                      ; --                  ; 00:01:38                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -115,11 +115,11 @@ applicable agreement for further details.
 +---------------------------+------------------+-----------+------------+----------------+
 ; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
 +---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; Eng-Micro-8      ; Windows 7 ; 6.1        ; x86_64         ;
-; Fitter                    ; Eng-Micro-8      ; Windows 7 ; 6.1        ; x86_64         ;
-; Assembler                 ; Eng-Micro-8      ; Windows 7 ; 6.1        ; x86_64         ;
-; TimeQuest Timing Analyzer ; Eng-Micro-8      ; Windows 7 ; 6.1        ; x86_64         ;
-; EDA Netlist Writer        ; Eng-Micro-8      ; Windows 7 ; 6.1        ; x86_64         ;
+; Analysis & Synthesis      ; Westmere         ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; Westmere         ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; Westmere         ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; Westmere         ; Windows 7 ; 6.1        ; x86_64         ;
+; EDA Netlist Writer        ; Westmere         ; Windows 7 ; 6.1        ; x86_64         ;
 +---------------------------+------------------+-----------+------------+----------------+
 
 

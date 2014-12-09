@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Mon Dec 08 02:48:59 2014
-Quartus II Version : 11.0 Build 157 04/27/2011 SJ Full Version
+Analysis & Synthesis Status : Successful - Mon Dec 08 17:07:47 2014
+Quartus II 32-bit Version : 12.0 Build 178 05/31/2012 SJ Web Edition
 Revision Name : vga_DS
 Top-level Entity Name : vga_DS
 Family : Cyclone III
-Total logic elements : 4,663
-    Total combinational functions : 4,220
-    Dedicated logic registers : 538
-Total registers : 538
+Total logic elements : 5,258
+    Total combinational functions : 4,775
+    Dedicated logic registers : 579
+Total registers : 579
 Total pins : 40
 Total virtual pins : 0
 Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
+Embedded Multiplier 9-bit elements : 8
 Total PLLs : 1

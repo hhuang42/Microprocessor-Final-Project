@@ -248,13 +248,45 @@ void addNewOctagon(unsigned short x, unsigned short y)
 	while(SpiChnIsBusy(SPI_CHANNEL)){};
 }
 
+void addNewPathTo(unsigned short x, unsigned short y)
+{
+	int data;
+	data = 0b10011;
+	data = (x & POSITION_MASK) | (data<<10);
+	data = (y & POSITION_MASK) | (data<<10);
+	data = (data<<7);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
+void deletePath(void)
+{
+	int data;
+	data = 0b10010;
+	data = (data<<10);
+	data = (data<<10);
+	data = (data<<7);
+
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
 void rollOctagon(unsigned short x, unsigned short y)
 {
 	int data;
 	data = 0b1011;
 	data = (x & POSITION_MASK) | (data<<10);
 	data = (y & POSITION_MASK) | (data<<10);
-	data = (data<<9);
+	data = (data<<8);
 
 	// send data over
 	SpiChnPutC(SPI_CHANNEL, data);
@@ -360,7 +392,7 @@ void loadTargets(void){
         targets[i].x_position = ((i/8)*430-i*70+200) % MAX_X;
         targets[i].y_position = ((i/8)*350-i*90+300) % MAX_Y;
         targets[i].play_time = i*40 + 300;
-        targets[i].is_rolling = FALSE;
+        targets[i].is_rolling = i%10==0;
         ++total_target_count;
     }
     
@@ -457,6 +489,11 @@ void gameLoop(void){
         
         addNewOctagon(targets[next_target_to_appear].x_position, 
                       targets[next_target_to_appear].y_position);
+        if(targets[next_target_to_appear].is_rolling){
+            addNewPathTo(targets[next_target_to_appear+1].x_position, 
+                         targets[next_target_to_appear+1].y_position);
+        }
+        
                             
         next_target_to_appear++;
     }
@@ -464,9 +501,10 @@ void gameLoop(void){
     if((next_target < total_target_count && targets[next_target].play_time == timer) || delete_octagon){
     
         if (is_roll_active) {
-            deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, roll_score_type);
+            score_type = roll_score_type;
             stopRollOctagon();
             is_roll_active = FALSE;
+            deletePath();
         } else if (targets[next_target].is_rolling){
             is_roll_active = TRUE;
             start_roll_target = &targets[next_target];
@@ -477,7 +515,7 @@ void gameLoop(void){
         life += score_type*3;
         score += score_type*100;
         if(score_type == 0){
-            life -= 10;
+            life -= 15;
         }
         next_target++;
         

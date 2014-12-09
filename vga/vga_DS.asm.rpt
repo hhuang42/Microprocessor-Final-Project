@@ -1,6 +1,6 @@
 Assembler report for vga_DS
-Mon Dec 08 02:49:36 2014
-Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
+Mon Dec 08 17:08:26 2014
+Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
 ---------------------
@@ -18,7 +18,7 @@ Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2011 Altera Corporation
+Copyright (C) 1991-2012 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Dec 08 02:49:36 2014 ;
+; Assembler Status      ; Successful - Mon Dec 08 17:08:26 2014 ;
 ; Revision Name         ; vga_DS                                ;
 ; Top-level Entity Name ; vga_DS                                ;
 ; Family                ; Cyclone III                           ;
@@ -93,7 +93,7 @@ applicable agreement for further details.
 +----------------+--------------------------------------------------------------------------------+
 ; Device         ; EP3C5E144C8                                                                    ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                                     ;
-; Checksum       ; 0x002F1BB5                                                                     ;
+; Checksum       ; 0x00346A7D                                                                     ;
 +----------------+--------------------------------------------------------------------------------+
 
 
@@ -101,16 +101,16 @@ applicable agreement for further details.
 ; Assembler Messages ;
 +--------------------+
 Info: *******************************************************************
-Info: Running Quartus II Assembler
-    Info: Version 11.0 Build 157 04/27/2011 SJ Full Version
-    Info: Processing started: Mon Dec 08 02:49:33 2014
+Info: Running Quartus II 32-bit Assembler
+    Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
+    Info: Processing started: Mon Dec 08 17:08:24 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off vga_DS -c vga_DS
-Info: Writing out detailed assembly data for power analysis
-Info: Assembler is generating device programming files
-Info: Quartus II Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 274 megabytes
-    Info: Processing ended: Mon Dec 08 02:49:36 2014
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 337 megabytes
+    Info: Processing ended: Mon Dec 08 17:08:26 2014
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 
