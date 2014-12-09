@@ -202,74 +202,83 @@ void pwm_setup(void){
     OC2CONSET = 0x8000;
 }
 
+BOOL stop_play(){
+    return !(PORTE & 1);
+}
 
-void read_octagondata(char* file_name)
-{   
-    int octagondata;
-    myFile2 = FSfopen(file_name, "r");
-    //Read the data from octagondata.txt (myFile) and put into array myData2
 
-    FSfread(myData2, 1, myFile2.size, myFile2);
+// void read_octagon_data_when_prompted(char* file_name)
+// {   
+//     int octagondata;
+//     //octagondata = SpiChnGetC(SPI_CHANNEL);
+//     // do {
+//     //     octagondata = SpiChnGetC(SPI_CHANNEL);
+//     // } while (octagondata != 0xFFFFFFFF);
+//     myFile2 = FSfopen(file_name, "r");
+//     //Read the data from octagondata.txt (myFile) and put into array myData2
 
-    char * pch;
+//     FSfread(myData2, 1, myFile2->size, myFile2);
 
-    pch = strtok(myData2, " ");
-    octagondata = atoi(pch);
-    pch = strtok(NULL, " ");
-    octagondata = atoi(pch) | (octagondata<<9)
-    octagondata = (octagondata << 15)
+//     char * pch;
+
+//     pch = strtok(myData2, " \n");
+//     octagondata = atoi(pch);
+//     pch = strtok(NULL, " \n");
+//     octagondata = atoi(pch) | (octagondata<<9);
+// 	pch = strtok(NULL, " \n");
+// 	octagondata = atoi(pch) | (octagondata<<8);
+// 	pch = strtok(NULL, " \n");
+//     octagondata = atoi(pch) | (octagondata << 7);
     
-    // send the first set of data over (beat + # of octagons)
-    SpiChnPutC(SPI_CHANNEL, octagondata);
+//     // send the first set of data over (beat + # of octagons)
+//     SpiChnPutC(SPI_CHANNEL, octagondata);
     
-    // clear out the receiving side
-    SpiChnGetC(SPI_CHANNEL);
+//     // clear out the receiving side
+    
+// 	pch = strtok(NULL, " \n");
+//         while (pch !=NULL)
+//     {       
 
-        while (pch !=NULL)
-    {       
+//         // b5efore sending the data over, change the data from ascii to binary
+//             octagondata = atoi(pch);
+//             pch = strtok(NULL, " \n");
+//             octagondata = atoi(pch) | (octagondata<<10);
+//             pch = strtok(NULL, " \n");
+//             octagondata = atoi(pch) | (octagondata<<11);
+//             pch = strtok(NULL, " \n");
+//             octagondata = atoi(pch) | (octagondata<<1);
+// 			SpiChnGetC(SPI_CHANNEL);
+//         // send data over
+//             SpiChnPutC(SPI_CHANNEL, octagondata);
+//             pch = strtok(NULL, " \n");
+//     }
 
-        // before sending the data over, change the data from ascii to binary
-            octagondata = atoi(pch);
-            pch = strtok(NULL, " ");
-            octagondata = atoi(pch) | (octagondata<<10);
-            pch = strtok(NULL, " ");
-            octagondata = atoi(pch) | (octagondata<<11);
-            pch = strtok(NULL, " ");
-            octagondata = atoi(pch) | (octagondata<<1);
-        // send data over
-            SpiChnPutC(SPI_CHANNEL, octagondata);
-
-        // clear out the receiving side
-            SpiChnGetC(SPI_CHANNEL);
-            pch = strtok(NULL, " ");
-    }
-
-    FSfclose(myFile2);
-    //not sure about this function....
+//     FSfclose(myFile2);
+//     //not sure about this function....
    
 
-    //send through the SPI to PIC2
+//     //send through the SPI to PIC2
 
-    /* strtok example */
-    /*#include <stdio.h>
-    #include <string.h>
+//     /* strtok example */
+//     /*#include <stdio.h>
+//     #include <string.h>
 
-    int main ()
-    {
-    char str[] ="- This, a sample string.";
-    char * pch;
-    printf ("Splitting string \"%s\" into tokens:\n",str);
-    pch = strtok (str," ,.-");
-    while (pch != NULL)
-    {
-        printf ("%s\n",pch);
-        pch = strtok (NULL, " ,.-");
-     }
-    return 0;
-    }*/
+//     int main ()
+//     {
+//     char str[] ="- This, a sample string.";
+//     char * pch;
+//     printf ("Splitting string \"%s\" into tokens:\n",str);
+//     pch = strtok (str," ,.-");
+//     while (pch != NULL)
+//     {
+//         printf ("%s\n",pch);
+//         pch = strtok (NULL, " ,.-");
+//      }
+//     return 0;
+//     }*/
 
 
-}
+// }
 
 void play_file(char* file_name){
 
@@ -285,7 +294,7 @@ void play_file(char* file_name){
     remainingBytes = my_header.subchunk2_size;
     FSfread(myData, 1, BUFFER_SIZE, myFile);
     remainingBytes -= BUFFER_SIZE;
-    while (remainingBytes > 0){
+    while (remainingBytes > 0 && !(stop_play())){
         USBTasks();
         if (!bufferFilled){
             size_t read_size = BUFFER_SIZE < remainingBytes ? 
@@ -299,6 +308,14 @@ void play_file(char* file_name){
     sampleAvailable = FALSE;
 
     FSfclose(myFile);
+}
+
+void play_file_when_prompted(char* filename){
+    unsigned int received_data = 1;
+    do {received_data = SpiChnGetC(SPI_CHANNEL);
+        SpiChnPutC(SPI_CHANNEL, 7);
+    } while (received_data != 0);
+    play_file(filename);
 }
 
 int main (void)
@@ -323,9 +340,7 @@ int main (void)
 
         // Initialize the SPI Channel 2 to be a master, reverse
         // clock, have 32 bits, enabled frame mode, and
-        SpiChnOpen(SPI_CHANNEL, 
-                   SPI_OPEN_SLVEN|SPI_OPEN_CKE_REV|
-                   SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
+        
         while(1)
         {
             USBTasks();
@@ -339,8 +354,14 @@ int main (void)
                 if(FSInit())
                 {
                     SearchRec music_search;
-                    while(FindFirst("Smoke.w*", ATTR_MASK, &music_search) == 0){
-                        play_file(music_search.filename);
+                    while(1){
+                        //read_octagon_data_when_prompted("octagon.txt");
+                        SpiChnOpen(SPI_CHANNEL, 
+                           SPI_OPEN_SLVEN|SPI_OPEN_CKE_REV|SPI_OPEN_FSP_IN|
+                           SPI_OPEN_SSEN|
+                           SPI_OPEN_MODE32|SPI_OPEN_FRMEN, 2);
+                        play_file_when_prompted("Smoke.wav");
+                        SpiChnClose(SPI_CHANNEL);
                         // while(1){
                         //     play_file(music_search.filename);
                         //     if(FindNext(&music_search) != 0){
