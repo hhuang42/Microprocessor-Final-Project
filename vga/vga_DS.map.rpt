@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vga_DS
-Mon Dec 08 19:53:33 2014
+Tue Dec 09 02:28:31 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -15,44 +15,45 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis DSP Block Usage Summary
   9. Analysis & Synthesis IP Cores Summary
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Parameter Settings for User Entity Instance: pll:vgapll|altpll:altpll_component
- 14. Parameter Settings for User Entity Instance: vgaController:vgaCont
- 15. Parameter Settings for User Entity Instance: spi_frm_slave:spireceive
- 16. Parameter Settings for User Entity Instance: videoGen:videoGen|to_decimal:digits
- 17. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_path:path
- 18. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_result:result
- 19. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_health:hp
- 20. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_score:sc
- 21. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_game_over:go
- 22. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_mouse:mo
- 23. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult0
- 24. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult2
- 25. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult1
- 26. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0
- 27. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Div0
- 28. altpll Parameter Settings by Entity Instance
- 29. lpm_mult Parameter Settings by Entity Instance
- 30. Port Connectivity Checks: "videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb"
- 31. Port Connectivity Checks: "videoGen:videoGen|draw_score:sc|chargenrom:chargenromb"
- 32. Port Connectivity Checks: "videoGen:videoGen|draw_result:result|chargenrom:chargenromb"
- 33. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[7].test"
- 34. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[6].test"
- 35. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[5].test"
- 36. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[4].test"
- 37. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[3].test"
- 38. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[2].test"
- 39. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[1].test"
- 40. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
- 41. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test"
- 42. Port Connectivity Checks: "videoGen:videoGen|draw_path:path"
- 43. Port Connectivity Checks: "videoGen:videoGen"
- 44. Port Connectivity Checks: "pll:vgapll"
- 45. Elapsed Time Per Partition
- 46. Analysis & Synthesis Messages
- 47. Analysis & Synthesis Suppressed Messages
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: pll:vgapll|altpll:altpll_component
+ 15. Parameter Settings for User Entity Instance: vgaController:vgaCont
+ 16. Parameter Settings for User Entity Instance: spi_frm_slave:spireceive
+ 17. Parameter Settings for User Entity Instance: videoGen:videoGen|to_decimal:digits
+ 18. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_path:path
+ 19. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_result:result
+ 20. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_health:hp
+ 21. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_score:sc
+ 22. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_game_over:go
+ 23. Parameter Settings for User Entity Instance: videoGen:videoGen|draw_mouse:mo
+ 24. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult0
+ 25. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult2
+ 26. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult1
+ 27. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0
+ 28. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Div0
+ 29. altpll Parameter Settings by Entity Instance
+ 30. lpm_mult Parameter Settings by Entity Instance
+ 31. Port Connectivity Checks: "videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb"
+ 32. Port Connectivity Checks: "videoGen:videoGen|draw_score:sc|chargenrom:chargenromb"
+ 33. Port Connectivity Checks: "videoGen:videoGen|draw_result:result|chargenrom:chargenromb"
+ 34. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[7].test"
+ 35. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[6].test"
+ 36. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[5].test"
+ 37. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[4].test"
+ 38. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[3].test"
+ 39. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[2].test"
+ 40. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[1].test"
+ 41. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
+ 42. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test"
+ 43. Port Connectivity Checks: "videoGen:videoGen|draw_path:path"
+ 44. Port Connectivity Checks: "videoGen:videoGen"
+ 45. Port Connectivity Checks: "pll:vgapll"
+ 46. Elapsed Time Per Partition
+ 47. Analysis & Synthesis Messages
+ 48. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -78,15 +79,15 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Dec 08 19:53:33 2014    ;
+; Analysis & Synthesis Status        ; Successful - Tue Dec 09 02:28:31 2014    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; vga_DS                                   ;
 ; Top-level Entity Name              ; vga_DS                                   ;
 ; Family                             ; Cyclone III                              ;
-; Total logic elements               ; 5,280                                    ;
-;     Total combinational functions  ; 4,797                                    ;
-;     Dedicated logic registers      ; 579                                      ;
-; Total registers                    ; 579                                      ;
+; Total logic elements               ; 5,381                                    ;
+;     Total combinational functions  ; 4,871                                    ;
+;     Dedicated logic registers      ; 606                                      ;
+; Total registers                    ; 606                                      ;
 ; Total pins                         ; 40                                       ;
 ; Total virtual pins                 ; 0                                        ;
 ; Total memory bits                  ; 0                                        ;
@@ -190,11 +191,12 @@ applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 3           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     1 processor            ; 100.0%      ;
-;     2-4 processors         ; < 0.1%      ;
+;     2-3 processors         ; < 0.1%      ;
+;     4 processors           ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -236,20 +238,20 @@ applicable agreement for further details.
 +---------------------------------------------+---------------------------------------------------+
 ; Resource                                    ; Usage                                             ;
 +---------------------------------------------+---------------------------------------------------+
-; Estimated Total logic elements              ; 5,280                                             ;
+; Estimated Total logic elements              ; 5,381                                             ;
 ;                                             ;                                                   ;
-; Total combinational functions               ; 4797                                              ;
+; Total combinational functions               ; 4871                                              ;
 ; Logic element usage by number of LUT inputs ;                                                   ;
-;     -- 4 input functions                    ; 1408                                              ;
-;     -- 3 input functions                    ; 2314                                              ;
-;     -- <=2 input functions                  ; 1075                                              ;
+;     -- 4 input functions                    ; 1451                                              ;
+;     -- 3 input functions                    ; 2336                                              ;
+;     -- <=2 input functions                  ; 1084                                              ;
 ;                                             ;                                                   ;
 ; Logic elements by mode                      ;                                                   ;
-;     -- normal mode                          ; 2752                                              ;
-;     -- arithmetic mode                      ; 2045                                              ;
+;     -- normal mode                          ; 2812                                              ;
+;     -- arithmetic mode                      ; 2059                                              ;
 ;                                             ;                                                   ;
-; Total registers                             ; 579                                               ;
-;     -- Dedicated logic registers            ; 579                                               ;
+; Total registers                             ; 606                                               ;
+;     -- Dedicated logic registers            ; 606                                               ;
 ;     -- I/O registers                        ; 0                                                 ;
 ;                                             ;                                                   ;
 ; I/O pins                                    ; 40                                                ;
@@ -258,9 +260,9 @@ applicable agreement for further details.
 ;     -- PLLs                                 ; 1                                                 ;
 ;                                             ;                                                   ;
 ; Maximum fan-out node                        ; videoGen:videoGen|ringbuffer:ring|startpointer[0] ;
-; Maximum fan-out                             ; 575                                               ;
-; Total fan-out                               ; 16389                                             ;
-; Average fan-out                             ; 3.00                                              ;
+; Maximum fan-out                             ; 591                                               ;
+; Total fan-out                               ; 16724                                             ;
+; Average fan-out                             ; 3.01                                              ;
 +---------------------------------------------+---------------------------------------------------+
 
 
@@ -269,54 +271,55 @@ applicable agreement for further details.
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                         ; Library Name ;
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |vga_DS                                      ; 4797 (1)          ; 579 (0)      ; 0           ; 6            ; 0       ; 3         ; 40   ; 0            ; |vga_DS                                                                                                                                     ;              ;
+; |vga_DS                                      ; 4871 (1)          ; 606 (0)      ; 0           ; 6            ; 0       ; 3         ; 40   ; 0            ; |vga_DS                                                                                                                                     ;              ;
 ;    |pll:vgapll|                              ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll                                                                                                                          ;              ;
 ;       |altpll:altpll_component|              ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll|altpll:altpll_component                                                                                                  ;              ;
 ;          |pll_altpll:auto_generated|         ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated                                                                        ;              ;
 ;    |spi_frm_slave:spireceive|                ; 8 (8)             ; 72 (72)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|spi_frm_slave:spireceive                                                                                                            ;              ;
-;    |vgaController:vgaCont|                   ; 195 (195)         ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|vgaController:vgaCont                                                                                                               ;              ;
-;    |videoGen:videoGen|                       ; 4593 (710)        ; 486 (0)      ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen                                                                                                                   ;              ;
-;       |datatypeextra:comb_3|                 ; 12 (12)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeextra:comb_3                                                                                              ;              ;
-;       |datatypeoctagon:comb_6|               ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeoctagon:comb_6                                                                                            ;              ;
-;       |datatypepath:comb_5|                  ; 3 (3)             ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypepath:comb_5                                                                                               ;              ;
-;       |datatyperesult:comb_7|                ; 2 (2)             ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatyperesult:comb_7                                                                                             ;              ;
-;       |datatyperoll:comb_4|                  ; 2 (2)             ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatyperoll:comb_4                                                                                               ;              ;
-;       |datatypescore:comb_9|                 ; 1 (1)             ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypescore:comb_9                                                                                              ;              ;
-;       |datatypetimer:comb_8|                 ; 1 (1)             ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypetimer:comb_8                                                                                              ;              ;
-;       |draw_game_over:go|                    ; 142 (97)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go                                                                                                 ;              ;
-;          |chargenrom:chargenromb|            ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb                                                                          ;              ;
-;       |draw_health:hp|                       ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_health:hp                                                                                                    ;              ;
+;    |vgaController:vgaCont|                   ; 194 (194)         ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|vgaController:vgaCont                                                                                                               ;              ;
+;    |videoGen:videoGen|                       ; 4668 (710)        ; 513 (0)      ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen                                                                                                                   ;              ;
+;       |datatypeextra:comb_4|                 ; 11 (11)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeextra:comb_4                                                                                              ;              ;
+;       |datatypehiscore:comb_3|               ; 2 (2)             ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypehiscore:comb_3                                                                                            ;              ;
+;       |datatypeoctagon:comb_7|               ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeoctagon:comb_7                                                                                            ;              ;
+;       |datatypepath:comb_6|                  ; 3 (3)             ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypepath:comb_6                                                                                               ;              ;
+;       |datatyperesult:comb_8|                ; 2 (2)             ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatyperesult:comb_8                                                                                             ;              ;
+;       |datatyperoll:comb_5|                  ; 2 (2)             ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatyperoll:comb_5                                                                                               ;              ;
+;       |datatypescore:comb_10|                ; 1 (1)             ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypescore:comb_10                                                                                             ;              ;
+;       |datatypetimer:comb_9|                 ; 1 (1)             ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypetimer:comb_9                                                                                              ;              ;
+;       |draw_game_over:go|                    ; 187 (134)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go                                                                                                 ;              ;
+;          |chargenrom:chargenromb|            ; 53 (53)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb                                                                          ;              ;
+;       |draw_health:hp|                       ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_health:hp                                                                                                    ;              ;
 ;       |draw_mouse:mo|                        ; 165 (165)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_mouse:mo                                                                                                     ;              ;
-;       |draw_path:path|                       ; 213 (213)         ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path                                                                                                    ;              ;
+;       |draw_path:path|                       ; 214 (214)         ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path                                                                                                    ;              ;
 ;          |lpm_mult:Mult0|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult0                                                                                     ;              ;
 ;             |mult_c4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult0|mult_c4t:auto_generated                                                             ;              ;
 ;          |lpm_mult:Mult1|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult1                                                                                     ;              ;
 ;             |mult_e4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult1|mult_e4t:auto_generated                                                             ;              ;
 ;          |lpm_mult:Mult2|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult2                                                                                     ;              ;
 ;             |mult_e4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult2|mult_e4t:auto_generated                                                             ;              ;
-;       |draw_result:result|                   ; 109 (90)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result                                                                                                ;              ;
-;          |chargenrom:chargenromb|            ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result|chargenrom:chargenromb                                                                         ;              ;
-;       |draw_score:sc|                        ; 99 (55)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc                                                                                                     ;              ;
-;          |chargenrom:chargenromb|            ; 44 (44)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc|chargenrom:chargenromb                                                                              ;              ;
-;       |octagonv2:gen_code_label[0].test|     ; 270 (240)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[1].test|     ; 267 (239)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[2].test|     ; 268 (239)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test                                                                                  ;              ;
+;       |draw_result:result|                   ; 108 (91)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result                                                                                                ;              ;
+;          |chargenrom:chargenromb|            ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result|chargenrom:chargenromb                                                                         ;              ;
+;       |draw_score:sc|                        ; 98 (55)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc                                                                                                     ;              ;
+;          |chargenrom:chargenromb|            ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc|chargenrom:chargenromb                                                                              ;              ;
+;       |octagonv2:gen_code_label[0].test|     ; 268 (241)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[1].test|     ; 268 (251)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[2].test|     ; 271 (242)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[3].test|     ; 266 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[4].test|     ; 265 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test                                                                                  ;              ;
+;       |octagonv2:gen_code_label[3].test|     ; 271 (254)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[4].test|     ; 269 (242)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[5].test|     ; 266 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[6].test|     ; 265 (236)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test                                                                                  ;              ;
+;       |octagonv2:gen_code_label[5].test|     ; 268 (239)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[6].test|     ; 273 (244)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[7].test|     ; 272 (244)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test|chargenrom:order                                                                 ;              ;
-;       |path_end_octagonv2:comb_21|           ; 148 (148)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|path_end_octagonv2:comb_21                                                                                        ;              ;
+;       |octagonv2:gen_code_label[7].test|     ; 279 (250)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test|chargenrom:order                                                                 ;              ;
+;       |path_end_octagonv2:comb_22|           ; 148 (148)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|path_end_octagonv2:comb_22                                                                                        ;              ;
 ;       |ringbuffer:ring|                      ; 56 (56)           ; 238 (238)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|ringbuffer:ring                                                                                                   ;              ;
-;       |roll_octagonv2:roll|                  ; 158 (158)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|roll_octagonv2:roll                                                                                               ;              ;
+;       |roll_octagonv2:roll|                  ; 159 (159)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|roll_octagonv2:roll                                                                                               ;              ;
 ;       |separator:gen_code_label[0].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[0].sep                                                                                   ;              ;
 ;       |separator:gen_code_label[1].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[1].sep                                                                                   ;              ;
 ;       |separator:gen_code_label[2].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[2].sep                                                                                   ;              ;
@@ -365,17 +368,27 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +--------+--------------+---------+--------------+--------------+--------------------+--------------------------------------------------------------------+
 
 
++---------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                      ;
++----------------------------------------------------------------+----------------------------------------+
+; Register name                                                  ; Reason for Removal                     ;
++----------------------------------------------------------------+----------------------------------------+
+; videoGen:videoGen|datatypehiscore:comb_3|hi_score_digits[6][3] ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 1                          ;                                        ;
++----------------------------------------------------------------+----------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 579   ;
+; Total registers                              ; 606   ;
 ; Number of registers using Synchronous Clear  ; 26    ;
 ; Number of registers using Synchronous Load   ; 5     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 551   ;
+; Number of registers using Clock Enable       ; 578   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -391,32 +404,32 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +----------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                                                     ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|startpointer[2]      ;                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|endpointer[1]        ;                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|to_decimal:digits|digit_counter[1]   ;                            ;
-; 3:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; |vga_DS|videoGen:videoGen|to_decimal:digits|leftover_value[20] ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[7][21]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[6][4]    ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[5][18]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[4][22]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[3][21]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[2][20]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[1][4]    ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[0][4]    ;                            ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[16]       ;                            ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|Mux2                   ;                            ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_game_over:go|Mux1               ;                            ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; |vga_DS|vgaController:vgaCont|r[7]                             ;                            ;
-; 6:1                ; 11 bits   ; 44 LEs        ; 33 LEs               ; 11 LEs                 ; |vga_DS|vgaController:vgaCont|r[2]                             ;                            ;
-; 32:1               ; 5 bits    ; 105 LEs       ; 50 LEs               ; 55 LEs                 ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[5]        ;                            ;
-; 36:1               ; 2 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; |vga_DS|vgaController:vgaCont|b[1]                             ;                            ;
-; 36:1               ; 2 bits    ; 48 LEs        ; 44 LEs               ; 4 LEs                  ; |vga_DS|vgaController:vgaCont|g[0]                             ;                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+---------------------------------------------------------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                                                    ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+---------------------------------------------------------------+----------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|startpointer[2]     ;                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|endpointer[1]       ;                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|to_decimal:digits|digit_counter[2]  ;                            ;
+; 3:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; |vga_DS|videoGen:videoGen|to_decimal:digits|leftover_value[5] ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[7][21]  ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[6][7]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[5][18]  ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[4][30]  ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[3][4]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[2][12]  ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[1][20]  ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[0][25]  ;                            ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[16]      ;                            ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|Mux0                  ;                            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; |vga_DS|vgaController:vgaCont|g[6]                            ;                            ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 33 LEs               ; 11 LEs                 ; |vga_DS|vgaController:vgaCont|r[2]                            ;                            ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 27 LEs               ; 3 LEs                  ; |vga_DS|videoGen:videoGen|draw_game_over:go|ch[0]             ;                            ;
+; 32:1               ; 5 bits    ; 105 LEs       ; 50 LEs               ; 55 LEs                 ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[3]       ;                            ;
+; 36:1               ; 2 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; |vga_DS|vgaController:vgaCont|b[0]                            ;                            ;
+; 36:1               ; 2 bits    ; 48 LEs        ; 44 LEs               ; 4 LEs                  ; |vga_DS|vgaController:vgaCont|g[0]                            ;                            ;
++--------------------+-----------+---------------+----------------------+------------------------+---------------------------------------------------------------+----------------------------+
 
 
 +---------------------------------------------------------------------------------+
@@ -889,7 +902,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------+-------+----------------------------------------------------+
 ; DIGIT_WIDTH_BIT     ; 16    ; Signed Integer                                     ;
 ; DECIMAL_DIGIT_COUNT ; 7     ; Signed Integer                                     ;
-; HEIGHT              ; 16    ; Signed Integer                                     ;
+; HEIGHT              ; 32    ; Signed Integer                                     ;
 ; BASE_Y              ; 200   ; Signed Integer                                     ;
 ; BASE_X              ; 250   ; Signed Integer                                     ;
 +---------------------+-------+----------------------------------------------------+
@@ -1154,10 +1167,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1169,10 +1183,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1184,10 +1199,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1199,10 +1215,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1214,10 +1231,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1229,10 +1247,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1244,10 +1263,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1272,10 +1292,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ring_align_radius_offset ; Input ; Warning  ; Input port expression (8 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "ring_align_radius_offset[9..8]" will be connected to GND.                  ;
 ; target_order             ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (3 bits) it drives.  The 29 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
 ; shape_color[7..0]        ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[22..16]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[14..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-; shape_color[23]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-; shape_color[15]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[21..15]      ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[13..8]       ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[23]          ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; shape_color[22]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; shape_color[14]          ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
 +--------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -1316,7 +1337,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:39     ;
+; Top            ; 00:00:40     ;
 +----------------+--------------+
 
 
@@ -1326,49 +1347,51 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Mon Dec 08 19:53:01 2014
+    Info: Processing started: Tue Dec 09 02:27:59 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_DS -c vga_DS
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Info (12021): Found 25 design units, including 25 entities, in source file vga.sv
+Info (12021): Found 26 design units, including 26 entities, in source file vga.sv
     Info (12023): Found entity 1: vga_DS
-    Info (12023): Found entity 2: datatypepath
-    Info (12023): Found entity 3: datatyperoll
-    Info (12023): Found entity 4: datatypeextra
-    Info (12023): Found entity 5: datatyperesult
-    Info (12023): Found entity 6: datatypeoctagon
-    Info (12023): Found entity 7: datatypetimer
-    Info (12023): Found entity 8: datatypescore
-    Info (12023): Found entity 9: ringbuffer
-    Info (12023): Found entity 10: separator
-    Info (12023): Found entity 11: vgaController
-    Info (12023): Found entity 12: videoGen
-    Info (12023): Found entity 13: octagonv2
-    Info (12023): Found entity 14: roll_octagonv2
-    Info (12023): Found entity 15: path_end_octagonv2
-    Info (12023): Found entity 16: draw_result
-    Info (12023): Found entity 17: draw_health
-    Info (12023): Found entity 18: draw_score
-    Info (12023): Found entity 19: draw_game_over
-    Info (12023): Found entity 20: to_decimal
-    Info (12023): Found entity 21: draw_mouse
-    Info (12023): Found entity 22: draw_path
-    Info (12023): Found entity 23: chargenrom
-    Info (12023): Found entity 24: spi_slave_receive_only
-    Info (12023): Found entity 25: spi_frm_slave
+    Info (12023): Found entity 2: datatypehiscore
+    Info (12023): Found entity 3: datatypepath
+    Info (12023): Found entity 4: datatyperoll
+    Info (12023): Found entity 5: datatypeextra
+    Info (12023): Found entity 6: datatyperesult
+    Info (12023): Found entity 7: datatypeoctagon
+    Info (12023): Found entity 8: datatypetimer
+    Info (12023): Found entity 9: datatypescore
+    Info (12023): Found entity 10: ringbuffer
+    Info (12023): Found entity 11: separator
+    Info (12023): Found entity 12: vgaController
+    Info (12023): Found entity 13: videoGen
+    Info (12023): Found entity 14: octagonv2
+    Info (12023): Found entity 15: roll_octagonv2
+    Info (12023): Found entity 16: path_end_octagonv2
+    Info (12023): Found entity 17: draw_result
+    Info (12023): Found entity 18: draw_health
+    Info (12023): Found entity 19: draw_score
+    Info (12023): Found entity 20: draw_game_over
+    Info (12023): Found entity 21: to_decimal
+    Info (12023): Found entity 22: draw_mouse
+    Info (12023): Found entity 23: draw_path
+    Info (12023): Found entity 24: chargenrom
+    Info (12023): Found entity 25: spi_slave_receive_only
+    Info (12023): Found entity 26: spi_frm_slave
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
     Info (12022): Found design unit 1: pll-SYN
     Info (12023): Found entity 1: pll
 Info (12021): Found 2 design units, including 1 entities, in source file sfl.vhd
     Info (12022): Found design unit 1: sfl-SYN
     Info (12023): Found entity 1: sfl
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(272): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(274): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(276): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(280): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(281): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(284): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(285): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(308): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(291): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(292): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(294): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(296): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(300): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(301): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(304): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(305): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at vga.sv(328): instance has no name
 Info (12127): Elaborating entity "vga_DS" for the top level hierarchy
 Info (12128): Elaborating entity "pll" for hierarchy "pll:vgapll"
 Info (12128): Elaborating entity "altpll" for hierarchy "pll:vgapll|altpll:altpll_component"
@@ -1434,51 +1457,52 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "vgaController" for hierarchy "vgaController:vgaCont"
 Info (12128): Elaborating entity "spi_frm_slave" for hierarchy "spi_frm_slave:spireceive"
-Warning (10230): Verilog HDL assignment warning at vga.sv(668): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at vga.sv(690): truncated value with size 32 to match size of target (5)
 Info (12128): Elaborating entity "videoGen" for hierarchy "videoGen:videoGen"
-Info (12128): Elaborating entity "datatypeextra" for hierarchy "videoGen:videoGen|datatypeextra:comb_3"
-Warning (10230): Verilog HDL assignment warning at vga.sv(78): truncated value with size 32 to match size of target (1)
-Info (12128): Elaborating entity "datatyperoll" for hierarchy "videoGen:videoGen|datatyperoll:comb_4"
-Warning (10230): Verilog HDL assignment warning at vga.sv(67): truncated value with size 32 to match size of target (1)
-Info (12128): Elaborating entity "datatypepath" for hierarchy "videoGen:videoGen|datatypepath:comb_5"
-Warning (10230): Verilog HDL assignment warning at vga.sv(50): truncated value with size 32 to match size of target (1)
-Info (12128): Elaborating entity "datatypeoctagon" for hierarchy "videoGen:videoGen|datatypeoctagon:comb_6"
-Warning (10230): Verilog HDL assignment warning at vga.sv(116): truncated value with size 32 to match size of target (8)
-Warning (10034): Output port "datatoringbuffer[2..0]" at vga.sv(102) has no driver
-Info (12128): Elaborating entity "datatyperesult" for hierarchy "videoGen:videoGen|datatyperesult:comb_7"
-Warning (10230): Verilog HDL assignment warning at vga.sv(95): truncated value with size 32 to match size of target (1)
-Info (12128): Elaborating entity "datatypetimer" for hierarchy "videoGen:videoGen|datatypetimer:comb_8"
-Info (12128): Elaborating entity "datatypescore" for hierarchy "videoGen:videoGen|datatypescore:comb_9"
+Info (12128): Elaborating entity "datatypehiscore" for hierarchy "videoGen:videoGen|datatypehiscore:comb_3"
+Info (12128): Elaborating entity "datatypeextra" for hierarchy "videoGen:videoGen|datatypeextra:comb_4"
+Warning (10230): Verilog HDL assignment warning at vga.sv(96): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "datatyperoll" for hierarchy "videoGen:videoGen|datatyperoll:comb_5"
+Warning (10230): Verilog HDL assignment warning at vga.sv(85): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "datatypepath" for hierarchy "videoGen:videoGen|datatypepath:comb_6"
+Warning (10230): Verilog HDL assignment warning at vga.sv(68): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "datatypeoctagon" for hierarchy "videoGen:videoGen|datatypeoctagon:comb_7"
+Warning (10230): Verilog HDL assignment warning at vga.sv(134): truncated value with size 32 to match size of target (8)
+Warning (10034): Output port "datatoringbuffer[2..0]" at vga.sv(120) has no driver
+Info (12128): Elaborating entity "datatyperesult" for hierarchy "videoGen:videoGen|datatyperesult:comb_8"
+Warning (10230): Verilog HDL assignment warning at vga.sv(113): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "datatypetimer" for hierarchy "videoGen:videoGen|datatypetimer:comb_9"
+Info (12128): Elaborating entity "datatypescore" for hierarchy "videoGen:videoGen|datatypescore:comb_10"
 Info (12128): Elaborating entity "to_decimal" for hierarchy "videoGen:videoGen|to_decimal:digits"
-Warning (10230): Verilog HDL assignment warning at vga.sv(558): truncated value with size 32 to match size of target (22)
-Warning (10230): Verilog HDL assignment warning at vga.sv(559): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at vga.sv(560): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at vga.sv(580): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at vga.sv(581): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at vga.sv(582): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "ringbuffer" for hierarchy "videoGen:videoGen|ringbuffer:ring"
-Warning (10230): Verilog HDL assignment warning at vga.sv(172): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at vga.sv(176): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at vga.sv(190): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at vga.sv(194): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "draw_path" for hierarchy "videoGen:videoGen|draw_path:path"
-Warning (10230): Verilog HDL assignment warning at vga.sv(606): truncated value with size 32 to match size of target (22)
-Warning (10230): Verilog HDL assignment warning at vga.sv(607): truncated value with size 32 to match size of target (22)
-Info (12128): Elaborating entity "path_end_octagonv2" for hierarchy "videoGen:videoGen|path_end_octagonv2:comb_21"
+Warning (10230): Verilog HDL assignment warning at vga.sv(628): truncated value with size 32 to match size of target (22)
+Warning (10230): Verilog HDL assignment warning at vga.sv(629): truncated value with size 32 to match size of target (22)
+Info (12128): Elaborating entity "path_end_octagonv2" for hierarchy "videoGen:videoGen|path_end_octagonv2:comb_22"
 Info (12128): Elaborating entity "separator" for hierarchy "videoGen:videoGen|separator:gen_code_label[0].sep"
 Info (12128): Elaborating entity "octagonv2" for hierarchy "videoGen:videoGen|octagonv2:gen_code_label[0].test"
-Warning (10230): Verilog HDL assignment warning at vga.sv(343): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(363): truncated value with size 32 to match size of target (10)
 Info (12128): Elaborating entity "chargenrom" for hierarchy "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
-Warning (10850): Verilog HDL warning at vga.sv(629): number of words (752) in memory file does not match the number of elements in the address range [0:2047]
-Warning (10030): Net "charrom.data_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.waddr_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.we_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
+Warning (10850): Verilog HDL warning at vga.sv(651): number of words (752) in memory file does not match the number of elements in the address range [0:2047]
+Warning (10030): Net "charrom.data_a" at vga.sv(645) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "charrom.waddr_a" at vga.sv(645) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "charrom.we_a" at vga.sv(645) has no driver or initial value, using a default initial value '0'
 Info (12128): Elaborating entity "roll_octagonv2" for hierarchy "videoGen:videoGen|roll_octagonv2:roll"
 Info (12128): Elaborating entity "draw_result" for hierarchy "videoGen:videoGen|draw_result:result"
-Warning (10230): Verilog HDL assignment warning at vga.sv(454): truncated value with size 32 to match size of target (10)
-Warning (10230): Verilog HDL assignment warning at vga.sv(455): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(474): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(475): truncated value with size 32 to match size of target (10)
 Info (12128): Elaborating entity "draw_health" for hierarchy "videoGen:videoGen|draw_health:hp"
 Info (12128): Elaborating entity "draw_score" for hierarchy "videoGen:videoGen|draw_score:sc"
-Warning (10230): Verilog HDL assignment warning at vga.sv(500): truncated value with size 32 to match size of target (10)
-Warning (10230): Verilog HDL assignment warning at vga.sv(501): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(520): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(521): truncated value with size 32 to match size of target (10)
 Info (12128): Elaborating entity "draw_game_over" for hierarchy "videoGen:videoGen|draw_game_over:go"
-Warning (10230): Verilog HDL assignment warning at vga.sv(528): truncated value with size 32 to match size of target (10)
-Warning (10230): Verilog HDL assignment warning at vga.sv(529): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(549): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at vga.sv(550): truncated value with size 32 to match size of target (10)
 Info (12128): Elaborating entity "draw_mouse" for hierarchy "videoGen:videoGen|draw_mouse:mo"
 Warning (12020): Port "ordered port 0" on the entity instantiation of "order" is connected to a signal of width 32. The formal width of the signal in the module is 8.  The extra bits will be ignored.
 Warning (12020): Port "ordered port 1" on the entity instantiation of "order" is connected to a signal of width 32. The formal width of the signal in the module is 3.  The extra bits will be ignored.
@@ -1585,15 +1609,15 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/vga_DS.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 5360 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 5461 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 5313 logic cells
+    Info (21061): Implemented 5414 logic cells
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 6 DSP elements
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 66 warnings
-    Info: Peak virtual memory: 396 megabytes
-    Info: Processing ended: Mon Dec 08 19:53:33 2014
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 67 warnings
+    Info: Peak virtual memory: 388 megabytes
+    Info: Processing ended: Tue Dec 09 02:28:31 2014
     Info: Elapsed time: 00:00:32
     Info: Total CPU time (on all processors): 00:00:31
 

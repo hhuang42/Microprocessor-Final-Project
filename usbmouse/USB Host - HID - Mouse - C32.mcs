@@ -72,65 +72,65 @@ Folder=Intermediary
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={430F471F-7ECB-4852-A80D-DEF9A5C8E751}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File006]
 Location=C:\Users\hhuang\Documents\Microprocessor-Final-Project\usbmouse\Objects\C32\usb_host.o
 Folder=Intermediary
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={430F471F-7ECB-4852-A80D-DEF9A5C8E751}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File007]
 Location=C:\Users\hhuang\Documents\Microprocessor-Final-Project\usbmouse\Objects\C32\usb_host_hid_parser.o
 Folder=Intermediary
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={430F471F-7ECB-4852-A80D-DEF9A5C8E751}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File008]
 Location=C:\Users\hhuang\Documents\Microprocessor-Final-Project\usbmouse\Objects\C32\usb_host_hid.o
 Folder=Intermediary
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={430F471F-7ECB-4852-A80D-DEF9A5C8E751}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File009]
 Location=C:\Users\hhuang\Documents\Microprocessor-Final-Project\usbmouse\Objects\C32\Mouse_demo.o
 Folder=Intermediary
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={430F471F-7ECB-4852-A80D-DEF9A5C8E751}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File010]
 Location=C:\Users\dshim\Desktop\Microprocessor-Final-Project\usbmouse\USB Host - HID - Mouse - C32.elf
 Folder=Output
@@ -163,26 +163,26 @@ Folder=Output
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={C68E5105-1196-4333-A0BF-3DC57271E614}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-ld.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=--defsym=_min_heap_size=1000 -Map="$(BINDIR_)$(TARGETBASE).map" -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
+DebugOptions=
 [File013]
 Location=C:\Users\hhuang\Documents\Microprocessor-Final-Project\usbmouse\USB Host - HID - Mouse - C32.hex
 Folder=Output
 DeviceName=PIC32MX675F512H
 LanguageToolSuiteID={14495C23-81F8-43F3-8A44-859C583D7760}
 LanguageToolID={C68E5105-1196-4333-A0BF-3DC57271E614}
-LanguageToolLocation=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-ld.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-ld.exe
 PPAD=$(BINDIR)||$(TMPDIR)|Objects\C32||$(AINDIR)||$(INCDIR)|.;Include||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C32 Suite\lib;C:\Program Files\Microchip\MPLAB C32 Suite\pic32mx\lib||$(LKRDIR)||
 SOLK=<src>|usb_config.c|USB\usb_host.c|USB\HID Host Driver\usb_host_hid_parser.c|USB\HID Host Driver\usb_host_hid.c|Mouse_demo.c||<obj>||<lib>||<lkr>||
 SuiteArgsString=
 ToolArgsString=--defsym=_min_heap_size=1000 -Map="$(BINDIR_)$(TARGETBASE).map" -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
+DebugOptions=
 [TOOL_LOC_STAMPS]
-tool_loc{430F471F-7ECB-4852-A80D-DEF9A5C8E751}=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-gcc.exe
-tool_loc{C68E5105-1196-4333-A0BF-3DC57271E614}=C:\Program Files (x86)\Microchip\MPLAB C32 Suite\bin\pic32-ld.exe
+tool_loc{430F471F-7ECB-4852-A80D-DEF9A5C8E751}=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-gcc.exe
+tool_loc{C68E5105-1196-4333-A0BF-3DC57271E614}=C:\Program Files (x86)\Microchip\mplabc32\v2.01\bin\pic32-ld.exe

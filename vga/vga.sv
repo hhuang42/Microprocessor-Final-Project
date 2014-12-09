@@ -34,6 +34,24 @@ module vga_DS(input  logic       clk,
   
 endmodule
 
+module datatypehiscore (input logic pxl_clk,
+							  input  logic [31:0] datafromSPI,
+							  output logic [3:0] hi_score_digits [6:0]);
+  logic valid;
+  assign valid = (datafromSPI[31:27] == 5'b10001);
+	 always_ff@(posedge pxl_clk) begin
+      if (valid) begin
+        hi_score_digits[6] <= datafromSPI[26:24];
+        hi_score_digits[5] <= datafromSPI[23:20];
+        hi_score_digits[4] <= datafromSPI[19:16];
+        hi_score_digits[3] <= datafromSPI[15:12];
+        hi_score_digits[2] <= datafromSPI[11:8];
+        hi_score_digits[1] <= datafromSPI[7:4];
+        hi_score_digits[0] <= datafromSPI[3:0];
+        
+      end
+	 end
+endmodule
 
 module datatypepath (input logic pxl_clk,
 							  input logic [31:0] datafromSPI,
@@ -263,12 +281,14 @@ module videoGen(input  logic [9:0] x, y,
  logic [1:0] result_value;
  logic [31:0] data_for_ring_buffer;
  logic [3:0] decimal_digits [6:0];
+ logic [3:0] hi_score_digits [6:0];
  logic ring_buffer_enable, roll_enable, path_enable;
  logic show_result;
  logic restart, game_over;
  
  
  //assign intermediate_color[0] = x*y+24'h808080;
+ datatypehiscore (pxl_clk,final_input, hi_score_digits);
  datatypeextra(pxl_clk, final_input, restart, game_over);
  
  datatyperoll(pxl_clk, final_input, restart, roll_x, roll_y, roll_enable);
@@ -314,7 +334,7 @@ module videoGen(input  logic [9:0] x, y,
                   octagon_state[index], x_center[index], y_center[index], ring_size[index]
     );
 		octagonv2 test(octagon_state[index], x, y, x_center[index], y_center[index], ring_size[index], startpointer + 7 - index,
-            intermediate_color[index+1], 24'h8080FF, intermediate_color[index+1+1]); 
+            intermediate_color[index+1], 24'h4040FF, intermediate_color[index+1+1]); 
             
    end
  endgenerate
@@ -322,7 +342,7 @@ module videoGen(input  logic [9:0] x, y,
  draw_result result(x,y, result_x, result_y, show_result, result_value, intermediate_color[10], intermediate_color[11]);
  draw_health hp(x,y, lifebar, intermediate_color[11], intermediate_color[12]);
  draw_score sc(x,y, decimal_digits, intermediate_color[12], intermediate_color[13]);
- draw_game_over go(x, y, game_over, decimal_digits, current_time, intermediate_color[13], intermediate_color[14]);
+ draw_game_over go(x, y, game_over, hi_score_digits, decimal_digits, current_time, intermediate_color[13], intermediate_color[14]);
  draw_mouse mo(x,y,mouse_x, mouse_y, intermediate_color[14], {r_int, g_int, b_int});
  
  assign led = current_time;
@@ -509,13 +529,14 @@ endmodule
 
 module draw_game_over #(parameter DIGIT_WIDTH_BIT = 16,
                               DECIMAL_DIGIT_COUNT = 7,
-                              HEIGHT = 16,
+                              HEIGHT = 32,
                               BASE_Y = 200,
                               BASE_X = 250
                               )
 							 (input logic [9:0] x, y,
 							  input logic show_game_over,
-							  input logic [3:0] decimal_digits [6:0],
+							  input logic [3:0] hi_score_digits [6:0],
+                input logic [3:0] decimal_digits [6:0],
 							  input logic [7:0] game_over_timer,
 							  input logic [23:0] background,
 							  output logic [23:0] output_color);
@@ -527,7 +548,8 @@ module draw_game_over #(parameter DIGIT_WIDTH_BIT = 16,
   assign cover_black = (y[9:1] < game_over_timer);
   assign delta_y = (y-BASE_Y + 510 - {game_over_timer,1'b0});
   assign delta_x = (x-BASE_X);
-  assign ch = decimal_digits[6-delta_x[8:4]]+8'd48;
+  assign ch = delta_y < 16? decimal_digits[6-delta_x[8:4]]+8'd48: 
+                            hi_score_digits[6-delta_x[8:4]]+8'd48;
   chargenrom chargenromb(ch, delta_x[3:1], delta_y[3:1], pixel);
   assign in_score_area = (x >= BASE_X && 
                           x <= BASE_X + DIGIT_WIDTH_BIT*DECIMAL_DIGIT_COUNT &&

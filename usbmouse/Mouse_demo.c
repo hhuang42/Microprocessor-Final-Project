@@ -123,7 +123,7 @@ BOOL USB_HID_DataCollectionHandler(void);
 #define SPI_CHANNEL                     (2)
 
 // Use SPI Channel 1 for PIC1 to PIC2 connection
-#define SPI_CHANNEL2                    (1)
+#define SPI_CHANNEL2                    (4)
 
 // Divide source clock by 2
 #define SRC_CLK_DIV                     (2)
@@ -197,6 +197,7 @@ int offset;
 volatile int life;
 volatile int timer;
 volatile int score;
+volatile int high_score = 0;
 volatile int total_target_count;
 volatile int next_target;
 volatile int next_target_to_appear;
@@ -230,42 +231,42 @@ void receiveOctagondata()
 {   
     int i;
     
-    SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
-    octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+    
+	octagonbuffer = 0;
+	while(octagonbuffer == 0 || octagonbuffer == 0xFFFFFFFF){
+		SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
+    	octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+	}
     octagonbuffer = (octagonbuffer >> 7);
     offset = (octagonbuffer) & 0xFF;
     octagonbuffer = (octagonbuffer >> 8);
     numofoctagons = (octagonbuffer) & 0b111111111;
     octagonbuffer = (octagonbuffer >> 9);
     beat = octagonbuffer & 0b11111111;
-    
+    int current_time = offset;
     for ( i=0; i<numofoctagons; i++){
-        SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
-        octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+		octagonbuffer = 0;
+        while(octagonbuffer == 0 || octagonbuffer == 0xFFFFFFFF){
+			SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
+    		octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+		}
         targets[i].is_rolling = (octagonbuffer) & 0b1;
         octagonbuffer = (octagonbuffer >> 1);
-        targets[i].play_time = (octagonbuffer) & 0b11111111111;
+        current_time += beat * ((octagonbuffer) & 0b11111111111);
+        targets[i].play_time = current_time;
         octagonbuffer = (octagonbuffer >> 11);
         targets[i].y_position = (octagonbuffer) & 0b1111111111;
         octagonbuffer = (octagonbuffer >> 10);
         targets[i].x_position = octagonbuffer & 0b1111111111;
         };
-        
-    //SpiChnPutC(SPI_CHANNEL2, 0x00000000);
-    //SpiChnGetC(SPI_CHANNEL2);
+    total_target_count = numofoctagons;
 }        
 
-    
-    
-    
-     /*for(i=0; i<200; ++i){
-        targets[i].x_position = ((i/8)*430-i*70+200) % MAX_X;
-        targets[i].y_position = ((i/8)*350-i*90+300) % MAX_Y;
-        targets[i].play_time = i*40 + 300;
-        targets[i].is_rolling = i%10==0;
-        ++total_target_count;*/
-        
-        
+void startMusic(){
+        SpiChnPutC(SPI_CHANNEL2, 0x00000000);
+        SpiChnGetC(SPI_CHANNEL2);
+}
+
     
     
     
@@ -440,27 +441,57 @@ void sendGameOver()
 	while(SpiChnIsBusy(SPI_CHANNEL)){};
 }
 
+void sendHighScore(int score)
+{
+	unsigned int data;
+	data = 0b10001;
+    data = (((score/1000000)%10)&7) | (data<<3);
+	data = (((score/100000)%10)&0xF) | (data<<4);
+	data = (((score/10000)%10)&0xF) | (data<<4);
+    data = (((score/1000)%10)&0xF) | (data<<4);
+    data = (((score/100)%10)&0xF) | (data<<4);
+    data = (((score/10)%10)&0xF) | (data<<4);
+    data = (((score/1)%10)&0xF) | (data<<4);
+	// send data over
+	SpiChnPutC(SPI_CHANNEL, data);
+
+	// clear out the receiving side
+	SpiChnGetC(SPI_CHANNEL);
+	while(SpiChnIsBusy(SPI_CHANNEL)){};
+}
+
 void loadTargets(void){
     size_t i;
     total_target_count = 0;
-    for(i=0; i<200; ++i){
-        targets[i].x_position = ((i/8)*430-i*70+200) % MAX_X;
-        targets[i].y_position = ((i/8)*350-i*90+300) % MAX_Y;
-        targets[i].play_time = i*40 + 300;
-        targets[i].is_rolling = i%10==0;
+    for(i=0; i<400; ++i){
+        targets[i].x_position = ((i/8)*430-i*70+200) % (2*MAX_X/3) + MAX_X/6;
+        targets[i].y_position = ((i/8)*350-i*90+300) % (2*MAX_Y/3) + MAX_Y/6;
+        targets[i].play_time = i*89/2 + 210;
+        targets[i].is_rolling = i%20==0;
         ++total_target_count;
     }
-    
+    //receiveOctagondata();
     
 }
 
+void switchMusic(BOOL music_on){
+    PORTE = (PORTE & 0xFFFE) | (music_on & 1);
+}
+
 void startGame(void){
-        loadTargets();
+        
 	// Initialize the SPI Channel 2 to be a master, reverse
 		// clock, have 32 bits, enabled frame mode, and
+        is_game_active = FALSE;
+        is_game_over = FALSE;
+        switchMusic(FALSE);
         SpiChnOpen(SPI_CHANNEL, 
                    SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
                    SPI_OPEN_MODE32|SPI_OPEN_FRMEN, SRC_CLK_DIV);
+        SpiChnOpen(SPI_CHANNEL2, 
+                   SPI_OPEN_MSTEN|SPI_OPEN_CKE_REV|
+                   SPI_OPEN_MODE32|SPI_OPEN_FRMEN, 2);
+		
         INTSetVectorPriority(_TIMER_2_VECTOR, INT_PRIORITY_LEVEL_2);
         INTSetVectorSubPriority(_TIMER_2_VECTOR, INT_SUB_PRIORITY_LEVEL_0);
         INTClearFlag(INT_T2);
@@ -481,14 +512,18 @@ void startGame(void){
 
         T2CONSET = 0x8000;
         
-        
+        next_target = 0;
+        next_target_to_appear = 0;
         life = 128;
         score = 0;
         timer = 0;
         set_mouse_x_position(MAX_X/2);
         set_mouse_y_position(MAX_Y/2);
         last_button_pressed_state = FALSE;
+        switchMusic(TRUE);
         sendRestart();
+        loadTargets();
+        startMusic();
         is_game_over = FALSE;
         is_game_active = TRUE;
         
@@ -510,8 +545,14 @@ void gameOverLoop(void){
     {
         timer = timer + 5;
         timer = timer > 255? 255: timer;
+    } else {
+        if ((BOOL) Appl_Button_report_buffer[1]){
+            startGame();
+        }
     }
 }
+
+
 
 void gameLoop(void){
 
@@ -612,10 +653,16 @@ void gameLoop(void){
     if(life == 0 || next_target == total_target_count){
         is_game_active = FALSE;
         is_game_over = TRUE;
+        sendHighScore(high_score);
         sendGameOver();
         timer = 0;
+        high_score = high_score > score? high_score : score;
+        switchMusic(FALSE);
     }
+    
+    
 }
+
 
 void mouse_actions (void){
 	switch(App_State_Mouse)
@@ -697,7 +744,7 @@ int main (void)
         INTEnableSystemMultiVectoredInt();
             
         TRISF = 0xFFFF;
-        TRISE = 0xFFFF;
+        TRISE = 0xFFFE;
         TRISB = 0xFFFF;
         TRISG = 0xFFFF;
         
@@ -718,14 +765,15 @@ int main (void)
 void __ISR(_TIMER_2_VECTOR, ipl7) T2_IntHandler(void)
 {
     IFS0CLR = 0x0100;
-    sendLifeAndScore(life, score);
-    sendTimeandMouse(timer, mouse_x_position() , mouse_y_position());
+    
     if (is_game_active){
         gameLoop();
     }
     if (is_game_over){
         gameOverLoop();
     }
+    sendLifeAndScore(life, score);
+    sendTimeandMouse(timer, mouse_x_position() , mouse_y_position());
     
 }
 

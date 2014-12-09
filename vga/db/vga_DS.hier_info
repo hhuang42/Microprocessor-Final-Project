@@ -422,7 +422,98 @@ led[6] <= current_time[6].DB_MAX_OUTPUT_PORT_TYPE
 led[7] <= current_time[7].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatypeextra:comb_3
+|vga_DS|videoGen:videoGen|datatypehiscore:comb_3
+pxl_clk => hi_score_digits[0][0]~reg0.CLK
+pxl_clk => hi_score_digits[0][1]~reg0.CLK
+pxl_clk => hi_score_digits[0][2]~reg0.CLK
+pxl_clk => hi_score_digits[0][3]~reg0.CLK
+pxl_clk => hi_score_digits[1][0]~reg0.CLK
+pxl_clk => hi_score_digits[1][1]~reg0.CLK
+pxl_clk => hi_score_digits[1][2]~reg0.CLK
+pxl_clk => hi_score_digits[1][3]~reg0.CLK
+pxl_clk => hi_score_digits[2][0]~reg0.CLK
+pxl_clk => hi_score_digits[2][1]~reg0.CLK
+pxl_clk => hi_score_digits[2][2]~reg0.CLK
+pxl_clk => hi_score_digits[2][3]~reg0.CLK
+pxl_clk => hi_score_digits[3][0]~reg0.CLK
+pxl_clk => hi_score_digits[3][1]~reg0.CLK
+pxl_clk => hi_score_digits[3][2]~reg0.CLK
+pxl_clk => hi_score_digits[3][3]~reg0.CLK
+pxl_clk => hi_score_digits[4][0]~reg0.CLK
+pxl_clk => hi_score_digits[4][1]~reg0.CLK
+pxl_clk => hi_score_digits[4][2]~reg0.CLK
+pxl_clk => hi_score_digits[4][3]~reg0.CLK
+pxl_clk => hi_score_digits[5][0]~reg0.CLK
+pxl_clk => hi_score_digits[5][1]~reg0.CLK
+pxl_clk => hi_score_digits[5][2]~reg0.CLK
+pxl_clk => hi_score_digits[5][3]~reg0.CLK
+pxl_clk => hi_score_digits[6][0]~reg0.CLK
+pxl_clk => hi_score_digits[6][1]~reg0.CLK
+pxl_clk => hi_score_digits[6][2]~reg0.CLK
+pxl_clk => hi_score_digits[6][3]~reg0.CLK
+datafromSPI[0] => hi_score_digits[0][0]~reg0.DATAIN
+datafromSPI[1] => hi_score_digits[0][1]~reg0.DATAIN
+datafromSPI[2] => hi_score_digits[0][2]~reg0.DATAIN
+datafromSPI[3] => hi_score_digits[0][3]~reg0.DATAIN
+datafromSPI[4] => hi_score_digits[1][0]~reg0.DATAIN
+datafromSPI[5] => hi_score_digits[1][1]~reg0.DATAIN
+datafromSPI[6] => hi_score_digits[1][2]~reg0.DATAIN
+datafromSPI[7] => hi_score_digits[1][3]~reg0.DATAIN
+datafromSPI[8] => hi_score_digits[2][0]~reg0.DATAIN
+datafromSPI[9] => hi_score_digits[2][1]~reg0.DATAIN
+datafromSPI[10] => hi_score_digits[2][2]~reg0.DATAIN
+datafromSPI[11] => hi_score_digits[2][3]~reg0.DATAIN
+datafromSPI[12] => hi_score_digits[3][0]~reg0.DATAIN
+datafromSPI[13] => hi_score_digits[3][1]~reg0.DATAIN
+datafromSPI[14] => hi_score_digits[3][2]~reg0.DATAIN
+datafromSPI[15] => hi_score_digits[3][3]~reg0.DATAIN
+datafromSPI[16] => hi_score_digits[4][0]~reg0.DATAIN
+datafromSPI[17] => hi_score_digits[4][1]~reg0.DATAIN
+datafromSPI[18] => hi_score_digits[4][2]~reg0.DATAIN
+datafromSPI[19] => hi_score_digits[4][3]~reg0.DATAIN
+datafromSPI[20] => hi_score_digits[5][0]~reg0.DATAIN
+datafromSPI[21] => hi_score_digits[5][1]~reg0.DATAIN
+datafromSPI[22] => hi_score_digits[5][2]~reg0.DATAIN
+datafromSPI[23] => hi_score_digits[5][3]~reg0.DATAIN
+datafromSPI[24] => hi_score_digits[6][0]~reg0.DATAIN
+datafromSPI[25] => hi_score_digits[6][1]~reg0.DATAIN
+datafromSPI[26] => hi_score_digits[6][2]~reg0.DATAIN
+datafromSPI[27] => Equal0.IN1
+datafromSPI[28] => Equal0.IN4
+datafromSPI[29] => Equal0.IN3
+datafromSPI[30] => Equal0.IN2
+datafromSPI[31] => Equal0.IN0
+hi_score_digits[0][0] <= hi_score_digits[0][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[0][1] <= hi_score_digits[0][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[0][2] <= hi_score_digits[0][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[0][3] <= hi_score_digits[0][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[1][0] <= hi_score_digits[1][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[1][1] <= hi_score_digits[1][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[1][2] <= hi_score_digits[1][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[1][3] <= hi_score_digits[1][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[2][0] <= hi_score_digits[2][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[2][1] <= hi_score_digits[2][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[2][2] <= hi_score_digits[2][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[2][3] <= hi_score_digits[2][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[3][0] <= hi_score_digits[3][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[3][1] <= hi_score_digits[3][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[3][2] <= hi_score_digits[3][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[3][3] <= hi_score_digits[3][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[4][0] <= hi_score_digits[4][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[4][1] <= hi_score_digits[4][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[4][2] <= hi_score_digits[4][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[4][3] <= hi_score_digits[4][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[5][0] <= hi_score_digits[5][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[5][1] <= hi_score_digits[5][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[5][2] <= hi_score_digits[5][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[5][3] <= hi_score_digits[5][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[6][0] <= hi_score_digits[6][0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[6][1] <= hi_score_digits[6][1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[6][2] <= hi_score_digits[6][2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+hi_score_digits[6][3] <= hi_score_digits[6][3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|vga_DS|videoGen:videoGen|datatypeextra:comb_4
 pxl_clk => game_over~reg0.CLK
 pxl_clk => restart~reg0.CLK
 datafromSPI[0] => Equal0.IN31
@@ -493,7 +584,7 @@ restart <= restart~reg0.DB_MAX_OUTPUT_PORT_TYPE
 game_over <= game_over~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatyperoll:comb_4
+|vga_DS|videoGen:videoGen|datatyperoll:comb_5
 pxl_clk => show_roll~reg0.CLK
 pxl_clk => roll_y[0]~reg0.CLK
 pxl_clk => roll_y[1]~reg0.CLK
@@ -571,7 +662,7 @@ roll_y[9] <= roll_y[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 show_roll <= show_roll~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatypepath:comb_5
+|vga_DS|videoGen:videoGen|datatypepath:comb_6
 pxl_clk => end_y[0]~reg0.CLK
 pxl_clk => end_y[1]~reg0.CLK
 pxl_clk => end_y[2]~reg0.CLK
@@ -712,7 +803,7 @@ end_y[9] <= end_y[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 show_path <= show_path~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatypeoctagon:comb_6
+|vga_DS|videoGen:videoGen|datatypeoctagon:comb_7
 datafromSPI[0] => ~NO_FANOUT~
 datafromSPI[1] => ~NO_FANOUT~
 datafromSPI[2] => ~NO_FANOUT~
@@ -789,7 +880,7 @@ datatoringbuffer[31] <= datafromSPI[29].DB_MAX_OUTPUT_PORT_TYPE
 buffer_receive <= always0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatyperesult:comb_7
+|vga_DS|videoGen:videoGen|datatyperesult:comb_8
 pxl_clk => show_result~reg0.CLK
 pxl_clk => result_value[0]~reg0.CLK
 pxl_clk => result_value[1]~reg0.CLK
@@ -871,7 +962,7 @@ result_value[1] <= result_value[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 show_result <= show_result~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatypetimer:comb_8
+|vga_DS|videoGen:videoGen|datatypetimer:comb_9
 pxl_clk => mouse_ypos[0]~reg0.CLK
 pxl_clk => mouse_ypos[1]~reg0.CLK
 pxl_clk => mouse_ypos[2]~reg0.CLK
@@ -962,7 +1053,7 @@ mouse_ypos[8] <= mouse_ypos[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 mouse_ypos[9] <= mouse_ypos[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|datatypescore:comb_9
+|vga_DS|videoGen:videoGen|datatypescore:comb_10
 pxl_clk => score[0]~reg0.CLK
 pxl_clk => score[1]~reg0.CLK
 pxl_clk => score[2]~reg0.CLK
@@ -2715,7 +2806,7 @@ output_color[22] <= output_color.DB_MAX_OUTPUT_PORT_TYPE
 output_color[23] <= output_color.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vga_DS|videoGen:videoGen|path_end_octagonv2:comb_21
+|vga_DS|videoGen:videoGen|path_end_octagonv2:comb_22
 active => output_color.OUTPUTSELECT
 active => output_color.OUTPUTSELECT
 active => output_color.OUTPUTSELECT
@@ -6556,73 +6647,74 @@ pixel <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |vga_DS|videoGen:videoGen|draw_game_over:go
-x[0] => LessThan1.IN20
 x[0] => LessThan2.IN20
+x[0] => LessThan3.IN20
 x[1] => Add3.IN18
-x[1] => LessThan1.IN19
 x[1] => LessThan2.IN19
+x[1] => LessThan3.IN19
 x[2] => Add3.IN17
-x[2] => LessThan1.IN18
 x[2] => LessThan2.IN18
+x[2] => LessThan3.IN18
 x[3] => Add3.IN16
-x[3] => LessThan1.IN17
 x[3] => LessThan2.IN17
+x[3] => LessThan3.IN17
 x[4] => Add3.IN15
-x[4] => LessThan1.IN16
 x[4] => LessThan2.IN16
+x[4] => LessThan3.IN16
 x[5] => Add3.IN14
-x[5] => LessThan1.IN15
 x[5] => LessThan2.IN15
+x[5] => LessThan3.IN15
 x[6] => Add3.IN13
-x[6] => LessThan1.IN14
 x[6] => LessThan2.IN14
+x[6] => LessThan3.IN14
 x[7] => Add3.IN12
-x[7] => LessThan1.IN13
 x[7] => LessThan2.IN13
+x[7] => LessThan3.IN13
 x[8] => Add3.IN11
-x[8] => LessThan1.IN12
 x[8] => LessThan2.IN12
+x[8] => LessThan3.IN12
 x[9] => Add3.IN10
-x[9] => LessThan1.IN11
 x[9] => LessThan2.IN11
-y[0] => LessThan3.IN64
+x[9] => LessThan3.IN11
 y[0] => LessThan4.IN64
+y[0] => LessThan5.IN64
+y[0] => LessThan1.IN11
 y[1] => LessThan0.IN10
 y[1] => Add1.IN62
-y[1] => LessThan3.IN63
 y[1] => LessThan4.IN63
+y[1] => LessThan5.IN63
 y[2] => LessThan0.IN9
 y[2] => Add1.IN61
-y[2] => LessThan3.IN62
 y[2] => LessThan4.IN62
+y[2] => LessThan5.IN62
 y[3] => LessThan0.IN8
 y[3] => Add0.IN14
-y[3] => LessThan3.IN61
 y[3] => LessThan4.IN61
+y[3] => LessThan5.IN61
 y[4] => LessThan0.IN7
 y[4] => Add0.IN13
-y[4] => LessThan3.IN60
 y[4] => LessThan4.IN60
+y[4] => LessThan5.IN60
 y[5] => LessThan0.IN6
 y[5] => Add0.IN12
-y[5] => LessThan3.IN59
 y[5] => LessThan4.IN59
+y[5] => LessThan5.IN59
 y[6] => LessThan0.IN5
 y[6] => Add0.IN11
-y[6] => LessThan3.IN58
 y[6] => LessThan4.IN58
+y[6] => LessThan5.IN58
 y[7] => LessThan0.IN4
 y[7] => Add0.IN10
-y[7] => LessThan3.IN57
 y[7] => LessThan4.IN57
+y[7] => LessThan5.IN57
 y[8] => LessThan0.IN3
 y[8] => Add0.IN9
-y[8] => LessThan3.IN56
 y[8] => LessThan4.IN56
+y[8] => LessThan5.IN56
 y[9] => LessThan0.IN2
 y[9] => Add0.IN8
-y[9] => LessThan3.IN55
 y[9] => LessThan4.IN55
+y[9] => LessThan5.IN55
 show_game_over => output_color.OUTPUTSELECT
 show_game_over => output_color.OUTPUTSELECT
 show_game_over => output_color.OUTPUTSELECT
@@ -6647,6 +6739,34 @@ show_game_over => output_color.OUTPUTSELECT
 show_game_over => output_color.OUTPUTSELECT
 show_game_over => output_color.OUTPUTSELECT
 show_game_over => output_color.OUTPUTSELECT
+hi_score_digits[0][0] => Mux7.IN10
+hi_score_digits[0][1] => Mux6.IN10
+hi_score_digits[0][2] => Mux5.IN10
+hi_score_digits[0][3] => Mux4.IN10
+hi_score_digits[1][0] => Mux7.IN9
+hi_score_digits[1][1] => Mux6.IN9
+hi_score_digits[1][2] => Mux5.IN9
+hi_score_digits[1][3] => Mux4.IN9
+hi_score_digits[2][0] => Mux7.IN8
+hi_score_digits[2][1] => Mux6.IN8
+hi_score_digits[2][2] => Mux5.IN8
+hi_score_digits[2][3] => Mux4.IN8
+hi_score_digits[3][0] => Mux7.IN7
+hi_score_digits[3][1] => Mux6.IN7
+hi_score_digits[3][2] => Mux5.IN7
+hi_score_digits[3][3] => Mux4.IN7
+hi_score_digits[4][0] => Mux7.IN6
+hi_score_digits[4][1] => Mux6.IN6
+hi_score_digits[4][2] => Mux5.IN6
+hi_score_digits[4][3] => Mux4.IN6
+hi_score_digits[5][0] => Mux7.IN5
+hi_score_digits[5][1] => Mux6.IN5
+hi_score_digits[5][2] => Mux5.IN5
+hi_score_digits[5][3] => Mux4.IN5
+hi_score_digits[6][0] => Mux7.IN4
+hi_score_digits[6][1] => Mux6.IN4
+hi_score_digits[6][2] => Mux5.IN4
+hi_score_digits[6][3] => Mux4.IN4
 decimal_digits[0][0] => Mux3.IN10
 decimal_digits[0][1] => Mux2.IN10
 decimal_digits[0][2] => Mux1.IN10
@@ -6676,36 +6796,36 @@ decimal_digits[6][1] => Mux2.IN4
 decimal_digits[6][2] => Mux1.IN4
 decimal_digits[6][3] => Mux0.IN4
 game_over_timer[0] => LessThan0.IN18
-game_over_timer[0] => Add6.IN18
-game_over_timer[0] => Add8.IN18
+game_over_timer[0] => Add7.IN18
+game_over_timer[0] => Add9.IN18
 game_over_timer[0] => Add2.IN62
 game_over_timer[1] => LessThan0.IN17
-game_over_timer[1] => Add6.IN17
-game_over_timer[1] => Add8.IN17
+game_over_timer[1] => Add7.IN17
+game_over_timer[1] => Add9.IN17
 game_over_timer[1] => Add2.IN61
 game_over_timer[2] => LessThan0.IN16
-game_over_timer[2] => Add5.IN2
-game_over_timer[2] => Add7.IN3
+game_over_timer[2] => Add6.IN2
+game_over_timer[2] => Add8.IN3
 game_over_timer[2] => Add2.IN60
 game_over_timer[3] => LessThan0.IN15
-game_over_timer[3] => Add5.IN6
-game_over_timer[3] => Add7.IN2
+game_over_timer[3] => Add6.IN6
+game_over_timer[3] => Add8.IN6
 game_over_timer[3] => Add2.IN59
 game_over_timer[4] => LessThan0.IN14
-game_over_timer[4] => Add5.IN5
-game_over_timer[4] => Add7.IN6
+game_over_timer[4] => Add6.IN5
+game_over_timer[4] => Add8.IN2
 game_over_timer[4] => Add2.IN58
 game_over_timer[5] => LessThan0.IN13
-game_over_timer[5] => Add5.IN1
-game_over_timer[5] => Add7.IN1
+game_over_timer[5] => Add6.IN1
+game_over_timer[5] => Add8.IN1
 game_over_timer[5] => Add2.IN57
 game_over_timer[6] => LessThan0.IN12
-game_over_timer[6] => Add5.IN0
-game_over_timer[6] => Add7.IN0
+game_over_timer[6] => Add6.IN0
+game_over_timer[6] => Add8.IN0
 game_over_timer[6] => Add2.IN56
 game_over_timer[7] => LessThan0.IN11
-game_over_timer[7] => Add5.IN4
-game_over_timer[7] => Add7.IN5
+game_over_timer[7] => Add6.IN4
+game_over_timer[7] => Add8.IN5
 game_over_timer[7] => Add2.IN55
 background[0] => output_color.DATAA
 background[0] => output_color.DATAB
