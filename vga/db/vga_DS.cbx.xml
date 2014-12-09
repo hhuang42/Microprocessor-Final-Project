@@ -3,7 +3,6 @@
 	<PROJECT NAME="vga_DS">
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|pll:vgapll|altpll:altpll_component" CBX_FILE_NAME="pll_altpll.v"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult1" CBX_FILE_NAME="mult_e4t.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|lpm_mult:Mult0" CBX_FILE_NAME="mult_fbt.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_p9m.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult0" CBX_FILE_NAME="mult_c4t.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult2" CBX_FILE_NAME="mult_e4t.tdf"/>

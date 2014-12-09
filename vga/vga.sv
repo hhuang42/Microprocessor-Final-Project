@@ -304,7 +304,7 @@ module videoGen(input  logic [9:0] x, y,
 //                 output logic [9:0] x_cent, y_cent,
 //                 output logic [7:0] ring_size);
  draw_path path(x, y,path_enable, path_start_x, path_start_y,
-                            path_end_x, path_end_y, x*y+24'h808080, intermediate_color[0]);
+                            path_end_x, path_end_y, x^y+24'h808080, intermediate_color[0]);
  path_end_octagonv2(path_enable, x, y,  path_end_x, path_end_y, intermediate_color[0], intermediate_color[1]);
  genvar index;
  generate
@@ -358,7 +358,7 @@ chargenrom order(target_order + 8'd48 + 1, (x_pixel - x_cent + 8)>>1, (y_pixel -
 assign in_number_region = (x_pixel - x_cent + 8 < 16) && (y_pixel - y_cent + 8 < 16);
 always_comb
 	begin 
-  if (!active)
+  if (!active || max > 85)
     output_color = background;
   else if (in_number_region && pixel)
     output_color = 24'hFFFFFF;
@@ -428,7 +428,7 @@ always_comb
   if (!active)
     output_color = background;
 	else if (max < 30)
-		output_color = 24'hFF00FF;
+		output_color = 24'hFF8000;
 	else
 		output_color = background;
 end
@@ -609,7 +609,9 @@ module draw_path #(parameter MAX_THICKNESS = 25)
                      (delta_long_total > delta_long)) &&
                      ((high_compare > fixed_compare) ==
                       (low_compare  < fixed_compare)));
-  assign output_color = (in_path && path_enable)? 24'h8080FF : background;
+  assign output_color = (in_path && path_enable)? 
+      24'h7F7F00 + {1'b0,background[23:17],1'b0,background[15:9],1'b0, background[7:1]}: 
+      background;
 endmodule
 
 

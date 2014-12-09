@@ -119,8 +119,11 @@ BOOL USB_HID_DataCollectionHandler(void);
 
 #define MAX_ERROR_COUNTER               (10)
 
-// Use SPI Channel 2
+// Use SPI Channel 2 for PIC2 to FPGA connection
 #define SPI_CHANNEL                     (2)
+
+// Use SPI Channel 1 for PIC1 to PIC2 connection
+#define SPI_CHANNEL2                    (1)
 
 // Divide source clock by 2
 #define SRC_CLK_DIV                     (2)
@@ -183,6 +186,13 @@ int x_position = 0;
 // y position of mouse with SCALING:1 value to pixel ratio 
 int y_position = 0;
 
+// buffer taking care of the messages received from PIC1
+unsigned int octagonbuffer;
+
+// the beat, number of octagons and offset received from PIC1
+int beat;
+int numofoctagons;
+int offset;
 
 volatile int life;
 volatile int timer;
@@ -215,6 +225,51 @@ target targets[512];
 // Main
 //******************************************************************************
 //******************************************************************************
+
+void receiveOctagondata()
+{   
+    int i;
+    
+    SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
+    octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+    octagonbuffer = (octagonbuffer >> 7);
+    offset = (octagonbuffer) & 0xFF;
+    octagonbuffer = (octagonbuffer >> 8);
+    numofoctagons = (octagonbuffer) & 0b111111111;
+    octagonbuffer = (octagonbuffer >> 9);
+    beat = octagonbuffer & 0b11111111;
+    
+    for ( i=0; i<numofoctagons; i++){
+        SpiChnPutC(SPI_CHANNEL2, 0xFFFFFFFF);
+        octagonbuffer = SpiChnGetC(SPI_CHANNEL2);
+        targets[i].is_rolling = (octagonbuffer) & 0b1;
+        octagonbuffer = (octagonbuffer >> 1);
+        targets[i].play_time = (octagonbuffer) & 0b11111111111;
+        octagonbuffer = (octagonbuffer >> 11);
+        targets[i].y_position = (octagonbuffer) & 0b1111111111;
+        octagonbuffer = (octagonbuffer >> 10);
+        targets[i].x_position = octagonbuffer & 0b1111111111;
+        };
+        
+    //SpiChnPutC(SPI_CHANNEL2, 0x00000000);
+    //SpiChnGetC(SPI_CHANNEL2);
+}        
+
+    
+    
+    
+     /*for(i=0; i<200; ++i){
+        targets[i].x_position = ((i/8)*430-i*70+200) % MAX_X;
+        targets[i].y_position = ((i/8)*350-i*90+300) % MAX_Y;
+        targets[i].play_time = i*40 + 300;
+        targets[i].is_rolling = i%10==0;
+        ++total_target_count;*/
+        
+        
+    
+    
+    
+
 unsigned short mouse_x_position(void){
     return x_position / SCALING;
 }
@@ -444,10 +499,17 @@ BOOL is_mouse_in_target(target next_target){
                                      pow((mouse_y_position()-next_target.y_position), 2);
 }
 
+BOOL is_mouse_in_circle(x_position, y_position, radius){
+    return pow(radius,2) >= pow((mouse_x_position()-x_position), 2) + 
+                                     pow((mouse_y_position()-y_position), 2);
+}
+
+
 void gameOverLoop(void){
     if(timer < 255)
     {
-        ++timer;
+        timer = timer + 5;
+        timer = timer > 255? 255: timer;
     }
 }
 
@@ -456,6 +518,8 @@ void gameLoop(void){
     BOOL button_pressed_state = (BOOL) Appl_Button_report_buffer[0];
     int score_type = 0;
     BOOL delete_octagon = FALSE;
+    
+    
     if (is_roll_active && timer >= start_roll_target->play_time) {
         int delta_t = timer - start_roll_target->play_time;
         int total_delta_t = end_roll_target->play_time - start_roll_target->play_time;
@@ -463,6 +527,14 @@ void gameLoop(void){
         int total_delta_y = end_roll_target->y_position - start_roll_target->y_position;
         int roll_x = delta_t*total_delta_x/total_delta_t + start_roll_target->x_position;
         int roll_y = delta_t*total_delta_y/total_delta_t + start_roll_target->y_position;
+        if (delta_t % 6 == 0){
+            if(button_pressed_state && is_mouse_in_circle(roll_x, roll_y, 50)){
+                life += 2;
+                score += 30;
+            } else {
+                life -= 2;
+            }
+        }
         rollOctagon(roll_x, roll_y);
     } else if (next_target < total_target_count) {
         BOOL mouse_clicked = button_pressed_state && !last_button_pressed_state;
@@ -502,6 +574,8 @@ void gameLoop(void){
     
         if (is_roll_active) {
             score_type = roll_score_type;
+            deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, 0);
+            deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, roll_score_type);
             stopRollOctagon();
             is_roll_active = FALSE;
             deletePath();
@@ -510,12 +584,13 @@ void gameLoop(void){
             start_roll_target = &targets[next_target];
             end_roll_target = &targets[next_target+1];
             roll_score_type = score_type;
-        } 
-        deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, score_type);
+        } else {
+            deleteOldestOctagon(targets[next_target].x_position, targets[next_target].y_position, score_type);
+        }
         life += score_type*3;
         score += score_type*100;
         if(score_type == 0){
-            life -= 15;
+            life -= 20;
         }
         next_target++;
         

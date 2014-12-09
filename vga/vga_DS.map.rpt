@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vga_DS
-Mon Dec 08 17:07:47 2014
+Mon Dec 08 19:53:33 2014
 Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
 
 
@@ -31,29 +31,28 @@ Quartus II 32-bit Version 12.0 Build 178 05/31/2012 SJ Web Edition
  23. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult0
  24. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult2
  25. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|draw_path:path|lpm_mult:Mult1
- 26. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|lpm_mult:Mult0
- 27. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0
- 28. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Div0
- 29. altpll Parameter Settings by Entity Instance
- 30. lpm_mult Parameter Settings by Entity Instance
- 31. Port Connectivity Checks: "videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb"
- 32. Port Connectivity Checks: "videoGen:videoGen|draw_score:sc|chargenrom:chargenromb"
- 33. Port Connectivity Checks: "videoGen:videoGen|draw_result:result|chargenrom:chargenromb"
- 34. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[7].test"
- 35. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[6].test"
- 36. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[5].test"
- 37. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[4].test"
- 38. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[3].test"
- 39. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[2].test"
- 40. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[1].test"
- 41. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
- 42. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test"
- 43. Port Connectivity Checks: "videoGen:videoGen|draw_path:path"
- 44. Port Connectivity Checks: "videoGen:videoGen"
- 45. Port Connectivity Checks: "pll:vgapll"
- 46. Elapsed Time Per Partition
- 47. Analysis & Synthesis Messages
- 48. Analysis & Synthesis Suppressed Messages
+ 26. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0
+ 27. Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Div0
+ 28. altpll Parameter Settings by Entity Instance
+ 29. lpm_mult Parameter Settings by Entity Instance
+ 30. Port Connectivity Checks: "videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb"
+ 31. Port Connectivity Checks: "videoGen:videoGen|draw_score:sc|chargenrom:chargenromb"
+ 32. Port Connectivity Checks: "videoGen:videoGen|draw_result:result|chargenrom:chargenromb"
+ 33. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[7].test"
+ 34. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[6].test"
+ 35. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[5].test"
+ 36. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[4].test"
+ 37. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[3].test"
+ 38. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[2].test"
+ 39. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[1].test"
+ 40. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
+ 41. Port Connectivity Checks: "videoGen:videoGen|octagonv2:gen_code_label[0].test"
+ 42. Port Connectivity Checks: "videoGen:videoGen|draw_path:path"
+ 43. Port Connectivity Checks: "videoGen:videoGen"
+ 44. Port Connectivity Checks: "pll:vgapll"
+ 45. Elapsed Time Per Partition
+ 46. Analysis & Synthesis Messages
+ 47. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -79,19 +78,19 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Dec 08 17:07:47 2014    ;
+; Analysis & Synthesis Status        ; Successful - Mon Dec 08 19:53:33 2014    ;
 ; Quartus II 32-bit Version          ; 12.0 Build 178 05/31/2012 SJ Web Edition ;
 ; Revision Name                      ; vga_DS                                   ;
 ; Top-level Entity Name              ; vga_DS                                   ;
 ; Family                             ; Cyclone III                              ;
-; Total logic elements               ; 5,258                                    ;
-;     Total combinational functions  ; 4,775                                    ;
+; Total logic elements               ; 5,280                                    ;
+;     Total combinational functions  ; 4,797                                    ;
 ;     Dedicated logic registers      ; 579                                      ;
 ; Total registers                    ; 579                                      ;
 ; Total pins                         ; 40                                       ;
 ; Total virtual pins                 ; 0                                        ;
 ; Total memory bits                  ; 0                                        ;
-; Embedded Multiplier 9-bit elements ; 8                                        ;
+; Embedded Multiplier 9-bit elements ; 6                                        ;
 ; Total PLLs                         ; 1                                        ;
 +------------------------------------+------------------------------------------+
 
@@ -220,7 +219,6 @@ applicable agreement for further details.
 ; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/12.0/quartus/libraries/megafunctions/altshift.inc                           ;         ;
 ; db/mult_c4t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/mult_c4t.tdf            ;         ;
 ; db/mult_e4t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/mult_e4t.tdf            ;         ;
-; db/mult_fbt.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/mult_fbt.tdf            ;         ;
 ; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/altera/12.0/quartus/libraries/megafunctions/lpm_divide.tdf                         ;         ;
 ; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/altera/12.0/quartus/libraries/megafunctions/abs_divider.inc                        ;         ;
 ; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/altera/12.0/quartus/libraries/megafunctions/sign_div_unsign.inc                    ;         ;
@@ -238,30 +236,30 @@ applicable agreement for further details.
 +---------------------------------------------+---------------------------------------------------+
 ; Resource                                    ; Usage                                             ;
 +---------------------------------------------+---------------------------------------------------+
-; Estimated Total logic elements              ; 5,258                                             ;
+; Estimated Total logic elements              ; 5,280                                             ;
 ;                                             ;                                                   ;
-; Total combinational functions               ; 4775                                              ;
+; Total combinational functions               ; 4797                                              ;
 ; Logic element usage by number of LUT inputs ;                                                   ;
-;     -- 4 input functions                    ; 1396                                              ;
-;     -- 3 input functions                    ; 2292                                              ;
-;     -- <=2 input functions                  ; 1087                                              ;
+;     -- 4 input functions                    ; 1408                                              ;
+;     -- 3 input functions                    ; 2314                                              ;
+;     -- <=2 input functions                  ; 1075                                              ;
 ;                                             ;                                                   ;
 ; Logic elements by mode                      ;                                                   ;
-;     -- normal mode                          ; 2717                                              ;
-;     -- arithmetic mode                      ; 2058                                              ;
+;     -- normal mode                          ; 2752                                              ;
+;     -- arithmetic mode                      ; 2045                                              ;
 ;                                             ;                                                   ;
 ; Total registers                             ; 579                                               ;
 ;     -- Dedicated logic registers            ; 579                                               ;
 ;     -- I/O registers                        ; 0                                                 ;
 ;                                             ;                                                   ;
 ; I/O pins                                    ; 40                                                ;
-; Embedded Multiplier 9-bit elements          ; 8                                                 ;
+; Embedded Multiplier 9-bit elements          ; 6                                                 ;
 ; Total PLLs                                  ; 1                                                 ;
 ;     -- PLLs                                 ; 1                                                 ;
 ;                                             ;                                                   ;
 ; Maximum fan-out node                        ; videoGen:videoGen|ringbuffer:ring|startpointer[0] ;
-; Maximum fan-out                             ; 601                                               ;
-; Total fan-out                               ; 16315                                             ;
+; Maximum fan-out                             ; 575                                               ;
+; Total fan-out                               ; 16389                                             ;
 ; Average fan-out                             ; 3.00                                              ;
 +---------------------------------------------+---------------------------------------------------+
 
@@ -271,13 +269,13 @@ applicable agreement for further details.
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                         ; Library Name ;
 +----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |vga_DS                                      ; 4775 (1)          ; 579 (0)      ; 0           ; 8            ; 0       ; 4         ; 40   ; 0            ; |vga_DS                                                                                                                                     ;              ;
+; |vga_DS                                      ; 4797 (1)          ; 579 (0)      ; 0           ; 6            ; 0       ; 3         ; 40   ; 0            ; |vga_DS                                                                                                                                     ;              ;
 ;    |pll:vgapll|                              ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll                                                                                                                          ;              ;
 ;       |altpll:altpll_component|              ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll|altpll:altpll_component                                                                                                  ;              ;
 ;          |pll_altpll:auto_generated|         ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated                                                                        ;              ;
 ;    |spi_frm_slave:spireceive|                ; 8 (8)             ; 72 (72)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|spi_frm_slave:spireceive                                                                                                            ;              ;
-;    |vgaController:vgaCont|                   ; 219 (219)         ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|vgaController:vgaCont                                                                                                               ;              ;
-;    |videoGen:videoGen|                       ; 4547 (712)        ; 486 (0)      ; 0           ; 8            ; 0       ; 4         ; 0    ; 0            ; |vga_DS|videoGen:videoGen                                                                                                                   ;              ;
+;    |vgaController:vgaCont|                   ; 195 (195)         ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|vgaController:vgaCont                                                                                                               ;              ;
+;    |videoGen:videoGen|                       ; 4593 (710)        ; 486 (0)      ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen                                                                                                                   ;              ;
 ;       |datatypeextra:comb_3|                 ; 12 (12)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeextra:comb_3                                                                                              ;              ;
 ;       |datatypeoctagon:comb_6|               ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypeoctagon:comb_6                                                                                            ;              ;
 ;       |datatypepath:comb_5|                  ; 3 (3)             ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypepath:comb_5                                                                                               ;              ;
@@ -287,40 +285,38 @@ applicable agreement for further details.
 ;       |datatypetimer:comb_8|                 ; 1 (1)             ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|datatypetimer:comb_8                                                                                              ;              ;
 ;       |draw_game_over:go|                    ; 142 (97)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go                                                                                                 ;              ;
 ;          |chargenrom:chargenromb|            ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_game_over:go|chargenrom:chargenromb                                                                          ;              ;
-;       |draw_health:hp|                       ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_health:hp                                                                                                    ;              ;
+;       |draw_health:hp|                       ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_health:hp                                                                                                    ;              ;
 ;       |draw_mouse:mo|                        ; 165 (165)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_mouse:mo                                                                                                     ;              ;
-;       |draw_path:path|                       ; 212 (212)         ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path                                                                                                    ;              ;
+;       |draw_path:path|                       ; 213 (213)         ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path                                                                                                    ;              ;
 ;          |lpm_mult:Mult0|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult0                                                                                     ;              ;
 ;             |mult_c4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult0|mult_c4t:auto_generated                                                             ;              ;
 ;          |lpm_mult:Mult1|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult1                                                                                     ;              ;
 ;             |mult_e4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult1|mult_e4t:auto_generated                                                             ;              ;
 ;          |lpm_mult:Mult2|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult2                                                                                     ;              ;
 ;             |mult_e4t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_path:path|lpm_mult:Mult2|mult_e4t:auto_generated                                                             ;              ;
-;       |draw_result:result|                   ; 110 (88)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result                                                                                                ;              ;
-;          |chargenrom:chargenromb|            ; 22 (22)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result|chargenrom:chargenromb                                                                         ;              ;
-;       |draw_score:sc|                        ; 122 (78)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc                                                                                                     ;              ;
+;       |draw_result:result|                   ; 109 (90)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result                                                                                                ;              ;
+;          |chargenrom:chargenromb|            ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_result:result|chargenrom:chargenromb                                                                         ;              ;
+;       |draw_score:sc|                        ; 99 (55)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc                                                                                                     ;              ;
 ;          |chargenrom:chargenromb|            ; 44 (44)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|draw_score:sc|chargenrom:chargenromb                                                                              ;              ;
-;       |lpm_mult:Mult0|                       ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|lpm_mult:Mult0                                                                                                    ;              ;
-;          |mult_fbt:auto_generated|           ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|lpm_mult:Mult0|mult_fbt:auto_generated                                                                            ;              ;
-;       |octagonv2:gen_code_label[0].test|     ; 262 (232)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test                                                                                  ;              ;
+;       |octagonv2:gen_code_label[0].test|     ; 270 (240)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[1].test|     ; 259 (230)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[2].test|     ; 259 (230)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test                                                                                  ;              ;
+;       |octagonv2:gen_code_label[1].test|     ; 267 (239)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[1].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[2].test|     ; 268 (239)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[2].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[3].test|     ; 259 (230)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[4].test|     ; 260 (230)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[5].test|     ; 259 (242)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[6].test|     ; 259 (230)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test                                                                                  ;              ;
+;       |octagonv2:gen_code_label[3].test|     ; 266 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[3].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[4].test|     ; 265 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 27 (27)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[4].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[5].test|     ; 266 (238)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[5].test|chargenrom:order                                                                 ;              ;
+;       |octagonv2:gen_code_label[6].test|     ; 265 (236)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test                                                                                  ;              ;
 ;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[6].test|chargenrom:order                                                                 ;              ;
-;       |octagonv2:gen_code_label[7].test|     ; 256 (227)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test                                                                                  ;              ;
-;          |chargenrom:order|                  ; 29 (29)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test|chargenrom:order                                                                 ;              ;
-;       |path_end_octagonv2:comb_12|           ; 146 (146)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|path_end_octagonv2:comb_12                                                                                        ;              ;
+;       |octagonv2:gen_code_label[7].test|     ; 272 (244)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test                                                                                  ;              ;
+;          |chargenrom:order|                  ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|octagonv2:gen_code_label[7].test|chargenrom:order                                                                 ;              ;
+;       |path_end_octagonv2:comb_21|           ; 148 (148)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|path_end_octagonv2:comb_21                                                                                        ;              ;
 ;       |ringbuffer:ring|                      ; 56 (56)           ; 238 (238)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|ringbuffer:ring                                                                                                   ;              ;
-;       |roll_octagonv2:roll|                  ; 156 (156)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|roll_octagonv2:roll                                                                                               ;              ;
+;       |roll_octagonv2:roll|                  ; 158 (158)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|roll_octagonv2:roll                                                                                               ;              ;
 ;       |separator:gen_code_label[0].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[0].sep                                                                                   ;              ;
 ;       |separator:gen_code_label[1].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[1].sep                                                                                   ;              ;
 ;       |separator:gen_code_label[2].sep|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |vga_DS|videoGen:videoGen|separator:gen_code_label[2].sep                                                                                   ;              ;
@@ -348,11 +344,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Statistic                             ; Number Used ;
 +---------------------------------------+-------------+
 ; Simple Multipliers (9-bit)            ; 0           ;
-; Simple Multipliers (18-bit)           ; 4           ;
+; Simple Multipliers (18-bit)           ; 3           ;
 ; Embedded Multiplier Blocks            ; --          ;
-; Embedded Multiplier 9-bit elements    ; 8           ;
+; Embedded Multiplier 9-bit elements    ; 6           ;
 ; Signed Embedded Multipliers           ; 3           ;
-; Unsigned Embedded Multipliers         ; 1           ;
+; Unsigned Embedded Multipliers         ; 0           ;
 ; Mixed Sign Embedded Multipliers       ; 0           ;
 ; Variable Sign Embedded Multipliers    ; 0           ;
 ; Dedicated Input Shift Register Chains ; 0           ;
@@ -400,25 +396,25 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered                                                     ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|startpointer[0]      ;                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|startpointer[2]      ;                            ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|ringbuffer:ring|endpointer[1]        ;                            ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|to_decimal:digits|digit_counter[2]   ;                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; |vga_DS|videoGen:videoGen|to_decimal:digits|digit_counter[1]   ;                            ;
 ; 3:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; |vga_DS|videoGen:videoGen|to_decimal:digits|leftover_value[20] ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[7][17]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[6][18]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[5][17]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[4][4]    ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[3][8]    ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[2][4]    ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[1][15]   ;                            ;
-; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[0][25]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[7][21]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[6][4]    ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[5][18]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[4][22]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[3][21]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[2][20]   ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[1][4]    ;                            ;
+; 6:1                ; 29 bits   ; 116 LEs       ; 29 LEs               ; 87 LEs                 ; |vga_DS|videoGen:videoGen|ringbuffer:ring|ring_buffer[0][4]    ;                            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[16]       ;                            ;
 ; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|Mux2                   ;                            ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_game_over:go|Mux3               ;                            ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; |vga_DS|vgaController:vgaCont|g[6]                             ;                            ;
-; 6:1                ; 12 bits   ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; |vga_DS|vgaController:vgaCont|b[3]                             ;                            ;
-; 32:1               ; 10 bits   ; 210 LEs       ; 200 LEs              ; 10 LEs                 ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[2]        ;                            ;
-; 32:1               ; 5 bits    ; 105 LEs       ; 100 LEs              ; 5 LEs                  ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[14]       ;                            ;
-; 36:1               ; 4 bits    ; 96 LEs        ; 88 LEs               ; 8 LEs                  ; |vga_DS|vgaController:vgaCont|r[0]                             ;                            ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; |vga_DS|videoGen:videoGen|draw_game_over:go|Mux1               ;                            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; |vga_DS|vgaController:vgaCont|r[7]                             ;                            ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 33 LEs               ; 11 LEs                 ; |vga_DS|vgaController:vgaCont|r[2]                             ;                            ;
+; 32:1               ; 5 bits    ; 105 LEs       ; 50 LEs               ; 55 LEs                 ; |vga_DS|videoGen:videoGen|draw_score:sc|output_color[5]        ;                            ;
+; 36:1               ; 2 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; |vga_DS|vgaController:vgaCont|b[1]                             ;                            ;
 ; 36:1               ; 2 bits    ; 48 LEs        ; 44 LEs               ; 4 LEs                  ; |vga_DS|vgaController:vgaCont|g[0]                             ;                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+----------------------------------------------------------------+----------------------------+
 
@@ -1016,41 +1012,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: videoGen:videoGen|lpm_mult:Mult0  ;
-+------------------------------------------------+-------------+---------------------+
-; Parameter Name                                 ; Value       ; Type                ;
-+------------------------------------------------+-------------+---------------------+
-; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY          ;
-; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY        ;
-; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE        ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE      ;
-; LPM_WIDTHA                                     ; 10          ; Untyped             ;
-; LPM_WIDTHB                                     ; 10          ; Untyped             ;
-; LPM_WIDTHP                                     ; 20          ; Untyped             ;
-; LPM_WIDTHR                                     ; 20          ; Untyped             ;
-; LPM_WIDTHS                                     ; 1           ; Untyped             ;
-; LPM_REPRESENTATION                             ; UNSIGNED    ; Untyped             ;
-; LPM_PIPELINE                                   ; 0           ; Untyped             ;
-; LATENCY                                        ; 0           ; Untyped             ;
-; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped             ;
-; INPUT_B_IS_CONSTANT                            ; NO          ; Untyped             ;
-; USE_EAB                                        ; OFF         ; Untyped             ;
-; MAXIMIZE_SPEED                                 ; 6           ; Untyped             ;
-; DEVICE_FAMILY                                  ; Cyclone III ; Untyped             ;
-; CARRY_CHAIN                                    ; MANUAL      ; Untyped             ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped             ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped             ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped             ;
-; CBXI_PARAMETER                                 ; mult_fbt    ; Untyped             ;
-; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped             ;
-; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped             ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped             ;
-+------------------------------------------------+-------------+---------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +------------------------------------------------------------------------------------------------------+
 ; Parameter Settings for Inferred Entity Instance: videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0 ;
 +------------------------+----------------+------------------------------------------------------------+
@@ -1119,7 +1080,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-------------------------------------------------+
 ; Name                                  ; Value                                           ;
 +---------------------------------------+-------------------------------------------------+
-; Number of entity instances            ; 4                                               ;
+; Number of entity instances            ; 3                                               ;
 ; Entity Instance                       ; videoGen:videoGen|draw_path:path|lpm_mult:Mult0 ;
 ;     -- LPM_WIDTHA                     ; 10                                              ;
 ;     -- LPM_WIDTHB                     ; 10                                              ;
@@ -1147,17 +1108,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- LPM_WIDTHB                     ; 10                                              ;
 ;     -- LPM_WIDTHP                     ; 21                                              ;
 ;     -- LPM_REPRESENTATION             ; SIGNED                                          ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                              ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                              ;
-;     -- USE_EAB                        ; OFF                                             ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                            ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                              ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                              ;
-; Entity Instance                       ; videoGen:videoGen|lpm_mult:Mult0                ;
-;     -- LPM_WIDTHA                     ; 10                                              ;
-;     -- LPM_WIDTHB                     ; 10                                              ;
-;     -- LPM_WIDTHP                     ; 20                                              ;
-;     -- LPM_REPRESENTATION             ; UNSIGNED                                        ;
 ;     -- INPUT_A_IS_CONSTANT            ; NO                                              ;
 ;     -- INPUT_B_IS_CONSTANT            ; NO                                              ;
 ;     -- USE_EAB                        ; OFF                                             ;
@@ -1334,8 +1284,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------------------+-------+----------+----------------------+
 ; Port               ; Type  ; Severity ; Details              ;
 +--------------------+-------+----------+----------------------+
-; background[22..21] ; Input ; Info     ; Stuck at GND         ;
+; background[22..16] ; Input ; Info     ; Stuck at GND         ;
+; background[14..11] ; Input ; Info     ; Stuck at GND         ;
 ; background[23]     ; Input ; Info     ; Stuck at VCC         ;
+; background[15]     ; Input ; Info     ; Stuck at VCC         ;
 +--------------------+-------+----------+----------------------+
 
 
@@ -1364,7 +1316,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:46     ;
+; Top            ; 00:00:39     ;
 +----------------+--------------+
 
 
@@ -1374,7 +1326,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.0 Build 178 05/31/2012 SJ Web Edition
-    Info: Processing started: Mon Dec 08 17:07:10 2014
+    Info: Processing started: Mon Dec 08 19:53:01 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_DS -c vga_DS
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 25 design units, including 25 entities, in source file vga.sv
@@ -1482,7 +1434,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:vgapll|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "vgaController" for hierarchy "vgaController:vgaCont"
 Info (12128): Elaborating entity "spi_frm_slave" for hierarchy "spi_frm_slave:spireceive"
-Warning (10230): Verilog HDL assignment warning at vga.sv(666): truncated value with size 32 to match size of target (5)
+Warning (10230): Verilog HDL assignment warning at vga.sv(668): truncated value with size 32 to match size of target (5)
 Info (12128): Elaborating entity "videoGen" for hierarchy "videoGen:videoGen"
 Info (12128): Elaborating entity "datatypeextra" for hierarchy "videoGen:videoGen|datatypeextra:comb_3"
 Warning (10230): Verilog HDL assignment warning at vga.sv(78): truncated value with size 32 to match size of target (1)
@@ -1507,15 +1459,15 @@ Warning (10230): Verilog HDL assignment warning at vga.sv(176): truncated value 
 Info (12128): Elaborating entity "draw_path" for hierarchy "videoGen:videoGen|draw_path:path"
 Warning (10230): Verilog HDL assignment warning at vga.sv(606): truncated value with size 32 to match size of target (22)
 Warning (10230): Verilog HDL assignment warning at vga.sv(607): truncated value with size 32 to match size of target (22)
-Info (12128): Elaborating entity "path_end_octagonv2" for hierarchy "videoGen:videoGen|path_end_octagonv2:comb_12"
+Info (12128): Elaborating entity "path_end_octagonv2" for hierarchy "videoGen:videoGen|path_end_octagonv2:comb_21"
 Info (12128): Elaborating entity "separator" for hierarchy "videoGen:videoGen|separator:gen_code_label[0].sep"
 Info (12128): Elaborating entity "octagonv2" for hierarchy "videoGen:videoGen|octagonv2:gen_code_label[0].test"
 Warning (10230): Verilog HDL assignment warning at vga.sv(343): truncated value with size 32 to match size of target (10)
 Info (12128): Elaborating entity "chargenrom" for hierarchy "videoGen:videoGen|octagonv2:gen_code_label[0].test|chargenrom:order"
-Warning (10850): Verilog HDL warning at vga.sv(627): number of words (752) in memory file does not match the number of elements in the address range [0:2047]
-Warning (10030): Net "charrom.data_a" at vga.sv(621) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.waddr_a" at vga.sv(621) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "charrom.we_a" at vga.sv(621) has no driver or initial value, using a default initial value '0'
+Warning (10850): Verilog HDL warning at vga.sv(629): number of words (752) in memory file does not match the number of elements in the address range [0:2047]
+Warning (10030): Net "charrom.data_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "charrom.waddr_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "charrom.we_a" at vga.sv(623) has no driver or initial value, using a default initial value '0'
 Info (12128): Elaborating entity "roll_octagonv2" for hierarchy "videoGen:videoGen|roll_octagonv2:roll"
 Info (12128): Elaborating entity "draw_result" for hierarchy "videoGen:videoGen|draw_result:result"
 Warning (10230): Verilog HDL assignment warning at vga.sv(454): truncated value with size 32 to match size of target (10)
@@ -1572,11 +1524,10 @@ Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File 
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/vga_DS.ram0_chargenrom_5dff6772.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/vga_DS.ram0_chargenrom_5dff6772.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/db/vga_DS.ram0_chargenrom_5dff6772.hdl.mif" contains "don't care" values -- overwriting them with 0s
-Info (278001): Inferred 6 megafunctions from design logic
+Info (278001): Inferred 5 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "videoGen:videoGen|draw_path:path|Mult0"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "videoGen:videoGen|draw_path:path|Mult2"
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "videoGen:videoGen|draw_path:path|Mult1"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "videoGen:videoGen|Mult0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "videoGen:videoGen|to_decimal:digits|Mod0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "videoGen:videoGen|to_decimal:digits|Div0"
 Info (12130): Elaborated megafunction instantiation "videoGen:videoGen|draw_path:path|lpm_mult:Mult0"
@@ -1605,19 +1556,6 @@ Info (12133): Instantiated megafunction "videoGen:videoGen|draw_path:path|lpm_mu
     Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_e4t.tdf
     Info (12023): Found entity 1: mult_e4t
-Info (12130): Elaborated megafunction instantiation "videoGen:videoGen|lpm_mult:Mult0"
-Info (12133): Instantiated megafunction "videoGen:videoGen|lpm_mult:Mult0" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTHA" = "10"
-    Info (12134): Parameter "LPM_WIDTHB" = "10"
-    Info (12134): Parameter "LPM_WIDTHP" = "20"
-    Info (12134): Parameter "LPM_WIDTHR" = "20"
-    Info (12134): Parameter "LPM_WIDTHS" = "1"
-    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
-    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
-    Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
-Info (12021): Found 1 design units, including 1 entities, in source file db/mult_fbt.tdf
-    Info (12023): Found entity 1: mult_fbt
 Info (12130): Elaborated megafunction instantiation "videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0"
 Info (12133): Instantiated megafunction "videoGen:videoGen|to_decimal:digits|lpm_divide:Mod0" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHN" = "22"
@@ -1647,17 +1585,17 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file C:/Users/hhuang/Documents/Microprocessor-Final-Project/vga/vga_DS.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 5340 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 5360 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 5291 logic cells
+    Info (21061): Implemented 5313 logic cells
     Info (21065): Implemented 1 PLLs
-    Info (21062): Implemented 8 DSP elements
+    Info (21062): Implemented 6 DSP elements
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 66 warnings
-    Info: Peak virtual memory: 374 megabytes
-    Info: Processing ended: Mon Dec 08 17:07:47 2014
-    Info: Elapsed time: 00:00:37
-    Info: Total CPU time (on all processors): 00:00:36
+    Info: Peak virtual memory: 396 megabytes
+    Info: Processing ended: Mon Dec 08 19:53:33 2014
+    Info: Elapsed time: 00:00:32
+    Info: Total CPU time (on all processors): 00:00:31
 
 
 +------------------------------------------+
